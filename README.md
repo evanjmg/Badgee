@@ -1,7 +1,8 @@
 # Taggy
 A mobile social game app where friends tag and challenge another to do fun activities
 
-Build:
+#Build:
+
 Backend API: 
 - Node.js, Express, MongoDb, Mongoose
 - Facebook Oauth
