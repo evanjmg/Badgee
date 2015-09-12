@@ -18,12 +18,18 @@
     "bower_components",
     "test",
     "tests"
-  ], 
-   "dependencies": {
+  ],
+  "dependencies": {
     "angular-auto-validate": "~1.18.16",
     "angular-jwt": "~0.0.9",
-    "angular-ui-router": "~0.2.15",
+    "angular-ladda": "~0.3.1",
     "angular-resource": "~1.4.5",
-    "bootstrap": "~3.3.5"
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "ladda": "~0.9.8",
+    "spin.js": "~2.3.2"
+  },
+  "resolutions": {
+    "spin.js": "~2.3.2"
   }
 }

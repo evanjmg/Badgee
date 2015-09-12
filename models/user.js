@@ -13,6 +13,18 @@ var UserSchema = new mongoose.Schema({
   } 
 });
 
+UserSchema.set('toJSON', {
+  transform: function(doc, ret, options) {
+    var returnJson = {
+      id: ret._id,
+      email: ret.email,
+      name: ret.name,
+      img: ret.img
+    }
+    return returnJson;
+  }
+});
+
 UserSchema.methods.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };

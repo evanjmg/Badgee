@@ -5,7 +5,7 @@ WHO
 want to connect and have fun with friends in distant places.
 
 OUR PRODUCT
-Based off the classic game of Tag, Tagger is a mobile social challenge game where friends play tag through challenging one another to do fun tasks.
+Based off the classic game of Tag, Taggy is a mobile social challenge game where friends play tag through challenging one another to do fun tasks.
 (BY) The app uses highly interactive technologies, including taking and drawing on photos. (BECAUSE) These interactions bring users closer together. 
 
 Private
@@ -68,7 +68,17 @@ var TeamSchema = new mongoose.Schema({
   active_task: { type: mongoose.Schema.ObjectId, ref: 'Task'} 
 });
 
+TECHNICAL CONSIDERATIONS:
 
-module.exports = mongoose.model('Team', TeamSchema);
+BACKEND: 
+Facebook Oauth, Local login, JWT, Mongoose, Express, AWS photo storage,  
+
+FRONTEND: Bower, Grunt, Angular, Bootstrap, AWS photo upload
+
+After MVP working and styled, make another IONIC Front-end copying js & html to a front-end app then redo photo capture and upload, & fb oauth  in iPhone. 
+
+
+
+
 
 
