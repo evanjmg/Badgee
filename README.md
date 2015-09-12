@@ -6,6 +6,7 @@ Backend API:
 - Node.js, Express, MongoDb, Mongoose
 - Facebook Oauth
 - Amazon AWS storage
+
 Frontend: 
 - Angular
 - jQuery
