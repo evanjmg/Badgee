@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="taggyApp">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Taggy</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+
+  <div ng-include="'templates/shared/header.html'" ></div>
+  <div ui-view></div>
+  <div ng-include="'templates/shared/footer.html'" ></div>
+
+<!-- External  -->
+  <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Angular  -->
+  <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+  <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
+  <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
+<!-- Internal -->
+  <script type="text/javascript" src="./js/app.js"></script>
+  <!-- Resources -->
+  <script type="text/javascript" src="./js/resources/task.js"></script>
+  <script type="text/javascript" src="./js/resources/.js"></script>
+  <script type="text/javascript" src="./js/resources/user.js"></script>
+  <!-- Controllers -->
+  <script type="text/javascript" src="./js/controllers/hunts.js"></script>
+  <script type="text/javascript" src="./js/controllers/tasks.js"></script>
+  <script type="text/javascript" src="./js/controllers/users.js"></script>
+  <!-- Services -->
+  <script type="text/javascript" src="./js/services/auth.js"></script>

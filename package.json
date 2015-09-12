@@ -1,0 +1,38 @@
+{
+  "name": "taggy",
+  "version": "1.0.0",
+  "description": "A mobile social game app where users can tag and challenge another.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/evanjmg/Taggy.git"
+  },
+  "keywords": [
+    "taggy",
+    "challenge",
+    "game"
+  ],
+  "author": "Evan Gillogley",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/evanjmg/Taggy/issues"
+  },
+  "homepage": "https://github.com/junedev/scavengerhunt#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.13.3",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.0.5",
+    "mongoose": "^4.1.6",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.0",
+    "passport-facebook": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.61.0",
+    "socket.io": "^1.3.6"
+  }
+}

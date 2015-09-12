@@ -1,0 +1,29 @@
+{
+  "name": "taggy",
+  "version": "0.0.0",
+  "authors": [
+    "evanjmg <evanjmg@gmail.com>"
+  ],
+  "description": "A mobile social game where friends tag and challenge each other.",
+  "keywords": [
+    "taggy",
+    "game",
+    "awesome"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "http://taggyapp.uk",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ], 
+   "dependencies": {
+    "angular-auto-validate": "~1.18.16",
+    "angular-jwt": "~0.0.9",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.5",
+    "bootstrap": "~3.3.5"
+  }
+}

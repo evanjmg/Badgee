@@ -1,0 +1,74 @@
+FOR
+YOUNG MEDIA SAVY Social media enthusiasts
+
+WHO 
+want to connect and have fun with friends in distant places.
+
+OUR PRODUCT
+Based off the classic game of Tag, Tagger is a mobile social challenge game where friends play tag through challenging one another to do fun tasks.
+(BY) The app uses highly interactive technologies, including taking and drawing on photos. (BECAUSE) These interactions bring users closer together. 
+
+Private
+Photos - sharing experiences
+User Story - Your It
+
+Person logs into app, invites friends via facebook
+CASE 1 - Join and Create Team and Challenge
+Person gets take through a tour - knows how to use app
+Person creates a group, this invites them to a team. 
+Users accept or reject the invite (mvp they are automatically added)
+Person who creates the game is it. A Clock with minutes says you have ?? minutes (set amount to 5 minutes for default MVP) to complete task and tag another person. The It Person clicks the tag button and creates challenge, (could be any time amount and could attach documents, photos, and/or location - mvp photo, text and drawings)- Person decides to snap a photo and text that says bet you can't eat this much! - clicks submit. Challenge sent. 
+
+CASE 2 - Person receiving the challenge 
+Person gets notification on iPhone opens app and gets challenge - they can either accept or pass on the challenge to another person. Person obviously loses 5 points for passing on the challenge. If they don't respond within the time provided, the challenge is passed and they lose the points. Person accepts challenge, they take a picture of a bigger meal. A check mark appears and the person gets some points. They can challenge other person closest to them or a person in the group. CASE 1 begins again. 
+
+--other considerations turn limit, etc, safe zones - times you can't play
+
+Models
+
+User
+var UserSchema = new mongoose.Schema({
+  name: {type: String, required: true },
+  email: {type: String, required: true, unique: true},
+  img_url: String,
+  local: {
+    password: String
+  },
+  facebook: {
+    username: String,
+    token: String
+  } 
+});
+    
+Task
+var TaskSchema = new mongoose.Schema({
+  creator: {type: mongoose.Schema.ObjectId, ref: 'User'},
+  start_time: Date,
+  img_url: String,
+  end_time: Date,
+  description: String,
+  completed: { type: Boolean, default: false }, 
+  location: {
+    name: String,
+    address: String,
+    lat: String,
+    lon: String
+  }
+});
+
+Team  (or Could be Game - but they are indefinite so teams makes more sense);
+
+var TeamSchema = new mongoose.Schema({
+  created_at: { type: Date, default: Date.now },
+  members: [ { total_points: Number,
+             member: { type: mongoose.Schema.ObjectId, ref: 'User'},
+             tasks_completed: Number } ],
+  name: String,
+  active_user: { type: mongoose.Schema.ObjectId, ref: 'User'},
+  active_task: { type: mongoose.Schema.ObjectId, ref: 'Task'} 
+});
+
+
+module.exports = mongoose.model('Team', TeamSchema);
+
+
