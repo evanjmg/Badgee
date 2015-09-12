@@ -28,10 +28,14 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 app.use(logger('dev'));
 
+
 var routes = require('./config/routes');
 app.use('/api', routes);
-app.use('/api', expressJWT({secret: process.env.EVENT_MATCH_JWT_SECRET})
-  .unless({path: ['/api/login', '/api/join'], method: 'post'}));
+
+
+app.use('/api', expressJWT({secret: process.env.TAGGY_SECRET})
+  .unless({path: ['/api/login', '/api/signup', '/api/facebook', '/api/facebook/callback'], method: ['post', 'get']}));
+
  app.use(function (error, request, response, next) {
    if (error.name === 'UnauthorizedError') {
      response.status(401).json({message: 'You need an authorization token to view confidential information.'});
@@ -46,13 +50,17 @@ app.get('/', function(req, res) {
 
 
 
-
 app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.setHeader('Access-Control-Allow-Origin', '*');
-  next();
+  if ('OPTIONS' == req.method) {
+         res.send(200);
+     }
+     else {
+         next();
+     }
 });
 
 

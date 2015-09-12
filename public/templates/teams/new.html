@@ -1,0 +1,17 @@
+<h2>Create a Team</h2>
+<div ng-controller="TeamsController as teams">
+
+  <div ng-repeat="user in teams.allUsers">
+  <div class="row">
+  <div class="col-sm-4">
+     <img ng-src="{{user.img_url}}" alt="user" width="50px" style="border-radius:50%;">
+  </div>
+  <div class="col-sm-4">
+     <span> {{user.name}}</span>
+     </div>
+     <div class="col-sm-4">
+       <button class="btn btn-success" >+</button>
+     </div>
+    </div>
+  </div>
+</div>
