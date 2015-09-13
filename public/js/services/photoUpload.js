@@ -24,13 +24,11 @@ function PhotoUpload() {
   self.image_file_path = self.creds.bucket + '/' + self.uniqueFileName;
 
 
-  self.upload = function (fileUpload) {
-    
+  self.upload = function (callback, fileUpload) {
     var data = canvas.toDataURL('image/png');
     console.log(data);
 
     self.file = dataURItoBlob(data);
-
     if (fileUpload) {
       self.file = fileUpload;
     }
@@ -62,7 +60,8 @@ function PhotoUpload() {
         }
         else {
           // Success!
-          alert('Upload Done')
+          alert('Upload Done');
+          callback(self.uniqueFileName);
 
         }
       })
@@ -142,7 +141,7 @@ function PhotoUpload() {
         var ctx = canvas.getContext('2d');
 
         // last known position
-        var pos = { x: 0, y: 0 };
+        var pos = { x: 0, y: 30 };
 
         canvas.addEventListener('mousemove', draw);
         canvas.addEventListener('mousedown', setPosition);
@@ -192,12 +191,9 @@ function PhotoUpload() {
       canvas.width = width;
       canvas.height = height;
       context.drawImage(video, 0, 0, width, height);
-    
-      var data = canvas.toDataURL('image/png');
-    
-
-      self.file = dataURItoBlob(data)
-      photo.setAttribute('src', data);
+      $('#canvas').show();
+      $('#video').hide();
+      $('#retakeButton').show();
     } else {
       clearphoto();
     }

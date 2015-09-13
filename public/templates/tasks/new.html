@@ -2,14 +2,16 @@
       <!-- <div class="capture" ng-controller="CaptureController as capture"> -->
        <div class="camera">
          <video id="video">Video stream not available.</video>
+         <canvas id="canvas">
+         </canvas>
          <br/>
          <button id="startbutton" class="btn-info btn">Take photo</button>
+         <button id="retakeButton" class="btn-warning btn" ng-click="tasks.retakePhoto()" >Retake</button>
          </div>
          <form ng-submit="tasks.upload()">
       
-       <canvas id="canvas">
-       </canvas>
-       <div class="output">
+    
+       <div class="output" style="display:none;">
         <img id="photo" alt="The screen capture will appear in this box.">
       </div>
       <!-- STYLED UPLOAD -->

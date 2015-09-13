@@ -11,14 +11,16 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   }
   self.allUsers = User.query();
   self.task = {};
+
   if ($stateParams.id) {
     self.task = Task.get({id: $stateParams.id});
     console.log(self.task);
   }
   console.log($location.path());
-  
+
   if ($('canvas').length !== 0) {
     PhotoUpload.startup();
+    $('#canvas').hide();
   }
 
   if ($location.path() == '/users/tags') {
@@ -29,13 +31,23 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     
   }
   self.upload = function () {
-
+    self.task.task = {}
     PhotoUpload.uploadFile = self.uploadFile;
     if ($scope.uploadFile) {
-    PhotoUpload.upload($scope.uploadFile);
+    PhotoUpload.upload(function (url) {
+        console.log(url);
+    }, $scope.uploadFile);
   } else {
-    PhotoUpload.upload();
+    PhotoUpload.upload(function (url) {
+        self.task.task.img_url = 'https://s3-eu-west-1.amazonaws.com/taggyapp/images/'+url;
+        console.log(self.task.task);
+    });
   }
+  }
+  self.retakePhoto = function () {
+    $('#retakeButton').hide();
+    $('#canvas').hide();
+    $('#video').show();
   }
   self.backToTeam = function () {
     $state.go('showTeam', { id: $stateParams.team_id });
@@ -45,10 +57,11 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   }
 
   self.createTask = function () {
+
     self.task.task._creator = self.currentUser.id;
     self.task.task._tagged_member = $stateParams.member_id;
     self.task.team_id = $stateParams.team_id;
-
+    console.log(self.task);
       Task.save(self.task, function (response) {
         console.log(response, 'saved');
         $state.go('showTask', { team_id: $stateParams.team_id, id: response._id})
