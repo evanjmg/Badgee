@@ -1,9 +1,9 @@
 angular.module('taggyApp')
 .controller('TasksController', TasksController);
 
-TasksController.$inject = ['User', 'Task', '$state', '$stateParams', 'TokenService', '$location'];
+TasksController.$inject = ['User', 'Task', '$state', '$stateParams', 'TokenService', '$location','PhotoUpload', '$scope'];
 
-function TasksController(User, Task, $state, $stateParams, TokenService, $location){
+function TasksController(User, Task, $state, $stateParams, TokenService, $location, PhotoUpload, $scope){
 
   var self = this;
   if (TokenService.isAuthed()) {
@@ -15,13 +15,27 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     self.task = Task.get({id: $stateParams.id});
     console.log(self.task);
   }
+  console.log($location.path());
   
+  if ($('canvas').length !== 0) {
+    PhotoUpload.startup();
+  }
+
   if ($location.path() == '/users/tags') {
     Task.pending({ userId: self.currentUser.id }, function (response) {
       self.pending = response;
       console.log(self.pending);
     });
     
+  }
+  self.upload = function () {
+
+    PhotoUpload.uploadFile = self.uploadFile;
+    if ($scope.uploadFile) {
+    PhotoUpload.upload($scope.uploadFile);
+  } else {
+    PhotoUpload.upload();
+  }
   }
   self.backToTeam = function () {
     $state.go('showTeam', { id: $stateParams.team_id });
@@ -34,8 +48,7 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     self.task.task._creator = self.currentUser.id;
     self.task.task._tagged_member = $stateParams.member_id;
     self.task.team_id = $stateParams.team_id;
-    console.log(self.task)
-    console.log('start-save',self.task)
+
       Task.save(self.task, function (response) {
         console.log(response, 'saved');
         $state.go('showTask', { team_id: $stateParams.team_id, id: response._id})

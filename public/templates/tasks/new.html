@@ -1,13 +1,13 @@
 <div ng-controller="TasksController as tasks">
-      <div class="capture" ng-controller="CaptureController as capture">
+      <!-- <div class="capture" ng-controller="CaptureController as capture"> -->
        <div class="camera">
          <video id="video">Video stream not available.</video>
          <br/>
          <button id="startbutton" class="btn-info btn">Take photo</button>
          </div>
-         <form ng-submit="capture.upload()">
+         <form ng-submit="tasks.upload()">
       
-       <canvas id="canvas" style="display:none;">
+       <canvas id="canvas">
        </canvas>
        <div class="output">
         <img id="photo" alt="The screen capture will appear in this box.">
@@ -18,7 +18,7 @@
       <img ng-src="{{previewImage}}">
       <input id="sendPhoto" type="submit" class="btn-success btn" value="Upload"  >
   </form>
-  </div>
+  <!-- </div> -->
 
   <form ng-submit="tasks.createTask()" novalidate='novalidate'>
   <div class="form-group">

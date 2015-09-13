@@ -1,10 +1,9 @@
 angular
   .module('taggyApp')
-  .controller('CaptureController', CaptureController);
+  .service('PhotoUpload', PhotoUpload);
 
-CaptureController.$inject = ['$scope'];
 
-function CaptureController($scope) {
+function PhotoUpload() {
   var self = this;
   var width = 320;    // We will scale the photo width to this
   var height = 0;     // This will be computed based on the input stream
@@ -15,9 +14,8 @@ function CaptureController($scope) {
   var startbutton = null;
   
   self.uniqueFileName = '';
-  startup();
 
-  self.file = $scope.file || $scope.uploadFile || {};
+  self.file = self.file || {};
   self.creds = {
     bucket: 'taggyapp/images',
     access_key: 'AKIAJE57UR5TAI4KNVJA',
@@ -26,13 +24,16 @@ function CaptureController($scope) {
   self.image_file_path = self.creds.bucket + '/' + self.uniqueFileName;
 
 
- 
-  self.upload = function() {
-    console.log("in upload"); 
-    console.log($scope.previewImage);
-    // console.log(self.file);
-    // console.log($scope.file);
+  self.upload = function (fileUpload) {
+    
+    var data = canvas.toDataURL('image/png');
+    console.log(data);
 
+    self.file = dataURItoBlob(data);
+
+    if (fileUpload) {
+      self.file = fileUpload;
+    }
     // Configure The S3 Object 
     AWS.config.update({ accessKeyId: self.creds.access_key, secretAccessKey: self.creds.secret_key });
     AWS.config.region = 'eu-west-1';
@@ -79,63 +80,98 @@ function CaptureController($scope) {
   }
 
 
-
-
-
-  function startup() {
-    
+  self.startup = function () {
+  
     video = document.getElementById('video');
-    canvas = document.getElementById('canvas');
-    photo = document.getElementById('photo');
-    startbutton = document.getElementById('startbutton');
+        canvas = document.getElementById('canvas');
+        photo = document.getElementById('photo');
+        startbutton = document.getElementById('startbutton');
 
 
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
+        navigator.getMedia = ( navigator.getUserMedia ||
+                               navigator.webkitGetUserMedia ||
+                               navigator.mozGetUserMedia ||
+                               navigator.msGetUserMedia);
 
-    navigator.getMedia(
-      {
-        video: true,
-        audio: false
-      },
-      function(stream) {
-        if (navigator.mozGetUserMedia) {
-          video.mozSrcObject = stream;
-        } else {
-          var vendorURL = window.URL || window.webkitURL;
-          video.src = vendorURL.createObjectURL(stream);
+        navigator.getMedia(
+          {
+            video: true,
+            audio: false
+          },
+          function(stream) {
+            if (navigator.mozGetUserMedia) {
+              video.mozSrcObject = stream;
+            } else {
+              var vendorURL = window.URL || window.webkitURL;
+              video.src = vendorURL.createObjectURL(stream);
+            }
+            video.play();
+          },
+          function(err) {
+            console.log("An error occured! " + err);
+          }
+        );
+
+        video.addEventListener('canplay', function(ev){
+          if (!streaming) {
+            height = video.videoHeight / (video.videoWidth/width);
+          
+            if (isNaN(height)) {
+              height = width / (4/3);
+            }
+          
+            video.setAttribute('width', width);
+            video.setAttribute('height', height);
+            canvas.setAttribute('width', width);
+            canvas.setAttribute('height', height);
+            streaming = true;
+          }
+        }, false);
+
+        startbutton.addEventListener('click', function(ev){
+          self.takepicture();
+          ev.preventDefault();
+        }, false);
+        
+        clearphoto();
+        // create canvas element and append it to document body
+        
+        
+
+        // get canvas 2D context and set him correct size
+        var ctx = canvas.getContext('2d');
+
+        // last known position
+        var pos = { x: 0, y: 0 };
+
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mousedown', setPosition);
+        canvas.addEventListener('mouseenter', setPosition);
+
+        // new position from mouse event
+        function setPosition(e) {
+          pos.x = e.clientX;
+          pos.y = e.clientY;
         }
-        video.play();
-      },
-      function(err) {
-        console.log("An error occured! " + err);
-      }
-    );
 
-    video.addEventListener('canplay', function(ev){
-      if (!streaming) {
-        height = video.videoHeight / (video.videoWidth/width);
-      
-        if (isNaN(height)) {
-          height = width / (4/3);
+        // resize canvas
+
+        function draw(e) {
+          // mouse left button must be pressed
+          if (e.buttons !== 1) return;
+
+          ctx.beginPath(); // begin
+
+          ctx.lineWidth = 5;
+          ctx.lineCap = 'round';
+          ctx.strokeStyle = '#c0392b';
+
+          ctx.moveTo(pos.x, pos.y); // from
+          setPosition(e);
+          ctx.lineTo(pos.x, pos.y); // to
+
+          ctx.stroke(); // draw it!
         }
-      
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
-
-    startbutton.addEventListener('click', function(ev){
-      takepicture();
-      ev.preventDefault();
-    }, false);
-    
-    clearphoto();
   }
 
   // Fill the photo with an indication that none has been
@@ -150,7 +186,7 @@ function CaptureController($scope) {
     photo.setAttribute('src', data);
   }
 
-  function takepicture() {
+  self.takepicture = function () {
     var context = canvas.getContext('2d');
     if (width && height) {
       canvas.width = width;
@@ -158,7 +194,7 @@ function CaptureController($scope) {
       context.drawImage(video, 0, 0, width, height);
     
       var data = canvas.toDataURL('image/png');
-      console.log(data);
+    
 
       self.file = dataURItoBlob(data)
       photo.setAttribute('src', data);
@@ -186,9 +222,6 @@ function CaptureController($scope) {
       return new Blob([ia], {type:mimeString});
   }
 
-
-  window.addEventListener('load', startup, false);
-
   self.uniqueString = function() {
       var text     = "";
       var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -198,5 +231,4 @@ function CaptureController($scope) {
       }
       return text;
     }
-
 }
