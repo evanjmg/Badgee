@@ -4,7 +4,7 @@ var User = require('./user');
 
 
 var TaskSchema = new mongoose.Schema({
-  _creator: {type: mongoose.Schema.ObjectId, ref: 'User'},
+  _creator: { type: mongoose.Schema.ObjectId, ref: 'User'},
   _tagged_member: { type: mongoose.Schema.ObjectId, ref: 'User'},
   start_time: Date,
   img_url: String,

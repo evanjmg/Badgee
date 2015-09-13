@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/junedev/scavengerhunt#readme",
   "dependencies": {
+    "aws-sdk": "^2.2.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
     "ejs": "^2.3.4",

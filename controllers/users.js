@@ -1,5 +1,14 @@
 var User = require('../models/user.js');
 
+
+function getMyTeams (req, res) {
+ User.findById(req.body.userId).populate('teams').exec(function (err, user) {
+  if (err) res.status(403).send({ message: "Could not find user"}); 
+  console.log(user);
+  res.status(200).send(user.teams);
+ });
+}
+
 function createUsers (req,res) {
   User.create(req.body, function (error,user) {
     if (error) return res.status(403).send({
@@ -8,7 +17,12 @@ function createUsers (req,res) {
     return res.status(200).send(user)
   })
 }
-
+function getUser(req,res) {
+  User.findById(req.params.id, function (err, user) {
+    if (err) res.status(403).send({ message: "Could not find user"});
+    res.send(user);
+  }) 
+}
 function indexUsers(req, res) {
   User.find(function (error, users) {
     if (error) return res.status(404).json({
@@ -40,6 +54,8 @@ function updateUser(req,res) {
   })
 }
 module.exports = {
+  getUser: getUser,
+  getMyTeams: getMyTeams,
   updateUser: updateUser,
   createUsers: createUsers,
   indexUsers: indexUsers

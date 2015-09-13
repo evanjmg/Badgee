@@ -27,22 +27,28 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/home/landing.html'
   }) 
   .state('createTask', {
-    url: '/team/:team_id/task/new',
-    templateUrl: 'templates/tasks/new.html'
+    url: '/team/:team_id/task/new/:member_id',
+    templateUrl: 'templates/tasks/new.html',
+    controller: 'TasksController'
+  })
+  .state('myTeams', {
+    url: '/users/teams',
+    templateUrl: 'templates/users/my_teams.html'
   })
   .state('createTeam', {
     url: '/teams/new',
     templateUrl: 'templates/teams/new.html'
   })
+  .state('myTags', {
+    url: '/users/tags',
+    templateUrl: 'templates/users/my_tags.html'
+  })
   .state('showTeam', {
-    url: '/team/:id',
+    url: '/teams/:id',
     templateUrl: 'templates/teams/show.html',
-    params: {
-      id: null
-    } 
   })
   .state('showTask', {
-    url: '/tasks/:id',
+    url: '/teams/:team_id/tasks/:id',
     templateUrl: 'templates/tasks/show.html'
   })
   $urlRouterProvider.otherwise('/') 

@@ -12,6 +12,7 @@ function User ($resource) {
   url + '/users/:id',
   {id: '@_id'},
   { 'update': { method: 'PUT' },
+   'teams': { method: 'POST', url: url + '/users/teams', isArray:true },
   'login': { url: url + '/login', method: 'POST' },
   'signup': { url: url + '/signup', method: 'POST' }
 });

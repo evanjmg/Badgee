@@ -1,0 +1,17 @@
+<div ng-controller="TasksController as tasks">
+<img src="{{tasks.task.img_url}}" alt="">
+<div class="row">
+  <div class="col-xs-3">Your Challenge:</div>
+</div>
+<div class="row">
+  {{tasks.task.description}}
+</div>
+<div class="row">
+<div class="col-sm-6">
+  <button ng-click="tasks.backToTeam()" class="btn btn-info" style="margin-left:20px">Done</button>
+  </div>
+  <div class="col-sm-6">
+  <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>
+  </div>
+</div>
+  </div>

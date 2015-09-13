@@ -6,8 +6,6 @@
          <button id="startbutton" class="btn-info btn">Take photo</button>
          </div>
          <form ng-submit="capture.upload()">
-         <!-- REGULAR FILE UPLOAD -->
-           <!-- <input name="file" type="file"  class="btn btn-info" file> -->
       
        <canvas id="canvas" style="display:none;">
        </canvas>
@@ -24,7 +22,7 @@
 
   <form ng-submit="tasks.createTask()" novalidate='novalidate'>
   <div class="form-group">
-    <input type="text" placeholder="Explain the challenge here" ng-model="tasks.task.description" name="description" class="form-control">
+    <input type="text" placeholder="Explain the challenge here" ng-model="tasks.task.task.description" name="description" class="form-control">
     </div>
     <div class="form-group">
     <button type="submit">Send</button>

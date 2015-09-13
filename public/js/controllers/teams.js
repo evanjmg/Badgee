@@ -7,7 +7,6 @@ $(function () {
 TeamsController.$inject = ['User', 'Team', '$state', '$stateParams', 'TokenService'];
 function TeamsController(User, Team, $state, $stateParams, TokenService){
   var self = this;
-
   self.allUsers = User.query();
   self.all = Team.query();
   self.team = {};

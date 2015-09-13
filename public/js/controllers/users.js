@@ -8,8 +8,7 @@ function UsersController(User, TokenService, $state){
   self.user = {}
 
   self.users = {};
-
-  
+ 
 
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
@@ -43,6 +42,9 @@ function UsersController(User, TokenService, $state){
     if (self.isAuthed()) {
       self.all = User.query();
       self.currentUser = TokenService.parseJwt();
+      self.teams = User.teams( { "userId": self.currentUser.id});
     }
+
+    
     return self;
   }

@@ -1,0 +1,11 @@
+<h2>My Tags</h2>
+<div ng-controller="TasksController as tasks">
+<div ng-repeat="task in tasks.pending">
+  <div class="row">
+   <div class="col-sm-4"><img src="{{task._creator.img_url}}" alt=""></div> 
+   <div class="col-sm-4">{{tasks.description}}</div> 
+   <div class="col-sm-4"><a ng-submit="tasks.acceptTask(task)">Accept</a></div>
+  </div>
+  <hr>
+</div>
+</div>

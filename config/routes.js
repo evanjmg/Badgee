@@ -28,8 +28,11 @@ var router = express.Router();
  .post(UsersController.createUsers)
  .get(UsersController.indexUsers);
  router.route('/users/:id')
+ .get(UsersController.getUser)
  .put(UsersController.updateUser);
- 
+ router.route('/users/teams')
+ .post(UsersController.getMyTeams);
+
  // TEAMS
  router.route('/teams')
   .post(TeamsController.createTeam)
@@ -39,10 +42,13 @@ var router = express.Router();
   // .put(TeamsController.updateTeam)
   .get(TeamsController.showTeam);
 // TASKS
-router.route('/teams/:team_id/tasks')
+router.route('/tasks/pending')
+  .put(TasksController.myPendingTasks);
+router.route('/tasks')
   .get(TasksController.indexTasks)
   .post(TasksController.createTask);
-router.route('/teams/:team_id/tasks/:id')
+
+router.route('/tasks/:id')
   .get(TasksController.showTask)
 
  module.exports = router;
