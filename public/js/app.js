@@ -1,5 +1,5 @@
 angular
-.module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate'])
+.module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField'])
 .config(MainRouter)
 .config(AuthInterceptor)
 .constant("API", "http://localhost:3000/api")
@@ -27,12 +27,19 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/home/landing.html'
   }) 
   .state('createTask', {
-    url: '/task/new',
+    url: '/team/:team_id/task/new',
     templateUrl: 'templates/tasks/new.html'
-  }) 
+  })
   .state('createTeam', {
-    url: '/team/new',
+    url: '/teams/new',
     templateUrl: 'templates/teams/new.html'
+  })
+  .state('showTeam', {
+    url: '/team/:id',
+    templateUrl: 'templates/teams/show.html',
+    params: {
+      id: null
+    } 
   })
   .state('showTask', {
     url: '/tasks/:id',

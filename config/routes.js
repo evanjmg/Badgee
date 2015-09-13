@@ -23,13 +23,26 @@ var router = express.Router();
   res.render('/signup')
  });
 
-
-
  // USERS
- router.route('/users/')
+ router.route('/users')
  .post(UsersController.createUsers)
  .get(UsersController.indexUsers);
  router.route('/users/:id')
  .put(UsersController.updateUser);
  
+ // TEAMS
+ router.route('/teams')
+  .post(TeamsController.createTeam)
+  .get(TeamsController.indexTeams);
+
+  router.route('/teams/:id')
+  // .put(TeamsController.updateTeam)
+  .get(TeamsController.showTeam);
+// TASKS
+router.route('/teams/:team_id/tasks')
+  .get(TasksController.indexTasks)
+  .post(TasksController.createTask);
+router.route('/teams/:team_id/tasks/:id')
+  .get(TasksController.showTask)
+
  module.exports = router;

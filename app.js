@@ -5,6 +5,7 @@ var logger = require("morgan");
 var mongoose = require('mongoose');
 var passport = require('passport');
 var expressJWT = require('express-jwt');
+var aws = require('./config/aws');
 
 
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/taggy'

@@ -10,8 +10,18 @@
      <span> {{user.name}}</span>
      </div>
      <div class="col-sm-4">
-       <button class="btn btn-success" >+</button>
+       <button class="btn btn-success addToNewTeamButton" ng-click="teams.addUserToNewTeam(user, $event)" >+</button>
+       <button class="btn btn-danger removeFromNewTeamButton" ng-click="teams.removeFromNewTeam(user, $event)" >-</button>
      </div>
     </div>
   </div>
+  <form ng-submit="teams.createTeam()" no-validate="no-validate">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" ng-model="teams.team.name" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Create Team</button>
+    </div>
+  </form>
 </div>

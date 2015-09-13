@@ -1,5 +1,5 @@
 angular.module('taggyApp')
-  .controller('UsersController', UsersController);
+.controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', '$state'];
 function UsersController(User, TokenService, $state){
@@ -9,7 +9,7 @@ function UsersController(User, TokenService, $state){
 
   self.users = {};
 
- 
+  
 
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
@@ -20,22 +20,29 @@ function UsersController(User, TokenService, $state){
       $state.go('createTeam');
     })
   }
-    self.signup = function() {
-      User.signup(self.user,function(response){
-        console.log(response);
-      })
+  self.update = function () {
+    User.update(self.user, function (response) {
+      console.log(response);
+    })
+  }
+  self.signup = function() {
+    User.signup(self.user,function(response){
+      console.log(response);
+    })
       // user.register(self.email, self.password)
       // .then(handleRequest, handleRequest)
     }
     self.logout = function() {
-      TokenService.logout && TokenService.logout()
+      TokenService.logout && TokenService.logout();
+      $state.go('landing');
     }
     self.isAuthed = function() {
       return TokenService.isAuthed ? TokenService.isAuthed() : false
     }
+
     if (self.isAuthed()) {
       self.all = User.query();
       self.currentUser = TokenService.parseJwt();
     }
     return self;
-}
+  }

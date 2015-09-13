@@ -26,6 +26,7 @@ function updateUser(req,res) {
       user.name = req.body.name;
     }
     if (req.body.img_url) {
+      console.log(req.body.img_url);
       user.img_url = req.body.img_url;
     }
     if (req.body.email) {
@@ -35,6 +36,7 @@ function updateUser(req,res) {
       if (err) res.status(403).send({ message: "could not save"})
       return res.status(200).send(user);
     });
+ 
   })
 }
 module.exports = {

@@ -1,0 +1,23 @@
+<div ng-controller="TeamsController as teams">
+  <div ng-controller="TasksController as tasks">
+    <h2>{{teams.team.name}}</h2>
+    <div ng-repeat="member in teams.team.members">
+      <div class="row">
+        <div class="col-sm-3">
+         <img ng-src="{{member._member.img_url}}" alt="user" width="50px" style="border-radius:50%;">
+       </div>
+       <div class="col-sm-3">
+         <span> {{member._member.name}}</span>
+       </div>
+       <div class="col-sm-3" >
+        <span> {{member.total_points}}</span>
+      </div>
+      <div class="col-sm-3">
+      <button class="btn btn-success tagButton" ng-click="tasks.showCreateTask(member._member._id)" >Tag</button>
+     </div>
+   </div>
+
+ </div>
+</div>
+</div>
+<!-- ng-show="user._id !== teams.currentUser._id" - want to work for repeat -->

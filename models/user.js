@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+
+var Team = require('./team');
+
 var UserSchema = new mongoose.Schema({
+
+  teams: [{ type: mongoose.Schema.ObjectId, ref: 'Team'}],
   name: {type: String, required: true },
   email: {type: String, required: true, unique: true},
   img_url: String,
@@ -20,7 +25,12 @@ UserSchema.set('toJSON', {
       id: ret._id,
       email: ret.email,
       name: ret.name,
-      img: ret.img
+      img_url: ret.img_url,
+      teams: ret.teams
+      // facebook: {
+      //   id: ret.facebook.id,
+      //   username: ret.facebook.username
+      // }
     }
     return returnJson;
   }
