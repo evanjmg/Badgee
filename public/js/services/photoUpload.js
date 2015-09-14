@@ -18,8 +18,7 @@ function PhotoUpload() {
   self.file = self.file || {};
   self.creds = {
     bucket: 'taggyapp/images',
-    access_key: 'AKIAJE57UR5TAI4KNVJA',
-    secret_key: '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'
+
   }
   self.image_file_path = self.creds.bucket + '/' + self.uniqueFileName;
 
