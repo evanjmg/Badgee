@@ -13,7 +13,22 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   self.task = {};
 
   if ($stateParams.id) {
-    self.task = Task.get({id: $stateParams.id});
+    self.task = Task.get({id: $stateParams.id}, function (response) {
+      initMap();
+      function initMap() {
+        var myLatLng = {lat: parseFloat(self.task.location.lat), lng: parseFloat(self.task.location.lon) }
+        
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+      }
+    });
   }
 
   if ($('canvas').length !== 0) {
