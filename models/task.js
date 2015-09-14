@@ -9,6 +9,7 @@ var TaskSchema = new mongoose.Schema({
   start_time: Date,
   img_url: String,
   end_time: Date,
+  minutes: Number,
   description: String,
   completed: { type: Boolean, default: false }, 
   location: {

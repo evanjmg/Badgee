@@ -5,19 +5,23 @@
 
   <title>Taggy</title>
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../bower_components/nouislider/distribute/nouislider.min.css">
   <link rel="stylesheet" href="/css/layout.css">
 </head>
 <body>
 
-
+  
   <div ng-include="'templates/shared/header.html'" ></div>
-  <div ui-view></div>
+
+  <div class="content-container" ui-view></div>
   <div ng-include="'templates/shared/footer.html'" ></div>
 
 <!-- External  -->
-
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"
+   type="text/javascript"></script>
   <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../bower_components/ladda/dist/spin.min.js"></script>
+  <script src="../bower_components/nouislider/distribute/nouislider.min.js"></script>
  <!-- <script src="../bower_components/angular-ladda/dist/angular-ladda.min.js"></script>-->
   <!-- Bootstrap JS -->
   <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -28,7 +32,6 @@
   <script src="../bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
   <script type="text/javascript" src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
   <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
-  <script type="text/javascript" src="/js/vendor/aws-sdk-s3.js"></script>
 <!-- Internal -->
   <script type="text/javascript" src="js/app.js"></script>
   <!-- Resources -->
@@ -39,12 +42,13 @@
   <script type="text/javascript" src="/js/controllers/teams.js"></script>
   <script type="text/javascript" src="/js/controllers/tasks.js"></script>
   <script type="text/javascript" src="/js/controllers/users.js"></script>
-  <script type="text/javascript" src="/js/controllers/photoCapture.js"></script>
   <!-- Services -->
   <script type="text/javascript" src="/js/services/tokenService.js"></script>
   <script type="text/javascript" src="/js/services/authInterceptor.js"></script>
   <script type="text/javascript" src="/js/services/photoUpload.js"></script>
+  <script type="text/javascript" src="/js/services/geoService.js"></script>
   <!-- Directives -->
   <script type="text/javascript" src="/js/directives/fileUpload.js"></script>
+  <script type="text/javascript" src="/js/directives/slider.js"></script>
   </body>
   </html>

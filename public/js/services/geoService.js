@@ -1,13 +1,13 @@
 angular
-.module('eventMatchApp').factory('Geo', Geo)
+.module('taggyApp').factory('Geo', Geo)
 
 function Geo () {
-  function locate () {
+  function locate (callback) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-      });
+        console.log(position);
+        callback(position);
+      }) 
     }
   }
 
@@ -25,8 +25,25 @@ function Geo () {
 });
 }
 return {
-  locate: locate
+  locate: locate,
   address: address
 }
 
 }
+// <script>
+// $(function () {
+//   getLocation();
+//   function getLocation() {
+//       if (navigator.geolocation) {
+//           navigator.geolocation.getCurrentPosition(showPosition);
+//       } else {
+//           x.innerHTML = "Geolocation is not supported by this browser.";
+//       }
+//   }
+//   function showPosition(position) {
+//       console.log(position.coords.latitude) + 
+//       console.log(position.coords.longitude); 
+//   }
+// })
+ 
+// </script>

@@ -5,7 +5,7 @@ angular
 PhotoUpload.$inject = ['$http']
 function PhotoUpload($http) {
   var self = this;
-  var width = 320;    // We will scale the photo width to this
+  var width = 500;    // We will scale the photo width to this
   var height = 0;     // This will be computed based on the input stream
   var streaming = false;
   var video = null;
@@ -50,6 +50,7 @@ function PhotoUpload($http) {
               contentType: self.file.type,
           }).success(function(res){
               console.log('Done');
+              callback(self.uniqueFileName);
           });
         });
     }
@@ -93,7 +94,7 @@ function PhotoUpload($http) {
 
         video.addEventListener('canplay', function(ev){
           if (!streaming) {
-            height = video.videoHeight / (video.videoWidth/width);
+            height = 375;//video.videoHeight / (video.videoWidth/width);
           
             if (isNaN(height)) {
               height = width / (4/3);
