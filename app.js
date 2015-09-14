@@ -5,8 +5,7 @@ var logger = require("morgan");
 var mongoose = require('mongoose');
 var passport = require('passport');
 var expressJWT = require('express-jwt');
-var aws = require('./config/aws');
-
+var AWS = require('aws-sdk');
 
 var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/taggy'
 mongoose.connect(databaseURL);
@@ -49,6 +48,18 @@ app.get('/', function(req, res) {
    res.render("index.html");
  });
 
+
+AWS.config.update({accessKeyId: process.env.AWS_API_KEY, secretAccessKey:  process.env.AWS_API_SECRET});
+AWS.config.region = 'eu-west-1';
+
+app.post('/api/aws', function (req, res) {
+    var s3 = new AWS.S3();
+    var params = {Bucket: 'taggyapp/images', Key: req.body.name, ContentType: req.body.type};
+    s3.getSignedUrl('putObject', params, function(err, url) {
+        if(err) console.log(err);
+        res.json({url: url});
+    });
+});
 
 
 app.use(function(req, res, next) {

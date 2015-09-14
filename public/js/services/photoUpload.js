@@ -2,8 +2,8 @@ angular
   .module('taggyApp')
   .service('PhotoUpload', PhotoUpload);
 
-
-function PhotoUpload() {
+PhotoUpload.$inject = ['$http']
+function PhotoUpload($http) {
   var self = this;
   var width = 320;    // We will scale the photo width to this
   var height = 0;     // This will be computed based on the input stream
@@ -16,12 +16,6 @@ function PhotoUpload() {
   self.uniqueFileName = '';
 
   self.file = self.file || {};
-  self.creds = {
-    bucket: 'taggyapp/images',
-    access_key: 
-    secret_key: 
-  }
-  self.image_file_path = self.creds.bucket + '/' + self.uniqueFileName;
 
 
   self.upload = function (callback, fileUpload) {
@@ -32,12 +26,7 @@ function PhotoUpload() {
     if (fileUpload) {
       self.file = fileUpload;
     }
-    // Configure The S3 Object 
-    AWS.config.update({ accessKeyId: self.creds.access_key, secretAccessKey: self.creds.secret_key });
-    AWS.config.region = 'eu-west-1';
-    var bucket = new AWS.S3({ params: { Bucket: self.creds.bucket } }); 
-    
-
+  
     if(self.file) {
       var fileSize = Math.round(parseInt(self.file.size));
 
@@ -51,33 +40,24 @@ function PhotoUpload() {
       self.uniqueFileName = self.uniqueString() + '.png';
       var params = { Key: self.uniqueFileName, ContentType: self.file.type, Body: self.file, ServerSideEncryption: 'AES256' };
     
-    // UPLOAD
-      bucket.putObject(params, function(err, data) {
-        if(err) {
-          // There Was An Error With Your S3 Config
-          alert(err.message);
-          return false;
-        }
-        else {
-          // Success!
-          alert('Upload Done');
-          callback(self.uniqueFileName);
-
-        }
-      })
-      .on('httpUploadProgress',function(progress) {
-            // Log Progress Information
-            console.log(Math.round(progress.loaded / progress.total * 100) + '% done');
-
-
+    // UPLOAD WITH PRE-SIGNED URL
+    $http.post('/api/aws', {name: self.uniqueFileName, size: self.fileSize, type: self.file.type}).then(function(res) {
+       $.ajax({
+              url: res.data.url,
+              type: 'PUT',
+              data: self.file,
+              processData: false,
+              contentType: self.file.type,
+          }).success(function(res){
+              console.log('Done');
           });
+        });
     }
     else {
-      // No File Selected
+  //     // No File Selected
       console.log('No File Selected');
     }
   }
-
 
   self.startup = function () {
   
@@ -135,8 +115,6 @@ function PhotoUpload() {
         clearphoto();
         // create canvas element and append it to document body
         
-        
-
         // get canvas 2D context and set him correct size
         var ctx = canvas.getContext('2d');
 
