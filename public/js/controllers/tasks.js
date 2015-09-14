@@ -3,17 +3,21 @@ angular.module('taggyApp')
 
 TasksController.$inject = ['User', 'Task', '$state', '$stateParams', 'TokenService', '$location','PhotoUpload', '$scope', 'Geo'];
 
-function TasksController(User, Task, $state, $stateParams, TokenService, $location, PhotoUpload, $scope, Geo){
+function TasksController(User, Task, $state, $stateParams, TokenService, $location, PhotoUpload, $scope, Geo) {
 
   var self = this;
+
   if (TokenService.isAuthed()) {
     self.currentUser = TokenService.parseJwt();
   }
   self.allUsers = User.query();
   self.task = {};
 
+
   if ($stateParams.id) {
     self.task = Task.get({id: $stateParams.id}, function (response) {
+      self.task = response;
+      console.log(response);
       initMap();
       function initMap() {
         var myLatLng = {lat: parseFloat(self.task.location.lat), lng: parseFloat(self.task.location.lon) }
@@ -31,7 +35,11 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     });
   }
 
+
   if ($('canvas').length !== 0) {
+    $('.cameraOptionButtons').hide();
+
+    $('#createTaskPage').hide();
     Geo.locate(function (data) {
      self.task.lat =  data.coords.latitude;
      self.task.lon =  data.coords.longitude;
@@ -42,13 +50,8 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     $('#canvas').hide();
   }
 
-  if ($location.path() == '/users/tags') {
-    Task.pending({ userId: self.currentUser.id }, function (response) {
-      self.pending = response;
-      console.log(self.pending);
-    });
-    
-  }
+ 
+  
   self.upload = function () {
     self.task.task = {}
     PhotoUpload.uploadFile = self.uploadFile;
@@ -62,8 +65,15 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     });
   }
   }
+  self.updateTask = function () {
+    self.task._creator = self.task._creator.id;
+    self.task._tagged_member = self.task._tagged_member.id;
+    Task.update(self.task, function (response) {
+        $state.go('showTask', { team_id: $stateParams.team_id, id: $stateParams.id});
+    })
+  }
   self.retakePhoto = function () {
-    $('#retakeButton').hide();
+    $('.cameraOptionButtons').hide();
     $('#canvas').hide();
     $('#video').show();
   }
@@ -85,6 +95,9 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
           $state.go('showTask', { team_id: $stateParams.team_id, id: response._id})
         })
 
+  }
+  self.showEditTask = function () {
+    $state.go('editTask', { team_id: $stateParams.team_id, id: $stateParams.id })
   }
   self.showTask = function () {
     Task.get({id: $state.params.id},function (response){

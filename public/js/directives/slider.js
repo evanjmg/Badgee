@@ -13,6 +13,12 @@ angular.module('taggyApp')
         console.log('slider');
        noUiSlider.create(rangeSlider, {
         start: [ 10 ],
+        step: 1,
+    format: wNumb({
+           decimals: 0, // default is 2
+           thousand: '.', // thousand delimiter
+           postfix: '', // gets appended after the number
+       }),
         range: {
           'min': [ 0 ],
           'max': [ 60 ]

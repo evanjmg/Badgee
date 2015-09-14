@@ -14,7 +14,8 @@ function User ($resource) {
   { 'update': { method: 'PUT' },
    'teams': { method: 'POST', url: url + '/users/teams', isArray:true },
   'login': { url: url + '/login', method: 'POST' },
-  'signup': { url: url + '/signup', method: 'POST' }
+  'signup': { url: url + '/signup', method: 'POST' },
+  'pendingTasks': { method: 'POST', url: url + '/pending'}
 });
 
  return UserResource;

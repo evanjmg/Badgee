@@ -1,0 +1,35 @@
+<div ng-controller="TasksController as tasks">
+
+  
+  <img id="photo" ng-src="{{previewImage}}">
+  <div class="output" style="display:none;">
+</div>
+<img id="photo" ng-hide="previewImage" ng-src="{{tasks.task.img_url}}" alt="The screen capture will appear in this box.">
+
+<div>
+         <form ng-submit="tasks.upload()">
+      
+      <file-field ng-model="uploadFile" preview="previewImage" file>Upload File</file-field>
+      <input type="submit" class="btn-success btn" value="Upload"  >
+  </form>
+  <form ng-submit="tasks.updateTask()" novalidate='novalidate' id="updateTaskForm">
+  <div class="form-group">
+  <label for="challenge">Your Challenge:</label>
+    <input type="text"  ng-model="tasks.task.description" name="description" class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="minutes">How Long Should It Take?</label>
+    <slider></slider>
+    <span id="minutes"class="center">Minutes</span>
+  </div>
+  <div class="form-group">
+  <label for="">Location</label>
+  <input type="text" ng-model="tasks.task.location.name" class="form-control">
+  </div>
+    <div class="form-group">
+    <button type="submit" class=" btn-success btn">Send</button>
+    </div>
+  </form>
+  </div>
+</div>
+</div>

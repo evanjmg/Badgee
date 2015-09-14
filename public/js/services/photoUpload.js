@@ -5,7 +5,7 @@ angular
 PhotoUpload.$inject = ['$http']
 function PhotoUpload($http) {
   var self = this;
-  var width = 500;    // We will scale the photo width to this
+  var width = window.innerWidth;   // We will scale the photo width to this
   var height = 0;     // This will be computed based on the input stream
   var streaming = false;
   var video = null;
@@ -20,6 +20,9 @@ function PhotoUpload($http) {
 
   self.upload = function (callback, fileUpload) {
     var data = canvas.toDataURL('image/png');
+    
+    $('.camera').hide();
+    $('#createTaskPage').show();
     console.log(data);
 
     self.file = dataURItoBlob(data);
@@ -50,6 +53,7 @@ function PhotoUpload($http) {
               contentType: self.file.type,
           }).success(function(res){
               console.log('Done');
+              $('#createTaskPage').prepend("<img id='capture-preview' class='center' src='https://s3-eu-west-1.amazonaws.com/taggyapp/images/"+self.uniqueFileName+"'>")
               callback(self.uniqueFileName);
           });
         });
@@ -94,7 +98,7 @@ function PhotoUpload($http) {
 
         video.addEventListener('canplay', function(ev){
           if (!streaming) {
-            height = 375;//video.videoHeight / (video.videoWidth/width);
+            height = video.videoHeight / (video.videoWidth/width);
           
             if (isNaN(height)) {
               height = width / (4/3);
@@ -167,12 +171,13 @@ function PhotoUpload($http) {
   self.takepicture = function () {
     var context = canvas.getContext('2d');
     if (width && height) {
-      canvas.width = width;
-      canvas.height = height;
+      canvas.width = video.width;
+      canvas.height = video.height;
       context.drawImage(video, 0, 0, width, height);
       $('#canvas').show();
       $('#video').hide();
-      $('#retakeButton').show();
+      $('.cameraOptionButtons').show();
+   
     } else {
       clearphoto();
     }
@@ -197,6 +202,18 @@ function PhotoUpload($http) {
       return new Blob([ia], {type:mimeString});
   }
 
+
+  //   function handleOrientation(event) {
+  //     var absolute = event.absolute;
+
+  //     var alpha    = event.alpha; // Z In degree in the range [0,360]
+  //     var beta     = event.beta; // X In degree in the range [-180,180]
+  //     var gamma    = event.gamma; // Y In degree in the range [-90,90]
+
+  //     return orientation = [alpha, beta, gamma];
+
+  //   }
+  // window.addEventListener('deviceorientation', handleOrientation);
   self.uniqueString = function() {
       var text     = "";
       var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

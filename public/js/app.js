@@ -2,7 +2,7 @@ angular
 .module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField'])
 .config(MainRouter)
 .config(AuthInterceptor)
-.constant("API", "http://localhost:3000/api")
+.constant("API", "http://172.19.4.187:5000/api")
 
 function AuthInterceptor($httpProvider){
   $httpProvider.interceptors.push("authInterceptor");
@@ -42,6 +42,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   .state('myTags', {
     url: '/users/tags',
     templateUrl: 'templates/users/my_tags.html'
+  })
+  .state('editTask', {
+    url: '/teams/:team_id/tasks/:id/edit',
+    templateUrl: 'templates/tasks/edit.html'
   })
   .state('showTeam', {
     url: '/teams/:id',

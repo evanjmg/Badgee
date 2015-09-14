@@ -1,25 +1,32 @@
 <div ng-controller="TasksController as tasks">
-<img src="{{tasks.task.img_url}}" alt="">
+<img src="{{tasks.task.img_url}}" id="task-image" alt="">
 <div class="row">
-  <div class="col-xs-3">Your Challenge:   {{tasks.task.description}}</div>
+  <div class="text-center"><h3 ng-if="tasks.currentUser.id == tasks.task._creator.id" class="center ">{{ tasks.task._tagged_member.name}}'s Challenge:</h3><br/>
+    {{tasks.task.description}}</div>
 </div>
-<div class="row">
-<a href="#" data-toggle="tooltip" title="Hooray!"><div id="map" style="width:200px;height:200px;"></div></a>
+<div class="row" ng-show="tasks.task.location.name">
+<h4>{{tasks.task.location.name}}</h4>
+<div id="map" style="width:200px;height:200px;"></div>
 
 </div>
-<div class="row">
-<div class="col-sm-6">
-  <button ng-click="tasks.backToTeam()" class="btn btn-info" style="margin-left:20px">Done</button>
+<div ng-if="tasks.currentUser.id == tasks.task._creator.id" class="row text-center center">
+<div class="col-xs-6 col-md-6">
+  <a ng-click="tasks.backToTeam()" class="btn btn-info" style="margin-left:20px">Back to Team</a>
   </div>
-  <div class="col-sm-6">
+  <div class="col-xs-6 col-md-6">
   <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>  
   </div>
 
 </div>
+<div ng-if="tasks.currentUser.id == tasks.task._tagged_member" class="row text-center center">
+<div class="col-xs-6 col-md-6">
+  <a ng-click="tasks.acceptTask()" class="btn btn-info" style="margin-left:20px">Accept</a>
+  </div>
+  <div class="col-xs-6 col-md-6">
+  <a ng-click="tasks.passTask()" class="btn btn-info">Pass</a>  
+  </div>
+
+</div>
 
   </div>
-  <script>
-  $(document).ready(function(){
-      $('[data-toggle="tooltip"]').tooltip(); 
-  });
-  </script>
+ 

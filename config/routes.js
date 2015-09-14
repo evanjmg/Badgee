@@ -42,13 +42,15 @@ var router = express.Router();
   // .put(TeamsController.updateTeam)
   .get(TeamsController.showTeam);
 // TASKS
-router.route('/tasks/pending')
-  .put(TasksController.myPendingTasks);
+router.route('/tasks/:id')
+  .put(TasksController.updateTask)
+  .get(TasksController.showTask);
 router.route('/tasks')
   .get(TasksController.indexTasks)
   .post(TasksController.createTask);
 
-router.route('/tasks/:id')
-  .get(TasksController.showTask)
+router.route('/pending')
+    .post(TasksController.pendingTasks);
+
 
  module.exports = router;

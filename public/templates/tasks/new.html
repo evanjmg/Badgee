@@ -1,13 +1,29 @@
 <div ng-controller="TasksController as tasks">
       <!-- <div class="capture" ng-controller="CaptureController as capture"> -->
        <div class="camera">
-         <video id="video" style="width:100%!important;">Video stream not available.</video>
-         <canvas id="canvas" style="width:500px;">
+       <section class="video">
+       <button class="btn" id="cancelPhoto" ng-click="tasks.exitCapture()" >X</button>
+         <video id="video">Video stream not available.</video>
+         <canvas id="canvas">
          </canvas>
-         <br/>
-         <button id="startbutton" class="btn-info btn">Take photo</button>
-         <button id="retakeButton" class="btn-warning btn" ng-click="tasks.retakePhoto()" >Retake</button>
+         <button id="startbutton" class="btn-info btn"><img id='camera-icon' src="/images/white-camera.png" alt=""></button>
+
+       </section>
+     <div class="row cameraOptionButtons">
+     <div class="col-xs-6">
+            <form ng-submit="tasks.upload()" class="pull-left">
+         <input id="sendPhoto" type="submit" class="btn-success btn" value="Upload"  >
+     </form>
+     </div>
+     <div class="col-xs-6">
+     <button class='pull-right' id="retakeButton" class=" btn-info btn" ng-click="tasks.retakePhoto()" >Retake</button>
+     </div>
+     </div>
+      
          </div>
+      
+  <!-- </div> -->
+<div id="createTaskPage">
          <form ng-submit="tasks.upload()">
       
        <div class="output" style="display:none;">
@@ -17,23 +33,26 @@
       <file-field ng-model="uploadFile" preview="previewImage" file>Upload File</file-field>
 
       <img ng-src="{{previewImage}}">
-      <input id="sendPhoto" type="submit" class="btn-success btn" value="Upload"  >
+      <input type="submit" class="btn-success btn" value="Upload"  >
   </form>
-  <!-- </div> -->
-
-  <form ng-submit="tasks.createTask()" novalidate='novalidate'>
+  <form ng-submit="tasks.createTask()" novalidate='novalidate' id="createTaskForm">
   <div class="form-group">
+  <label for="challenge">Your Challenge:</label>
     <input type="text" placeholder="Explain the challenge here" ng-model="tasks.task.task.description" name="description" class="form-control">
     </div>
     <div class="form-group">
+    <label for="minutes">How Long Should It Take?</label>
     <slider></slider>
+    <span id="minutes"class="center">Minutes</span>
   </div>
   <div class="form-group">
   <label for="">Location</label>
-  <input type="text" ng-model="tasks.task.task.location.name" class="form-control">
+  <input type="text" ng-model="tasks.task.task.location.name" placeholder="Where is it? e.g Restaurant, Park"class="form-control">
   </div>
     <div class="form-group">
-    <button type="submit">Send</button>
+    <button type="submit" class=" btn-success btn">Send</button>
     </div>
   </form>
+  </div>
 </div>
+

@@ -1,14 +1,26 @@
 angular.module('taggyApp')
 .controller('UsersController', UsersController);
 
-UsersController.$inject = ['User', 'TokenService', '$state'];
-function UsersController(User, TokenService, $state){
+UsersController.$inject = ['User', 'TokenService', '$state', '$location'];
+function UsersController(User, TokenService, $state, $location){
 
   var self = this;
   self.user = {}
 
   self.users = {};
- 
+  if (TokenService.isAuthed()) {
+    self.all = User.query();
+    self.currentUser = TokenService.parseJwt();
+    self.teams = User.teams( { "userId": self.currentUser.id});
+  }
+
+  if ($location.path() == '/users/tags') {
+    
+    User.pendingTasks({ userId: self.currentUser.id }, function (response) {
+      self.pending = response;
+      console.log(self.pending);
+    }); 
+  }
 
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
@@ -39,11 +51,7 @@ function UsersController(User, TokenService, $state){
       return TokenService.isAuthed ? TokenService.isAuthed() : false
     }
 
-    if (self.isAuthed()) {
-      self.all = User.query();
-      self.currentUser = TokenService.parseJwt();
-      self.teams = User.teams( { "userId": self.currentUser.id});
-    }
+  
 
     
     return self;
