@@ -1,3 +1,69 @@
+
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+# Get The Temporary Upload
+s3 = AWS::S3.new
+temp_obj = s3.buckets['YOUR_TEMP_BUCKET'].objects[params[:uploaded_file]]
+ 
+begin
+  # Read File Size From S3 For Server Size Validation
+  size = temp_obj.content_length
+ 
+  # Assign A Local Temp File
+  local_file = "#{Rails.root}/tmp/#{params[:uploaded_file]}"
+ 
+  # Read In File From S3 To Local Path
+  File.open(local_file, 'wb') do |file|
+    temp_obj.read do |chunk|
+        file.write(chunk)
+    end
+  end
+ 
+  #########################################
+  # Perform Some Local Transformation Here
+  #########################################
+ 
+  # Now Write Back The Transformed File
+  perm_obj = s3.buckets['YOUR_PERMENANT_BUCKET'].objects[params[:uploaded_file]]
+  perm_obj.write(File.open(local_file))
+ 
+  rescue StandardError => exception
+    # That's A Fail
+  ensure
+    # Delete The Original File
+    temp_obj.delete
+  end
+end
+
 <script type="text/javascript">
 var canvas, ctx, flag = false,
     prevX = 0,
