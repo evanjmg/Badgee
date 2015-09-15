@@ -1,6 +1,16 @@
+<style>
+  body {
+    background-color: #73D5E5;
+
+  }
+  .content-container {  margin:0;
+  }
+</style>
+<div class="landing-container">
+  <h1 class="landing-header text-center"><img class="img-responsive" id="landing-header-image"src="/images/taggy-badger-logo.png" alt=""><span>TAGGY</span></h1>
 <div ng-controller="UsersController as users">
 <div class="" >
-  <form ng-submit="users.signup()"novalidate="novalidate">
+  <form id="signup-form" ng-submit="users.signup()"novalidate="novalidate">
    
     <div class="form-group">
     <div class="form-group" >
@@ -43,7 +53,7 @@
         <h3>There was a problem registering, please try again later!</h3>
       </div>
 
-      <button class="btn btn-primary authButton"
+      <button id="signup-button" class="btn btn-primary authButton"
               ladda="submitting"
               data-style="expand-right"
               type="submit">
@@ -51,9 +61,14 @@
         
       </button>
       <br/>
-      <a ui-sref="login" class="auth-links">Have an Account?  Login Here</a>
+  
     </div>
-
+    <a ui-sref="login" class="auth-links">Have an Account?  Login Here</a>
   </form >
   </div>
+
   </div>
+
+
+  </div>
+  <div ng-include="'templates/shared/footer.html'" ></div>

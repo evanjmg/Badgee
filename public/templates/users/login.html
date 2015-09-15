@@ -1,43 +1,57 @@
-<div ng-controller="UsersController as users">
-<div class="" >
-  <form ng-submit="users.login()"novalidate="novalidate">
-   
-    <div class="form-group">
-      <label for="email" class="control-label">Email</label >
-      <input type="email"
-             class="form-control"
-             ng-model="users.user.email"
-             id="email"
-             required="required" >
-    </div >
-    
-    <div class="form-group" >
-      <label for="password" class="control-label">Password</label >
-      <input type="password"
-             class="form-control"
-             ng-model="users.user.password"
-             id="password"
-             required="required"
-             ng-minlength="5">
-    </div >
+<style>
+  body {
+    background-color: #73D5E5;
 
-    <div class="form-group">
+  }
+  .content-container {  margin:0;
+  }
+</style>
+<div class="landing-container">
+  <h1 class="landing-header text-center"><img class="img-responsive" id="landing-header-image"src="/images/taggy-badger-logo.png" alt=""><span>TAGGY</span></h1>
+  <div ng-controller="UsersController as users">
+    <div class="" >
+    <form id="login-email-form" ng-submit="users.login()"novalidate="novalidate">
 
-      <div class="alert alert-danger text-center" ng-show="has_error">
-        <h3>There was a problem registering, please try again later!</h3>
-      </div>
+        <div class="form-group">
+          <label for="email" class="control-label">Email</label >
+            <input type="email"
+            class="form-control"
+            ng-model="users.user.email"
+            id="email"
+            required="required" >
+          </div >
 
-      <button class="btn btn-primary authButton"
+          <div class="form-group" >
+            <label for="password" class="control-label">Password</label >
+              <input type="password"
+              class="form-control"
+              ng-model="users.user.password"
+              id="password"
+              required="required"
+              ng-minlength="5">
+            </div >
+
+            <div class="form-group">
+
+              <div class="alert alert-danger text-center" ng-show="has_error">
+                <h3>There was a problem registering, please try again later!</h3>
+              </div>
+
+              <button id="login-button" class="btn btn-primary authButton"
               ladda="submitting"
               data-style="expand-right"
               type="submit">
-        <span>Login</span>
-        
-      </button>
-      <br/>
-      <a ui-sref="signup" class="auth-links">No Account? Sign Up Here</a>
-    </div>
+              <span>Login</span>
 
-  </form >
+            </button>
+            <br/>
+            
+          </div>
+          <a ui-sref="signup" class="auth-links">No Account? Sign Up Here</a>
+        </form >
+
+      </div>
+    </div>
+    
   </div>
-  </div>
+  <div ng-include="'templates/shared/footer.html'" ></div>

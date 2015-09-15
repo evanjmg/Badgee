@@ -24,7 +24,7 @@ function createTeam (req, res) {
 function showTeam (req, res) {
  Team.findById(req.params.id).populate('members._member').populate('tasks').exec(function (err, team) {
    if (err) res.status(403).send({ message: "Error finding team"});
-   res.send(team);
+   res.send(team);;
  });
 
 }

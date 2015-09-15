@@ -1,0 +1,12 @@
+
+.addToNewTeamButton, .removeFromNewTeamButton {
+  margin:auto;
+  
+  text-align: center;
+}
+.removeFromNewTeamButton {
+  display:none;
+}
+.addToNewTeamButton {
+  display:block;
+}

@@ -1,0 +1,242 @@
+/* VENDOR */
+/* CUSTOM */
+@font-face {
+  font-family: 'Nevis Bold';
+  src: url("/fonts/nevis.eot");
+  /* IE9 Compat Modes */
+  src: url("/fonts/nevis.woff2") format("woff2"), url("/fonts/nevis-Bold.woff") format("woff"), url("/fonts/nevis.ttf") format("truetype"), url("/fonts/nevis-Bold.svg#nevis-Bold") format("svg");
+  /* Legacy iOS */ }
+input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: rgba(102, 102, 102, 0.3); }
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgba(102, 102, 102, 0.3); }
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgba(102, 102, 102, 0.3); }
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: rgba(102, 102, 102, 0.3); }
+
+.landing-header {
+  margin-top: 100px;
+  font-family: 'Nevis Bold';
+  font-weight: 700;
+  color: white; }
+
+#login-email-form, #signup-form {
+  margin: 20px; }
+
+.landing-container {
+  background-color: #73D5E5;
+  width: 100%;
+  height: 100%; }
+
+#landing-header-image {
+  max-width: 100px;
+  display: inline-block; }
+
+footer {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(102, 102, 102, 0.5); }
+
+a#login-with-facebook, a#login-with-email {
+  margin: 20px; }
+
+a#login-with-email {
+  background-color: #929292; }
+
+a#login-with-email:hover {
+  background-color: #515050;
+  -webkit-trasition: background-color 0.5s; }
+
+.auth-links {
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
+@media screen and (max-width: 500px) {
+  #login-button, #signup-button {
+    width: 100%; } }
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; }
+
+body, html {
+  height: 100% !important;
+  min-height: 100% !important; }
+
+.content-container {
+  height: 100% !important;
+  margin: 20px; }
+
+.nav-container {
+  background-color: #73D5E5; }
+
+.container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header {
+  font-family: 'Nevis Bold';
+  text-transform: uppercase;
+  background-color: #73D5E5;
+  color: white; }
+  .container-fluid > .navbar-collapse .navbar-nav > li > a, .container-fluid > .navbar-header .navbar-nav > li > a, .container > .navbar-collapse .navbar-nav > li > a, .container > .navbar-header .navbar-nav > li > a {
+    color: white;
+    text-transform: uppercase;
+    box-size: content-box;
+    padding-left: 0;
+    padding-right: 0; }
+  .container-fluid > .navbar-collapse .navbar-nav > li, .container-fluid > .navbar-header .navbar-nav > li, .container > .navbar-collapse .navbar-nav > li, .container > .navbar-header .navbar-nav > li {
+    padding-left: 10px;
+    padding-right: 10px; }
+  .container-fluid > .navbar-collapse .navbar-nav > li > a:hover, .container-fluid > .navbar-header .navbar-nav > li > a:hover, .container > .navbar-collapse .navbar-nav > li > a:hover, .container > .navbar-header .navbar-nav > li > a:hover {
+    padding-bottom: 2px;
+    border-bottom: 2px solid white;
+    padding-left: 0;
+    padding-right: 0; }
+  .container-fluid > .navbar-collapse .navbar-toggle, .container-fluid > .navbar-header .navbar-toggle, .container > .navbar-collapse .navbar-toggle, .container > .navbar-header .navbar-toggle {
+    border: 2px solid white; }
+  .container-fluid > .navbar-collapse .navbar-toggle .icon-bar, .container-fluid > .navbar-header .navbar-toggle .icon-bar, .container > .navbar-collapse .navbar-toggle .icon-bar, .container > .navbar-header .navbar-toggle .icon-bar {
+    background-color: white; }
+  .container-fluid > .navbar-collapse .navbar-brand, .container-fluid > .navbar-header .navbar-brand, .container > .navbar-collapse .navbar-brand, .container > .navbar-header .navbar-brand {
+    font-size: 30px;
+    font-family: 'Nevis Bold';
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700; }
+
+.navbar-brand > img {
+  margin-top: -15px;
+  width: 53px;
+  display: inline; }
+
+.noUi-origin {
+  background-color: white; }
+
+.noUi-base {
+  background-color: #9AD9EA; }
+
+#minutes {
+  text-align: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: #5fc0da; }
+
+#input-number {
+  text-align: center;
+  margin: auto;
+  display: block;
+  border: none;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 25px;
+  color: #5fc0da; }
+
+.camera {
+  max-width: 500px;
+  margin: auto; }
+
+section.video {
+  margin: auto;
+  max-width: 500px;
+  padding: 0;
+  min-height: 100vh;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1; }
+
+#capture-preview {
+  max-width: 300px;
+  margin: auto;
+  text-align: center; }
+
+#sendPhoto {
+  margin-top: -1%; }
+
+.cameraOptionButtons {
+  max-width: 500px;
+  line-height: 30px; }
+
+#camera-icon {
+  max-width: 47px;
+  width: 60%; }
+
+#cancelPhoto {
+  margin-bottom: -7%;
+  margin-right: -55%;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white; }
+
+#cancelPhoto:hover {
+  background-color: white;
+  color: black; }
+
+#video {
+  z-index: -1; }
+
+#startbutton {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: -5%;
+  z-index: 1000; }
+
+#photo {
+  max-width: 300px;
+  margin: auto;
+  display: block; }
+
+#task-image, #photo {
+  max-width: 300px;
+  margin: auto;
+  display: block; }
+
+@media screen and (max-width: 800px) {
+  .container-fluid > .navbar-collapse .navbar-nav > li, .container-fluid > .navbar-header .navbar-nav > li, .container > .navbar-collapse .navbar-nav > li, .container > .navbar-header .navbar-nav > li {
+    padding-top: 0; }
+  .container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
+    width: 100%; }
+  .container-fluid > .navbar-collapse .navbar-nav > li:hover, .container-fluid > .navbar-header .navbar-nav > li:hover, .container > .navbar-collapse .navbar-nav > li:hover, .container > .navbar-header .navbar-nav > li:hover {
+    background-color: white;
+    color: black; }
+  .container-fluid > .navbar-collapse .navbar-nav > li > a:hover, .container-fluid > .navbar-header .navbar-nav > li > a:hover, .container > .navbar-collapse .navbar-nav > li > a:hover, .container > .navbar-header .navbar-nav > li > a:hover {
+    color: black; }
+
+  #minutes, #input-number {
+    font-size: 20px;
+    display: inline-block; }
+
+  #capture-preview {
+    max-width: 200px;
+    max-height: 400px; }
+
+  #startbutton {
+    margin-top: -15%;
+    width: 75px;
+    height: 75px; } }
+.addToNewTeamButton, .removeFromNewTeamButton {
+  margin: auto;
+  text-align: center; }
+
+.removeFromNewTeamButton {
+  display: none; }
+
+.addToNewTeamButton {
+  display: block; }
+
+/*# sourceMappingURL=app.css.map */

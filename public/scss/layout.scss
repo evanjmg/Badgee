@@ -1,9 +1,59 @@
-.center { float: none; margin-left: auto; margin-right: auto; display:block; }
 
-.content-container { 
-margin:20px;
+.center { float: none; margin-left: auto; margin-right: auto; display:block; }
+body, html {
+  height:100% !important;
+  min-height: 100% !important;
 
 }
+.content-container { 
+height:100% !important;
+margin:20px;
+}
+.nav-container {
+  background-color: $primary-color;
+}
+.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+  font-family: 'Nevis Bold';
+  text-transform: uppercase;
+  background-color: $primary-color;
+  color: white;
+  .navbar-nav>li>a {
+    color:white;
+    text-transform: uppercase;
+    box-size: content-box;
+    padding-left:0;
+    padding-right:0;
+  }
+  .navbar-nav>li {
+    padding-left:10px;
+    padding-right:10px;
+  }
+  .navbar-nav>li>a:hover {
+   padding-bottom: 2px;
+   border-bottom: 2px solid white;
+   padding-left:0;
+   padding-right:0;
+  }
+  .navbar-toggle {
+    border:2px solid white;
+  }
+   .navbar-toggle .icon-bar {
+    background-color: white;
+   }
+   .navbar-brand {
+    font-size: 30px;
+     font-family: 'Nevis Bold';
+     color:white;
+     text-transform: uppercase;
+     font-weight: 700;
+   }
+}
+.navbar-brand>img {
+  margin-top: -15px;
+  width:53px;
+  display:inline;
+}
+
 
 .noUi-origin {
   background-color: white;
@@ -101,14 +151,29 @@ section.video {
   margin:auto;
   display:block;
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
+ .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+ .navbar-nav>li {
+  padding-top:0;
+ }
+ .btn { 
+  width:100%;
+ }
+  .navbar-nav>li>a {
+  }
+  .navbar-nav>li:hover {
+  background-color: white;
+  color:black;
+  }
+  .navbar-nav>li>a:hover {
+    color:black;
+  }
+}
   #minutes, #input-number {
     font-size: 20px;
     display:inline-block;
   }
-  .btn-success {
-    width: 100%;
-  }
+  
   #capture-preview {
     max-width: 200px;
     max-height: 400px;

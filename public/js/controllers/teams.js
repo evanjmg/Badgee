@@ -7,30 +7,44 @@ $(function () {
 TeamsController.$inject = ['User', 'Team', '$state', '$stateParams', 'TokenService'];
 function TeamsController(User, Team, $state, $stateParams, TokenService){
   var self = this;
-  self.allUsers = User.query();
   self.all = Team.query();
   self.team = {};
   if ($stateParams.id) {
     self.team = Team.get({ id: $stateParams.id});
   }
 
+  User.query(function (response) {
+    var i=0; for (i;i < response.length;i++) {
+      if (response[i].id  == self.currentUser.id) {
+        var index = i;
+      }
+    }
+    response.splice(index, 1);
+    self.allUsers = response;
+  });
+  
   self.addUserToNewTeam = function (user, $event) {
     console.log(user);
     self.team.members = self.team.members || [];
     self.team.members.push({ _member: user.id});
+    console.log(self.team.members);
     $($event.target).hide();
-    $($event.target).next('.removeFromNewTeamButton').show();
+    $($event.target).next('.removeFromNewTeamButton').css('display', 'block');
   }
 
-  self.removeUserFromNewTeam = function (user, $event) {
-    self.team.members = self.team.member
-    var i=0; for(i; i< self.team.members;i++) {
-      if (self.team.members[i]._member == user._id) {
+  self.removeFromNewTeam = function (user, $event) {
+    
+    $($event.target).css('display', 'none');
+    $($event.target).prev('.addToNewTeamButton').show();
+   
+    var i=0; for (i;i < self.team.members.length;i++) {
+      if (self.team.members[i]._member == user.id) {
         var index = i;
+        break; 
       }
     }
-    $($event.target).hide();
-    $($event.target).next('.addUserToNewTeamButton').show();
+    console.log(index);
+    console.log(self.team.members);
     self.team.members.splice(index, 1);
   }
   

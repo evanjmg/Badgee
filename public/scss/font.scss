@@ -1,0 +1,21 @@
+@font-face {
+  font-family:'Nevis Bold';
+  src: url('/fonts/nevis.eot'); /* IE9 Compat Modes */
+  src: url('/fonts/nevis.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/nevis-Bold.woff') format('woff'), /* Pretty Modern Browsers */
+       url('/fonts/nevis.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/nevis-Bold.svg#nevis-Bold') format('svg'); /* Legacy iOS */
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    rgba(102,102,102,0.3);
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:     rgba(102,102,102,0.3);
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:     rgba(102,102,102,0.3);
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:     rgba(102,102,102,0.3);
+}

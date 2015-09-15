@@ -28,6 +28,9 @@ function UsersController(User, TokenService, $state, $location){
   self.login = function() {
     User.login({email: self.user.email , password: self.user.password },function(response){
       console.log(response);
+    if (TokenService.isAuthed()) {
+      self.currentUser = TokenService.parseJwt();
+    }
       $state.go('createTeam');
     })
   }
