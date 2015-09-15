@@ -41,15 +41,23 @@ var router = express.Router();
   router.route('/teams/:id')
   // .put(TeamsController.updateTeam)
   .get(TeamsController.showTeam);
+
 // TASKS
 router.route('/tasks/:id')
   .put(TasksController.updateTask)
   .get(TasksController.showTask);
+
+router.route('/tasks/:id/complete')
+  .post(TasksController.completeTask);
+
+router.route('/tasks/:id/review')
+  .post(TasksController.reviewTaskCompletion);
+
 router.route('/tasks')
   .get(TasksController.indexTasks)
   .post(TasksController.createTask);
 
-router.route('/pending')
+router.route('/tasks/pending')
     .post(TasksController.pendingTasks);
 
 
