@@ -106,6 +106,16 @@ function completeTask (req, res) {
  }) 
  });
 }
+function rejectTask (req, res) {
+  Task.findById(req.params.id, function (err, task) {
+    if (err) res.status(403).send({ message: "Could not find task"});
+    task._tagged_member = null; 
+    task.save( function (error) {
+      if (error) res.status(403).send({ message: "Could not save task."});
+      res.status(200).send(task);
+    })
+  })
+}
 
 function pendingTasks (req, res) {
   console.log('in pending tasks');
@@ -152,6 +162,7 @@ function indexTasks (req,res) {
   })
 }
 module.exports = {
+  rejectTask: rejectTask,
   reviewTaskCompletion: reviewTaskCompletion,
   indexPublicPendingTasks: indexPublicPendingTasks,
   completeTask: completeTask,

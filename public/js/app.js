@@ -18,6 +18,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   .state('logout', {
     url: '/login'
   })
+  .state('completeTask', 
+  {
+    url: '/tasks/:id/complete',
+    templateUrl: 'templates/tasks/complete.html'
+  })
   .state('signup', {
     url: '/signup',
     templateUrl: 'templates/users/signup.html'

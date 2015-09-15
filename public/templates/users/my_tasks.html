@@ -1,4 +1,4 @@
-<h2>Challenge Invites</h2>
+<h2>Challenge Invitations</h2>
 <div ng-controller="UsersController as users">
 <div ng-repeat="task in users.pending">
   <div class="row">
@@ -8,7 +8,7 @@
    <span ng-show="task.location.name">@ {{task.location.name}}</span><br/>
 
     </div> 
-   <div class="col-sm-4"><a class="btn btn-info" ng-submit="users.reviewTask(task)">Review</a></div>
+   <div class="col-sm-4"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">Review</a></div>
   </div>
   <hr>
 </div>

@@ -96,6 +96,11 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
         })
 
   }
+  self.decideTask = function (bool) {
+    if (bool) {
+      
+    }
+  }
   self.showEditTask = function () {
     $state.go('editTask', { team_id: $stateParams.team_id, id: $stateParams.id })
   }

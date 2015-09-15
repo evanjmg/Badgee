@@ -53,6 +53,9 @@ router.route('/tasks/:id/complete')
 router.route('/tasks/:id/review')
   .post(TasksController.reviewTaskCompletion);
 
+router.route('/tasks/:id/reject')
+  .get(TasksController.rejectTask);
+  
 router.route('/tasks')
   .get(TasksController.indexTasks)
   .post(TasksController.createTask);
