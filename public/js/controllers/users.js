@@ -14,7 +14,7 @@ function UsersController(User, TokenService, $state, $location){
     self.teams = User.teams( { "userId": self.currentUser.id});
   }
 
-  if ($location.path() == '/users/tags') {
+  if ($location.path() == '/users/tasks') {
     
     User.pendingTasks({ userId: self.currentUser.id }, function (response) {
       self.pending = response;
@@ -41,10 +41,9 @@ function UsersController(User, TokenService, $state, $location){
   }
   self.signup = function() {
     User.signup(self.user,function(response){
-      console.log(response);
+      $state.go('createTeam');
     })
-      // user.register(self.email, self.password)
-      // .then(handleRequest, handleRequest)
+  
     }
     self.logout = function() {
       TokenService.logout && TokenService.logout();

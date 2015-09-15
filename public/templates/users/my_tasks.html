@@ -1,0 +1,15 @@
+<h2>Challenge Invites</h2>
+<div ng-controller="UsersController as users">
+<div ng-repeat="task in users.pending">
+  <div class="row">
+   <div class="col-sm-4"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
+   <div class="col-sm-4">
+   <span>{{task.description}}</span><br/>
+   <span ng-show="task.location.name">@ {{task.location.name}}</span><br/>
+
+    </div> 
+   <div class="col-sm-4"><a class="btn btn-info" ng-submit="users.reviewTask(task)">Review</a></div>
+  </div>
+  <hr>
+</div>
+</div>

@@ -9,6 +9,10 @@ body, html {
 height:100% !important;
 margin:20px;
 }
+.profile-img {
+  border-radius: 50%;
+  width:50px;
+}
 .nav-container {
   background-color: $primary-color;
 }
@@ -59,13 +63,13 @@ margin:20px;
   background-color: white;
 }
 .noUi-base {
-  background-color:  #9AD9EA;
+  background-color: $primary-color;
 }
 #minutes {
   text-align: center;
   font-size: 25px;
   font-weight: bold;
-  color: rgb(95,192,218);
+  color: $primary-color;
 }
 
  #input-number {
@@ -76,7 +80,7 @@ border:none;
 margin-top: 15px;
 font-weight: bold;
 font-size: 25px;
-color: rgb(95,192,218);
+color: $primary-color;
 }
 .camera {
   max-width: 500px;

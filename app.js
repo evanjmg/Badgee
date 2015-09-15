@@ -8,7 +8,7 @@ var expressJWT = require('express-jwt');
 var AWS = require('aws-sdk');
 var GooglePlaces = require('google-places');
 
-var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/taggy'
+var databaseURL = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/badgee'
 mongoose.connect(databaseURL);
 
 app.use(bodyParser.json());

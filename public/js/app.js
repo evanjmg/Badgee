@@ -39,9 +39,9 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/teams/new',
     templateUrl: 'templates/teams/new.html'
   })
-  .state('myTags', {
-    url: '/users/tags',
-    templateUrl: 'templates/users/my_tags.html'
+  .state('myTasks', {
+    url: '/users/tasks',
+    templateUrl: 'templates/users/my_tasks.html'
   })
   .state('editTask', {
     url: '/teams/:team_id/tasks/:id/edit',
