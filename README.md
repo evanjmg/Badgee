@@ -1,5 +1,5 @@
-# Taggy
-A mobile social game app where friends tag and challenge another to do fun activities
+# Badgee
+A mobile social game app where friends tag and challenge each other  for badgee coins. 
 
 #Build:
 
