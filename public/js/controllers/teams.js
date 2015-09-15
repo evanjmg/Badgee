@@ -49,8 +49,9 @@ function TeamsController(User, Team, $state, $stateParams, TokenService){
   }
   
   self.createTeam = function () {
-    self.team.members.push({ _member: self.currentUser._id });
-    Team.save(self.team,function (response) {
+    console.log('hello', self.currentUser.id)
+    self.team.members.push({ _member: self.currentUser.id });
+    Team.save(self.team, function (response) {
         self.showTeam(response);
     });
   }

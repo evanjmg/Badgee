@@ -4,23 +4,27 @@ var Team = require('../models/team.js');
 
 
 function createTeam (req, res) {
-    Team.create(req.body, function (err, team) {
-      if (err) res.status(403).send({ message: "Could not create Team, error occurred"});
-      var member_ids = [];
 
-    team.members.forEach(function(member) { member_ids.push(member._member) });
+  Team.create(req.body, function (err, team) {
+    if (err) res.status(403).send({ message: "Could not create Team, error occurred"});
+    var member_ids = [], i=0;
 
-      User.find({
-    '_id': { $in: member_ids }}).populate('teams').exec(function (error, users) {
+    for(i; i < team.members.length;i++) {
+      member_ids.push(team.members[i]._member);
+    }
+    User.find({
+      '_id': { $in: member_ids }}).populate('teams').exec(function (error, users) {
+        console.log('**********', users);
         users.forEach(function(user) {
           user.teams.push(team._id);
           user.save(function(){});
         });
-     
-          res.send(team);
-          });
-        });
-}
+        res.send(team);
+      });
+    });
+
+};
+
 function showTeam (req, res) {
  Team.findById(req.params.id).populate('members._member').populate('tasks').exec(function (err, team) {
    if (err) res.status(403).send({ message: "Error finding team"});
