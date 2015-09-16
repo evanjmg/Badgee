@@ -1,6 +1,6 @@
 angular
-  .module('taggyApp')
-  .service('PhotoUpload', PhotoUpload);
+.module('taggyApp')
+.service('PhotoUpload', PhotoUpload);
 
 PhotoUpload.$inject = ['$http']
 function PhotoUpload($http) {
@@ -15,146 +15,133 @@ function PhotoUpload($http) {
   
   self.uniqueFileName = '';
 
-  self.file = self.file || {};
+  self.upload = function(file, callback) { 
+    console.log("Inside Photoupload", file)
 
-
-  self.upload = function (callback, fileUpload) {
-    var data = canvas.toDataURL('image/png');
-    
-    $('.camera').hide();
-    $('#createTaskPage').show();
-    console.log(data);
-
-    self.file = dataURItoBlob(data);
-    if (fileUpload) {
-      self.file = fileUpload;
+    if (!file) {
+      var file = canvas.toDataURL('image/png');
+      file     = dataURItoBlob(file);
+      console.log(file);
     }
-  
-    if(self.file) {
-      var fileSize = Math.round(parseInt(self.file.size));
+    
+    if (file) {
+      self.file     = file;
+      self.fileSize = Math.round(parseInt(self.file.size));
 
-
-      // Check file size
-      if(self.fileSize > 10585760) {
+      // Validating the size of the file
+      if (self.fileSize > 10585760) {
         alert('Sorry, file size must be under 10MB');
         return false;
       }
 
+      // Creating a new unique filename
       self.uniqueFileName = self.uniqueString() + '.png';
-      var params = { Key: self.uniqueFileName, ContentType: self.file.type, Body: self.file, ServerSideEncryption: 'AES256' };
-    
-    // UPLOAD WITH PRE-SIGNED URL
-    $http.post('/api/aws', {name: self.uniqueFileName, size: self.fileSize, type: self.file.type}).then(function(res) {
-       $.ajax({
-              url: res.data.url,
-              type: 'PUT',
-              data: self.file,
-              processData: false,
-              contentType: self.file.type,
-          }).success(function(res){
-              console.log('Done');
-              $('#createTaskPage').prepend("<img id='capture-preview' class='center' src='https://s3-eu-west-1.amazonaws.com/taggyapp/images/"+self.uniqueFileName+"'>")
-              callback(self.uniqueFileName);
-          });
-        });
-    }
-    else {
-  //     // No File Selected
-      console.log('No File Selected');
-    }
-  }
 
-  self.startup = function () {
+      $http.post('/api/aws', {
+        name: self.uniqueFileName, 
+        size: self.fileSize, 
+        type: self.file.type
+      }).then(function(res) {
+        $.ajax({
+          url: res.data.url,
+          type: 'PUT',
+          data: self.file,
+          processData: false,
+          contentType: self.file.type,
+      }).success(function(res){
+        console.log('File uploaded');
+
+        // UI to add the file to the page
+        $('#createTaskPage').prepend("<img id='capture-preview' class='center' src='https://s3-eu-west-1.amazonaws.com/taggyapp/images/"+self.uniqueFileName+"'>")
+
+        // Return img_url
+        callback("https://s3-eu-west-1.amazonaws.com/taggyapp/images/" + self.uniqueFileName);
+      });
+    });
+  }
+}
+
+self.startup = function () {
+
+  // These shouldnt be global!
+  video = document.getElementById('video');
+  canvas = document.getElementById('canvas');
+  photo = document.getElementById('photo');
+
+  navigator.getMedia = ( navigator.getUserMedia ||
+   navigator.webkitGetUserMedia ||
+   navigator.mozGetUserMedia ||
+   navigator.msGetUserMedia);
+
+  navigator.getMedia({
+    video: true,
+    audio: false
+  }, function(stream) {
+    if (navigator.mozGetUserMedia) {
+      video.mozSrcObject = stream;
+    } else {
+      var vendorURL = window.URL || window.webkitURL;
+      video.src = vendorURL.createObjectURL(stream);
+    }
+    video.play();
+  }, function(err) {
+    console.log("An error occured! " + err);
+  }
+  );
+
+  video.addEventListener('canplay', function(ev){
+    if (!streaming) {
+      height = video.videoHeight / (video.videoWidth/width);
+
+      if (isNaN(height)) {
+        height = width / (4/3);
+      }
+
+      video.setAttribute('width', width);
+      video.setAttribute('height', height);
+      canvas.setAttribute('width', width);
+      canvas.setAttribute('height', height);
+      streaming = true;
+    }
+  }, false);
+
+  clearphoto();
+  // create canvas element and append it to document body
   
-    video = document.getElementById('video');
-        canvas = document.getElementById('canvas');
-        photo = document.getElementById('photo');
-        startbutton = document.getElementById('startbutton');
+  // get canvas 2D context and set him correct size
+  var ctx = canvas.getContext('2d');
 
+  // last known position
+  var pos = { x: 0, y: 30 };
 
-        navigator.getMedia = ( navigator.getUserMedia ||
-                               navigator.webkitGetUserMedia ||
-                               navigator.mozGetUserMedia ||
-                               navigator.msGetUserMedia);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mousedown', setPosition);
+  canvas.addEventListener('mouseenter', setPosition);
 
-        navigator.getMedia(
-          {
-            video: true,
-            audio: false
-          },
-          function(stream) {
-            if (navigator.mozGetUserMedia) {
-              video.mozSrcObject = stream;
-            } else {
-              var vendorURL = window.URL || window.webkitURL;
-              video.src = vendorURL.createObjectURL(stream);
-            }
-            video.play();
-          },
-          function(err) {
-            console.log("An error occured! " + err);
-          }
-        );
-
-        video.addEventListener('canplay', function(ev){
-          if (!streaming) {
-            height = video.videoHeight / (video.videoWidth/width);
-          
-            if (isNaN(height)) {
-              height = width / (4/3);
-            }
-          
-            video.setAttribute('width', width);
-            video.setAttribute('height', height);
-            canvas.setAttribute('width', width);
-            canvas.setAttribute('height', height);
-            streaming = true;
-          }
-        }, false);
-
-        startbutton.addEventListener('click', function(ev){
-          self.takepicture();
-          ev.preventDefault();
-        }, false);
-        
-        clearphoto();
-        // create canvas element and append it to document body
-        
-        // get canvas 2D context and set him correct size
-        var ctx = canvas.getContext('2d');
-
-        // last known position
-        var pos = { x: 0, y: 30 };
-
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mousedown', setPosition);
-        canvas.addEventListener('mouseenter', setPosition);
-
-        // new position from mouse event
-        function setPosition(e) {
-          pos.x = e.clientX;
-          pos.y = e.clientY;
-        }
-
-        // resize canvas
-
-        function draw(e) {
-          // mouse left button must be pressed
-          if (e.buttons !== 1) return;
-
-          ctx.beginPath(); // begin
-
-          ctx.lineWidth = 5;
-          ctx.lineCap = 'round';
-          ctx.strokeStyle = '#c0392b';
-
-          ctx.moveTo(pos.x, pos.y); // from
-          setPosition(e);
-          ctx.lineTo(pos.x, pos.y); // to
-
-          ctx.stroke(); // draw it!
-        }
+  // new position from mouse event
+  function setPosition(e) {
+    pos.x = e.clientX;
+    pos.y = e.clientY;
   }
+
+  // resize canvas
+
+  function draw(e) {
+    // mouse left button must be pressed
+    if (e.buttons !== 1) return;
+
+    ctx.beginPath(); // begin
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#c0392b';
+
+    ctx.moveTo(pos.x, pos.y); // from
+    setPosition(e);
+    ctx.lineTo(pos.x, pos.y); // to
+
+    ctx.stroke(); // draw it!
+  }
+}
 
   // Fill the photo with an indication that none has been
   // captured.
@@ -165,10 +152,12 @@ function PhotoUpload($http) {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
+    // photo.setAttribute('src', data);
   }
 
   self.takepicture = function () {
+    console.log("INSIDE DIRECTIVE");
+
     var context = canvas.getContext('2d');
     if (width && height) {
       canvas.width = video.width;
@@ -177,18 +166,19 @@ function PhotoUpload($http) {
       $('#canvas').show();
       $('#video').hide();
       $('.cameraOptionButtons').show();
-   
     } else {
       clearphoto();
     }
   }
+
+
   function dataURItoBlob(dataURI) {
       // convert base64/URLEncoded data component to raw binary data held in a string
       var byteString;
       if (dataURI.split(',')[0].indexOf('base64') >= 0)
-          byteString = atob(dataURI.split(',')[1]);
+        byteString = atob(dataURI.split(',')[1]);
       else
-          byteString = unescape(dataURI.split(',')[1]);
+        byteString = unescape(dataURI.split(',')[1]);
 
       // separate out the mime component
       var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
@@ -196,11 +186,11 @@ function PhotoUpload($http) {
       // write the bytes of the string to a typed array
       var ia = new Uint8Array(byteString.length);
       for (var i = 0; i < byteString.length; i++) {
-          ia[i] = byteString.charCodeAt(i);
+        ia[i] = byteString.charCodeAt(i);
       }
 
       return new Blob([ia], {type:mimeString});
-  }
+    }
 
 
   //   function handleOrientation(event) {
@@ -215,12 +205,12 @@ function PhotoUpload($http) {
   //   }
   // window.addEventListener('deviceorientation', handleOrientation);
   self.uniqueString = function() {
-      var text     = "";
-      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var text     = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-      for( var i=0; i < 8; i++ ) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-      }
-      return text;
+    for( var i=0; i < 8; i++ ) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
+    return text;
+  }
 }

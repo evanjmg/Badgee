@@ -39,6 +39,7 @@ angular.module('bootstrap.fileField',[])
     transclude:true
   };
 });
+
 angular
   .module('taggyApp')
   .directive('file', UpdateFile);
@@ -57,13 +58,15 @@ function UpdateFile(){
 
 function BindEvent(scope, el, attrs){
   el.bind('change', function(event){
-    console.log(event.target);
-    console.log(scope.$parent);
-
     var files = event.target.files;
     var file = files[0];
     scope.file = file;
-    scope.$parent.capture.file = file;
+
+    scope.$parent.tasks.file = file;
+    console.log("Inside directive ", scope.$parent.tasks.file);
+
+    scope.$parent.tasks.upload();
+
     scope.$apply();
   });
 }

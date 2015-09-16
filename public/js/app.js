@@ -31,11 +31,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: 'templates/home/landing.html'
   }) 
-  .state('createTask', {
-    url: '/team/:team_id/task/new/:member_id',
-    templateUrl: 'templates/tasks/new.html',
-    controller: 'TasksController'
-  })
+  // .state('createTask', {
+  //   url: '/team/:team_id/task/new/:member_id',
+  //   templateUrl: 'templates/tasks/new.html',
+  //   controller: 'TasksController'
+  // })
   .state('myTeams', {
     url: '/users/teams',
     templateUrl: 'templates/users/my_teams.html'
@@ -59,6 +59,14 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   .state('showTask', {
     url: '/teams/:team_id/tasks/:id',
     templateUrl: 'templates/tasks/show.html'
+  })
+
+
+
+  .state('createTask', {
+    url: '/tasks/new',
+    templateUrl: 'templates/tasks/new.html',
+    controller: 'TasksController'
   })
   $urlRouterProvider.otherwise('/') 
   

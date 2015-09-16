@@ -1,12 +1,14 @@
-angular.module('taggyApp')
-.directive('slider', function() {
+angular
+  .module('taggyApp')
+  .directive('slider', Slider);
+
+function Slider() {
   var directive = {};
   directive.restrict    = "E";
-// E - element, C - class, A - attr, M - message/comment
   directive.replace     = true;
   directive.link =   function(scope, element, attrs) {
 
-       var tag = '<div id="slider"></div><input id="input-number">';
+       var tag = '<div id="slider"></div><input id="input-number"><span id="minutes">Minutes</span>';
        element.append(tag);
 
         var rangeSlider = $('#slider')[0];
@@ -35,4 +37,4 @@ angular.module('taggyApp')
   question: "@"
   }
   return directive
-})
+}

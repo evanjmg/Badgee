@@ -140,13 +140,15 @@ body, html {
 #minutes {
   text-align: center;
   font-size: 25px;
+  margin: auto;
+  display: inline;
   font-weight: bold;
   color: #73D5E5; }
 
 #input-number {
   text-align: center;
   margin: auto;
-  display: block;
+  display: inline;
   border: none;
   margin-top: 15px;
   font-weight: bold;
@@ -230,8 +232,7 @@ section.video {
     color: black; }
 
   #minutes, #input-number {
-    font-size: 20px;
-    display: inline-block; }
+    font-size: 20px; }
 
   #capture-preview {
     max-width: 200px;
