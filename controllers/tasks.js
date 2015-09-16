@@ -107,7 +107,8 @@ function completeTask (req, res) {
  });
 }
 function rejectTask (req, res) {
-  Task.findById(req.params.id, function (err, task) {
+
+  Task.findById(req.params.id).populate('_creator').exec( function (err, task) {
     if (err) res.status(403).send({ message: "Could not find task"});
     task._tagged_member = null; 
     task.save( function (error) {

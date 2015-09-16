@@ -12,7 +12,7 @@ function Task ($resource) {
    'complete': { method: 'POST', url: url + ':id/complete'},
     'review': { method: 'POST', url: url + ':id/review'},
     'reject': { method: 'GET', url: url + ':id/reject'}
-  }
+  
 });
 
  return TaskResource;

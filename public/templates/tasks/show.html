@@ -9,7 +9,7 @@
 <div id="map" style="width:200px;height:200px;"></div>
 
 </div>
-<div ng-if="tasks.currentUser.id == tasks.task._creator.id" class="row text-center center">
+<div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
 <div class="col-xs-6 col-md-6">
   <a ng-click="tasks.backToTeam()" class="btn btn-info" style="margin-left:20px">Back to Team</a>
   </div>
