@@ -9,7 +9,7 @@ function Task ($resource) {
 
  var TaskResource = $resource(url + ':id' ,{id: '@_id'},
   { 'update' : { method: 'PUT' },
-   'complete': { method: 'POST', url: url + ':id/complete'},
+   'complete': { method: 'POST', url: url + 'complete'},
     'review': { method: 'POST', url: url + ':id/review'},
     'reject': { method: 'GET', url: url + ':id/reject'}
   

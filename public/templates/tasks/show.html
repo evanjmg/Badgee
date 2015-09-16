@@ -11,7 +11,7 @@
 </div>
 <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
 <div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.backToTeam()" class="btn btn-info" style="margin-left:20px">Back to Team</a>
+  <a ui-sref="myTasks" class="btn btn-info" style="margin-left:20px">Back to My Challenges</a>
   </div>
   <div class="col-xs-6 col-md-6">
   <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>  
@@ -20,7 +20,7 @@
 </div>
 <div ng-show="tasks.currentUser.id === tasks.task._tagged_member.id" class="row text-center center">
 <div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.decideTask(true)" class="btn btn-success" style="margin-left:20px">Accept</a>
+  <a ng-click="tasks.decideTask(true)" class="btn btn-success" style="margin-left:20px">Submit Answer</a>
   </div>
   <div class="col-xs-6 col-md-6">
   <a ng-click="tasks.decideTask(false)" class="btn btn-danger">Reject</a>  

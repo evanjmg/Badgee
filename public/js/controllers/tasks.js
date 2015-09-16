@@ -26,9 +26,10 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   }
 
   // Setup defaults
-  self.allUsers     = User.query();
-  self.task         = {};
-  self.showCamera   = false;
+  self.task             = {};
+  self.showCamera       = false;
+  self.selectUsersPage  = false;
+  self.task.completion = self.task.completion || {};
 
   if ($stateParams.id) {
     self.task = Task.get({id: $stateParams.id}, function (response) {
@@ -53,11 +54,22 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
 
   if ($('canvas').length !== 0) { 
     Geo.locate(function (data) {
-      self.task.lat =  data.coords.latitude;
-      self.task.lon =  data.coords.longitude;
+      self.lat =  data.coords.latitude;
+      self.lon =  data.coords.longitude;
       console.log(self.task.lat, self.task.lon);
     });
   }
+  
+  User.query(function (response) {
+    var i=0; for (i;i < response.length;i++) {
+      if (response[i].id  == self.currentUser.id) {
+        var index = i;
+      }
+    }
+    response.splice(index, 1);
+    self.allUsers = response;
+    console.log(response[0].id);
+  });
 
   self.startCamera = function(){
     $scope.showCamera = true;
@@ -91,7 +103,10 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   }
 
   self.completeTask = function () {
-    Task.complete(self.task, function (response) {
+    self.task.completion.minutes = $('#input-number').val();
+    
+    console.log(self.task);
+    Task.complete({ id: self.task._id , task: self.task, lat: self.lat, lon: self.lon }, function (response) {
       console.log(response);
     })
   }
@@ -99,15 +114,24 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   self.upload = function () {
     if (!self.file) {
       PhotoUpload.upload(null, function(img_url){
+     if ($('#createTaskPage') > 0) {
         self.task.img_url = img_url;
         console.log("Img_url set from camera: ", self.task.img_url);
+      } else {
+        self.task.completion.img_url = img_url; 
+      }
       });
       $scope.showCamera = false;
 
     } else {
       PhotoUpload.upload(self.file, function(img_url){
-        self.task.img_url = img_url;
-        console.log("Img_url set from file: ", self.task.img_url);
+
+      if ($('#createTaskPage').length > 0) {
+         self.task.img_url = img_url;
+         console.log("Img_url set from camera: ", self.task.img_url);
+       } else {
+         self.task.completion.img_url = img_url; 
+       }
       });
     }
   }
@@ -130,19 +154,40 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
     $state.go('showTeam', { id: $stateParams.team_id });
   }
 
-  self.showCreateTask = function (memberId) {
-    $state.go('createTask', { team_id: $stateParams.id, member_id: memberId }) 
-  }
+ 
+  self.showUsersPage = function () {
+    self.selectUsersPage = true;
 
-  self.createTask = function () { 
+  }
+  // self.addUser = function (user, $event) {
+  //   console.log(user);
+  //   self.task._tagged_member =  user.id;
+  //   tasks.showUsersPage = false;
+
+  //   // $($event.target).hide();
+  //   // $($event.target).next('.removeFromNewTeamButton').css('display', 'block');
+  // }
+
+  // self.removeUser = function (user, $event) {
+    
+  //   $($event.target).css('display', 'none');
+  //   $($event.target).prev('.addToNewTeamButton').show();
+   
+  //   var i=0; for (i;i < self.team.members.length;i++) {
+  //     if (self.team.members[i]._member == user.id) {
+  //       var index = i;
+  //       break; 
+  //     }
+  //   }
+  self.createTask = function (recipient) { 
     self.task.minutes = $('#input-number').val();
     self.task._creator = self.currentUser.id;
-    self.task._tagged_member = $stateParams.member_id;
-    self.task.team_id = $stateParams.team_id;
+    self.task._tagged_member = recipient.id;
+    // self.task.team_id = $stateParams.team_id;
     console.log(self.task);
-    Task.save({ task: self.task }, function (response) {
+    Task.save({ task: self.task, lat: self.lat, lon: self.lon  }, function (response) {
       console.log(response, 'saved');
-      $state.go('showTask', { team_id: $stateParams.team_id, id: response._id})
+      $state.go('showTask', { id: response._id})
     });
   }
 

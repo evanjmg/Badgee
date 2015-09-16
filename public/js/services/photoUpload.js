@@ -52,7 +52,7 @@ function PhotoUpload($http) {
         console.log('File uploaded');
 
         // UI to add the file to the page
-        $('#createTaskPage').prepend("<img id='capture-preview' class='center' src='https://s3-eu-west-1.amazonaws.com/taggyapp/images/"+self.uniqueFileName+"'>")
+        $('#createTaskMainForm').prepend("<img id='capture-preview' class='center' src='https://s3-eu-west-1.amazonaws.com/taggyapp/images/"+self.uniqueFileName+"'>")
 
         // Return img_url
         callback("https://s3-eu-west-1.amazonaws.com/taggyapp/images/" + self.uniqueFileName);

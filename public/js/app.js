@@ -49,7 +49,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/users/my_tasks.html'
   })
   .state('editTask', {
-    url: '/teams/:team_id/tasks/:id/edit',
+    url: '/tasks/:id/edit',
     templateUrl: 'templates/tasks/edit.html'
   })
   .state('showTeam', {
@@ -57,7 +57,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/teams/show.html',
   })
   .state('showTask', {
-    url: '/teams/:team_id/tasks/:id',
+    url: '/tasks/:id',
     templateUrl: 'templates/tasks/show.html'
   })
 

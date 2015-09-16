@@ -8,7 +8,7 @@ function Slider() {
   directive.replace     = true;
   directive.link =   function(scope, element, attrs) {
 
-       var tag = '<div id="slider"></div><input id="input-number"><span id="minutes">Minutes</span>';
+    var tag = '<div id="slider"></div><div class="center text-center"><input id="input-number"><span id="minutes">Minutes</span></div>';
        element.append(tag);
 
         var rangeSlider = $('#slider')[0];

@@ -1,8 +1,8 @@
 <h2 class="taskInvitesHeader">Challenge Invitations</h2>
 <div ng-controller="UsersController as users">
 <div ng-if="users.pending.length == 0">
-  You have no challenges. <br> Challenge to a teammate here. <br/>
-  <a ui-sref="myTeams" class="btn btn-success center">Go To Team</a>
+  You have no challenges. <br> Challenge a friend below. <br/>
+  <a ui-sref="createTask" class="btn btn-success center">Send a Challenge</a>
 </div>
 <div ng-if="users.pending.length > 0" ng-repeat="task in users.pending">
   <div class="row">

@@ -47,7 +47,7 @@ router.route('/tasks/:id')
   .put(TasksController.updateTask)
   .get(TasksController.showTask);
 
-router.route('/tasks/:id/complete')
+router.route('/tasks/complete')
   .post(TasksController.completeTask);
 
 router.route('/tasks/:id/review')

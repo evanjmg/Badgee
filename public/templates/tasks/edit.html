@@ -1,7 +1,100 @@
 <div ng-controller="TasksController as tasks">
+  <div id="createTaskPage">
+
+    <!-- <form ng-submit="tasks.createTask()" novalidate='novalidate' id="createTaskForm"> -->
+      <div ng-hide="tasks.selectUsersPage || showCamera" id="createTaskMainForm">
+      <h2>Edit Your Challenge</h2>
+      <div class="form-group">
+        <label for="challenge">What is your challenge?</label>
+        <input type="text" placeholder="Explain the challenge, e.g. Eat the super spicy pizza." ng-model="tasks.task.description" name="description" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="minutes">What's the time limit?</label>
+        <slider></slider>
+
+      </div>
+      <div class="form-group">
+        <label for="">Where should this challenge happen?</label>
+        <input type="text" ng-model="tasks.task.location.name" placeholder="Where is it? e.g. Pizza Union, Shoreditch, London" class="form-control">
+      </div>
+        <div class="row">
+          <div class="col-xs-4">
+            <a ng-click="tasks.startCamera()" id="showCameraButton"class="btn btn-info">Take a Photo</a>
+          </div>
+          <div class="col-xs-4 text-center fadedText">
+           OR 
+         </div>
+         <div class="col-xs-4">
+          <section>
+            <file-field  ng-model="uploadFile" preview="previewImage" class="btn-info btn center-block" id="uploadFileButton" file>Upload File</file-field>
+          </section>
+        </div>
+      </div>
+      <p></p>
+      <label for="recipient">Sent To:</label>
+       <div class="row">
+         <div class="col-xs-4">
+          <img ng-src="{{tasks.task._tagged_member.img_url}}" alt="user" class="profile-img">
+        </div>
+        <div class="col-xs-4">
+          <span> {{tasks.task._tagged_member.name}}</span>
+        </div>
+        <div class="col-xs-4">
+          
+         <a class="btn btn-success" ng-click="tasks.showUsersPage()" >Change the receipient</a>
+          <!-- <a class="btn btn-danger removeFromNewTeam" ng-click="tasks.removeUser(user, $event)" >-</a> -->
+        </div>
+      </div>
+      
+      <p></p>
+      <a class="btn btn-success" ng-click="tasks.updateTask(user)" >SEND</a>
+      </div>
+
+
+      <section ng-if="showCamera == true">
+        <div class="camera">
+          <section class="video">
+            <button class="btn" id="cancelPhoto" ng-click="tasks.exitCapture()" >X</button>
+            <video id="video">Video stream not available.</video>
+            <canvas id="canvas"></canvas>
+            <a ng-click="tasks.takePicture()" id="start-button" class="btn-info btn"><img id='camera-icon' src="/images/white-camera.png" alt=""></a>
+          </section>
+          <div class="row cameraOptionButtons">
+            <div class="col-xs-6">
+              <a id="sendPhoto" class="btn-success btn" value="Upload" ng-click="tasks.upload()">Upload</a>
+            </div>
+            <div class="col-xs-6">
+              <a class='pull-right' id="retakeButton" class="btn-info btn-warning" ng-click="tasks.retakePhoto()">Retake</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <div  ng-if="tasks.selectUsersPage" ng-repeat="user in tasks.allUsers">
+      <div class="row">
+        <div class="col-xs-4">
+         <img ng-src="{{user.img_url}}" alt="user" class="profile-img">
+       </div>
+       <div class="col-xs-4">
+         <span> {{user.name}}</span>
+       </div>
+       <div class="col-xs-4">
+         
+         <a class="btn btn-success addToNewTeam" ng-click="tasks.addUser(user, $event)" >SEND</a>
+         <!-- <a class="btn btn-danger removeFromNewTeam" ng-click="tasks.removeUser(user, $event)" >-</a> -->
+       </div>
+     </div>
+     <hr>
+   </div>
+ <!--   <div class="form-group" ng-show="tasks.formComplete"> -->
+    <!-- <button type="submit" class=" btn-success btn">Send</button> -->
+  </div>
+<!-- </form> -->
+</div>
+</div>
 
   
-  <img id="photo" ng-src="{{previewImage}}">
+ <!--  <img id="photo" ng-src="{{previewImage}}">
   <div class="output" style="display:none;">
 </div>
 <img id="photo" ng-hide="previewImage" ng-src="{{tasks.task.img_url}}" alt="The screen capture will appear in this box.">
@@ -31,5 +124,4 @@
     </div>
   </form>
   </div>
-</div>
-</div>
+</div> -->

@@ -7,8 +7,7 @@ var request = require('request');
 
 
 function createTask (req, res) {
-  Team.findById(req.body.team_id, function (err, team) {
-    if (err) res.status(403).send({ message: "Could not find team"});
+  // Team.findById(req.body.team_id, function (err, team) {
     
     if (!req.body.lon) {
       req.body.lat = "51.5286416"
@@ -44,15 +43,16 @@ function createTask (req, res) {
 
       task.save(function (err) {
         if (err) res.status(403).send({ message: "Could not save task"});
-        team.tasks.push(task);
-        team.save(function (error) {
-          res.send(task);
-        })
+        res.send(task);
+        // team.tasks.push(task);
+        // team.save(function (error) {
+      
+        // })
       })
 
     }); 
     } }) 
-})
+// })
 }
 
 function reviewTaskCompletion (req, res) {
@@ -70,27 +70,30 @@ function reviewTaskCompletion (req, res) {
 
 function completeTask (req, res) {
 
-  Task.findById(req.params.id, function (err, task) {
+  Task.findById(req.body.task._id, function (err, task) {
     if (err) res.status(403).send({ message: "Could not find task"});
-    task.completion.message = req.body.message;
-    task.completion.img_url = req.body.img_url;
-    task.completion.minutes = req.body.minutes;
+    task.completion.message = req.body.task.completion.message;
+    task.completion.img_url = req.body.task.completion.img_url;
+    task.completion.minutes = req.body.task.completion.minutes;
+
+
     
     if (!req.body.lon) {
      req.body.lat = "51.5286416"
      req.body.lon = "-0.1015987"
    }
 
-   if (!req.body.location) {
-      req.body.location = {
+   if (!req.body.task.completion.location) {
+      req.body.task.completion.location = {
         "name": null
       }
      var query = "London";
    } else {
-     var query = req.body.location.name
+     var query = req.body.task.completion.location.name
+     task.completion.location.name = req.body.task.completion.location.name;
    }
 
-   request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
+   request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+ ','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
     if (!error && response.statusCode == 200) {
      var resp = JSON.parse(body);
      console.log(resp);
@@ -98,6 +101,7 @@ function completeTask (req, res) {
      var latlon = [resp.results[0].geometry.location.lat, resp.results[0].geometry.location.lng]
      task.completion.location.lat = latlon[0];
      task.completion.location.lon = latlon[1];
+     task.completed = false;
      task.save(function (err) {
       res.status(200).send(task);
      });
