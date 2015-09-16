@@ -124,7 +124,7 @@ function rejectTask (req, res) {
 
 function pendingTasks (req, res) {
   console.log('in pending tasks');
-  Task.find({ "_tagged_member": { $eq: req.body.userId }, "completed": { $eq: null }, "completion.message": { $eq : null } }).populate('_creator').exec(function (err, tasks) {
+  Task.find({ "_tagged_member": { $eq: req.body.userId }, "completed": { $ne : true } }).sort({ updated_at:-1}).populate('_creator').exec(function (err, tasks) {
     if (err) res.status(403).send({ message: "Error in finding pending tasks"});
     console.log(tasks);
     res.send(tasks);
@@ -146,27 +146,62 @@ function showTask (req, res) {
  });
 
 }
+function createdTasks (req,res) {
+  Task.find( { "_creator": {$eq: req.body.userId } }).sort({ updated_at:-1}).populate('_tagged_member').exec(function (err, tasks) {
+    if (err) res.status(403).send({ message: "An error occured when looking for tasks"});
+    res.status(200).send(tasks);
+  })
+}
+function completedTasks (req,res) {
+  Task.find({ "_tagged_member": { $eq: req.body.userId }, "completed": { $eq:  true } }).sort({ updated_at:-1}).populate('_tagged_member').exec( function (err,tasks) {
+    if (err) res.status(403).send({ message: "An error occured when looking for tasks"});
+
+  })
+  if (err) res.status(403).send()
+}
+function acceptResponse (req,res) {
+  Task.findById(req.params.id, function (err, task) {
+    if (err) res.status(403).send({ message: "An error occured when finding task to accept."});
+      task.completed = true;
+      task.save(function (error) {
+        res.status(200).send(task);
+      } )
+  })
+}
+function rejectResponse (req, res) {
+  Task.findById(req.params.id, function (err, task) {
+    if (err) res.status(403).send({ message: "An error occured when finding task to reject."});
+    task.completed = null;
+    task.save(function (error) {
+      res.status(200).send(task);
+    });
+  })
+}
 function indexTeamTasks (req,res) {
-  Team.findById(req.body.team_id).populate('tasks').populate('tasks._creator').populate('tasks._tagged_member').exec(function (err, team) {
+  Team.findById(req.body.team_id).sort({ updated_at:-1}).populate('tasks').populate('tasks._creator').populate('tasks._tagged_member').exec(function (err, team) {
     if (err) res.status(403).send({ message: 'Error occurred when finding tasks'});
     res.status(200).send(team.tasks);
   })
 }
 
 function indexPublicPendingTasks (req, res) {
-  Task.find({ "completed": { $eq : null } }).populate('_tagged_member').populate('_creator').exec( function (err, tasks) {
+  Task.find({ "completed": { $ne : true } }).populate('_tagged_member').populate('_creator').exec( function (err, tasks) {
       if (err) res.status(403).send({ message: 'Error occurred when finding tasks'});
       res.status(200).send(tasks);
   })
 }
 
 function indexTasks (req,res) {
-  Task.find({}).populate('_creator').populate('_tagged_member').exec(function (err, tasks) {
+  Task.find({}).sort({ updated_at:-1}).populate('_creator').populate('_tagged_member').exec(function (err, tasks) {
     if (err) res.status(403).send({ message: 'Error occurred in indexing tasks'});
     res.status(200).send(tasks);
   })
 }
 module.exports = {
+  acceptResponse: acceptResponse,
+  rejectResponse: rejectResponse,
+  completedTasks: completedTasks,
+  createdTasks: createdTasks,
   rejectTask: rejectTask,
   reviewTaskCompletion: reviewTaskCompletion,
   indexPublicPendingTasks: indexPublicPendingTasks,

@@ -21,7 +21,16 @@ function UsersController(User, TokenService, $state, $location){
       console.log(self.pending);
     }); 
   }
-
+  if ($location.path() == '/users/tasks/created') {
+  User.createdTasks({ userId: self.currentUser.id }, function (response) {
+    self.createdTasks = response;
+  }); 
+}
+  if ($location.path() == '/users/tasks/completed') {
+  User.completedTasks({ userId: self.currentUser.id }, function (response) {
+    self.completedTasks = response;
+  }); 
+}
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
   }

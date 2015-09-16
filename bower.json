@@ -21,6 +21,8 @@
   ],
   "dependencies": {
     "angular-auto-validate": "~1.18.16",
+    "angular-flash": "~0.1.14",
+    "angular-flash-alert": "~1.1.1",
     "angular-jwt": "~0.0.9",
     "angular-ladda": "~0.3.1",
     "angular-resource": "~1.4.5",
@@ -33,6 +35,7 @@
     "spin.js": "~2.3.2"
   },
   "resolutions": {
-    "spin.js": "~2.3.2"
+    "spin.js": "~2.3.2",
+    "angular": "1.4.5"
   }
 }

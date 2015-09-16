@@ -43,6 +43,18 @@ var router = express.Router();
   .get(TeamsController.showTeam);
 
 // TASKS
+router.route('/tasks/created')
+  .post(TasksController.createdTasks);
+
+router.route('/tasks/completed')
+  .post(TasksController.completedTasks);
+
+router.route('/tasks/:id/accept-response')
+  .get(TasksController.acceptResponse);
+  
+router.route('/tasks/:id/reject-response')
+  .get(TasksController.rejectResponse);
+
 router.route('/tasks/:id')
   .put(TasksController.updateTask)
   .get(TasksController.showTask);

@@ -1,8 +1,8 @@
 angular
-.module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField'])
+.module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash"])
 .config(MainRouter)
 .config(AuthInterceptor)
-.constant("API", "http://172.19.4.187:5000/api")
+.constant("API", "http://172.19.4.187:5000/api");
 
 function AuthInterceptor($httpProvider){
   $httpProvider.interceptors.push("authInterceptor");
@@ -31,11 +31,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/',
     templateUrl: 'templates/home/landing.html'
   }) 
-  // .state('createTask', {
-  //   url: '/team/:team_id/task/new/:member_id',
-  //   templateUrl: 'templates/tasks/new.html',
-  //   controller: 'TasksController'
-  // })
   .state('myTeams', {
     url: '/users/teams',
     templateUrl: 'templates/users/my_teams.html'
@@ -60,9 +55,18 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/tasks/:id',
     templateUrl: 'templates/tasks/show.html'
   })
-
-
-
+  .state('showResponse', {
+    url: '/tasks/:id/response',
+    templateUrl: 'templates/task/show-response.html'
+  })
+  .state('completedTasks', {
+    url: '/users/tasks/completed',
+    templateUrl: 'templates/users/completed_tasks.html'
+  })
+  .state('createdTasks', {
+    url: '/users/tasks/created',
+    templateUrl: 'templates/users/created_tasks.html'
+  })
   .state('createTask', {
     url: '/tasks/new',
     templateUrl: 'templates/tasks/new.html',

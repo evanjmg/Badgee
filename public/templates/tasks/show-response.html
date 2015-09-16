@@ -1,0 +1,20 @@
+<div ng-controller="TasksController as tasks">
+<img src="{{tasks.task.img_url}}" id="task-image" alt="">
+<div class="row">
+  <div class="text-center"><h3 ng-if="tasks.currentUser.id == tasks.task._creator.id" class="center ">{{ tasks.task._tagged_member.name}}'s Response:</h3><br/>
+    {{tasks.task.completion.message}}</div>
+</div>
+<div class="row" ng-show="tasks.task.completion.location.name">
+<h4>{{tasks.task.completion.location.name}}</h4>
+<div id="map" style="width:200px;height:200px;"></div>
+
+</div>
+<div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
+<div class="col-xs-6 col-md-6">
+  <a ng-click="tasks.acceptResponse()" class="btn btn-info" style="margin-left:20px">Accept Submission</a>
+  </div>
+  <div class="col-xs-6 col-md-6">
+  <a ng-click="tasks.rejectResponse()" class="btn btn-info">Reject Submission</a>  
+  </div>
+
+</div>

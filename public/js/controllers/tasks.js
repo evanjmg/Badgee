@@ -1,9 +1,10 @@
 angular.module('taggyApp')
 .controller('TasksController', TasksController);
 
-TasksController.$inject = ['User', 'Task', '$state', '$stateParams', 'TokenService', '$location','PhotoUpload', '$scope', 'Geo'];
+TasksController.$inject = ['Flash', 'User', 'Task', '$state', '$stateParams', 'TokenService', '$location','PhotoUpload', '$scope', 'Geo'];
 
-function TasksController(User, Task, $state, $stateParams, TokenService, $location, PhotoUpload, $scope, Geo) {
+function TasksController(Flash, User, Task, $state, $stateParams, TokenService, $location, PhotoUpload, $scope, Geo) {
+
 
   // Basic task
   // self.task = {
@@ -103,11 +104,14 @@ function TasksController(User, Task, $state, $stateParams, TokenService, $locati
   }
 
   self.completeTask = function () {
+
     self.task.completion.minutes = $('#input-number').val();
-    
+
     console.log(self.task);
     Task.complete({ id: self.task._id , task: self.task, lat: self.lat, lon: self.lon }, function (response) {
-      console.log(response);
+      $state.go('myTasks');
+      // $('.taskInvitesHeader').append();
+      Flash.create('success', "<h4> You responded to "+ self.task._creator.name +"'s challenge. Awaiting confirmation.</h4>", 'custom-class');
     })
   }
 
