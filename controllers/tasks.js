@@ -8,7 +8,7 @@ var request = require('request');
 
 function createTask (req, res) {
   // Team.findById(req.body.team_id, function (err, team) {
-    
+
     if (!req.body.lon) {
       req.body.lat = "51.5286416"
       req.body.lon = "-0.1015987"
@@ -23,9 +23,9 @@ function createTask (req, res) {
     request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
      if (!error && response.statusCode == 200) {
       var resp = JSON.parse(body)
-     
 
-      var latlon = [resp.results[0].geometry.location.lat, resp.results[0].geometry.location.lng]
+
+
 
 
       Task.create(req.body.task, function (er, task) {
@@ -34,23 +34,27 @@ function createTask (req, res) {
        var d = new Date();
        task.start_time = d;
        var addedMinutes = d.getMinutes() + task.minutes;
-    
-      var then = new Date();
-      then.setMinutes(then.getMinutes() + 30);
-      task.end_time =  then;
-      task.location.lat = latlon[0];
-      task.location.lon = latlon[1];
 
-      task.save(function (err) {
+       var then = new Date();
+       then.setMinutes(then.getMinutes() + 30);
+       task.end_time =  then;
+       
+       if (resp.results[0]) { 
+         task.location.lat = resp.results[0].geometry.location.lat
+         task.location.lon = resp.results[0].geometry.location.lng
+       }
+
+
+       task.save(function (err) {
         if (err) res.status(403).send({ message: "Could not save task"});
         res.send(task);
         // team.tasks.push(task);
         // team.save(function (error) {
-      
-        // })
-      })
 
-    }); 
+        // })
+     })
+
+     }); 
     } }) 
 // })
 }
@@ -60,11 +64,11 @@ function reviewTaskCompletion (req, res) {
     if (err) res.status(403).send({ message: "could not find task"});
     if (req.body.completed)  {task.completed = true; }
     else { task.completed = false }
-
-    task.save(function (err) {
-      res.status(200).send(task);
-    })
+     task.updated_at = Date.now;
+   task.save(function (err) {
+    res.status(200).send(task);
   })
+ })
 }
 
 
@@ -74,47 +78,47 @@ function completeTask (req, res) {
     if (err) res.status(403).send({ message: "Could not find task"});
     task.completion.message = req.body.task.completion.message;
     task.completion.img_url = req.body.task.completion.img_url;
-    task.completion.minutes = req.body.task.completion.minutes;
+    task.updated_at = Date.now;
 
-
-    
     if (!req.body.lon) {
      req.body.lat = "51.5286416"
      req.body.lon = "-0.1015987"
    }
 
    if (!req.body.task.completion.location) {
-      req.body.task.completion.location = {
-        "name": null
-      }
-     var query = "London";
-   } else {
-     var query = req.body.task.completion.location.name
-     task.completion.location.name = req.body.task.completion.location.name;
-   }
+    req.body.task.completion.location = {
+      "name": null
+    }
+    var query = "London";
+  } else {
+   var query = req.body.task.completion.location.name
+   task.completion.location.name = req.body.task.completion.location.name;
+ }
 
-   request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+ ','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-     var resp = JSON.parse(body);
-     console.log(resp);
+ request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+ ','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
+  if (!error && response.statusCode == 200) {
+   var resp = JSON.parse(body);
+   console.log(resp);
 
-     var latlon = [resp.results[0].geometry.location.lat, resp.results[0].geometry.location.lng]
-     task.completion.location.lat = latlon[0];
-     task.completion.location.lon = latlon[1];
-     task.completed = false;
-     task.save(function (err) {
-      res.status(200).send(task);
-     });
-   }
+   var latlon = [resp.results[0].geometry.location.lat, resp.results[0].geometry.location.lng]
+   task.completion.time_completed = Date.now;
+   task.completion.location.lat = latlon[0];
+   task.completion.location.lon = latlon[1];
+   task.completed = false;
+   task.save(function (err) {
+    res.status(200).send(task);
+  });
+ }
 
- }) 
- });
+}) 
+});
 }
 function rejectTask (req, res) {
 
   Task.findById(req.params.id).populate('_creator').exec( function (err, task) {
     if (err) res.status(403).send({ message: "Could not find task"});
-    task._tagged_member = null; 
+    task._tagged_member = null;
+    task.updated_at = Date.now; 
     task.save( function (error) {
       if (error) res.status(403).send({ message: "Could not save task."});
       res.status(200).send(task);
@@ -126,17 +130,18 @@ function pendingTasks (req, res) {
   console.log('in pending tasks');
   Task.find({ "_tagged_member": { $eq: req.body.userId }, "completed": { $ne : true } }).sort({ updated_at:-1}).populate('_creator').exec(function (err, tasks) {
     if (err) res.status(403).send({ message: "Error in finding pending tasks"});
-    console.log(tasks);
     res.send(tasks);
   });
 }
 function updateTask(req, res) {
   var update = req.body;
-  console.log(req.params.id, req.body);
-
   Task.findByIdAndUpdate(req.params.id, update , function (err, task) {
     if(err) res.status(403).send({ message: "Error in finding task"});
-    res.send(task);
+    task.updated_at = Date.now;
+    task.save(function (error) {
+      if (error) res.status(403).send({ message: "Error saving task on update"})
+        res.status(200).send(task);
+    });
   }) 
 }
 function showTask (req, res) {
@@ -153,25 +158,29 @@ function createdTasks (req,res) {
   })
 }
 function completedTasks (req,res) {
-  Task.find({ "_tagged_member": { $eq: req.body.userId }, "completed": { $eq:  true } }).sort({ updated_at:-1}).populate('_tagged_member').exec( function (err,tasks) {
+  Task.find({ "_tagged_member": { $eq: req.body.userId }, "completed": { $eq:  true } }).sort({ updated_at: -1 }).populate('_creator').exec(function (err,tasks) {
     if (err) res.status(403).send({ message: "An error occured when looking for tasks"});
-
-  })
-  if (err) res.status(403).send()
+    res.status(200).send(tasks);
+  });
 }
 function acceptResponse (req,res) {
   Task.findById(req.params.id, function (err, task) {
     if (err) res.status(403).send({ message: "An error occured when finding task to accept."});
-      task.completed = true;
-      task.save(function (error) {
-        res.status(200).send(task);
-      } )
+
+    task.completed = true;
+    task.updated_at = Date.now;
+
+    task.save(function (error) {
+      res.status(200).send(task);
+    } )
   })
 }
 function rejectResponse (req, res) {
   Task.findById(req.params.id, function (err, task) {
     if (err) res.status(403).send({ message: "An error occured when finding task to reject."});
+
     task.completed = null;
+    task.updated_at = Date.now;
     task.save(function (error) {
       res.status(200).send(task);
     });
@@ -186,11 +195,42 @@ function indexTeamTasks (req,res) {
 
 function indexPublicPendingTasks (req, res) {
   Task.find({ "completed": { $ne : true } }).populate('_tagged_member').populate('_creator').exec( function (err, tasks) {
-      if (err) res.status(403).send({ message: 'Error occurred when finding tasks'});
-      res.status(200).send(tasks);
+    if (err) res.status(403).send({ message: 'Error occurred when finding tasks'});
+    res.status(200).send(tasks);
   })
 }
+function copyTask (req,res) {
+  console.log('inside controller function - copy task')
+  Task.create(req.body.task, function (err, task) {
+    console.log('in create copy task')
+    if (err) res.status(403).send({ message: 'Error occurred when creating task'});
+    // if (req.body.task.location) {
+    //   if (!req.body.task.location.name) {
+    //     var query = "London";
+    //   } else {
+    //     var query = req.body.task.location.name
+    //   }
+    //   request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
+    //    if (!error && response.statusCode == 200) {
+    //     var resp = JSON.parse(body);
+    //     if (resp.results[0]) { 
+    //       task.location.lat = resp.results[0].geometry.location.lat;
+    //       task.location.lon = resp.results[0].geometry.location.lng;
+    //       task.save(function (error) {
+    //         if(error) res.status(403).send({ message: "Could not save on location change"});
+    //         res.send(task)
+    //       });
+    //     }
+    //   } else {
+    //     res.status(200).send(task);
+    //   }
+    // });
 
+    // } else {
+      res.status(200).send(task);
+    
+  });
+}
 function indexTasks (req,res) {
   Task.find({}).sort({ updated_at:-1}).populate('_creator').populate('_tagged_member').exec(function (err, tasks) {
     if (err) res.status(403).send({ message: 'Error occurred in indexing tasks'});
@@ -211,5 +251,6 @@ module.exports = {
   indexTasks : indexTasks,
   createTask : createTask,
   indexTeamTasks : indexTeamTasks,
-  showTask : showTask
+  showTask : showTask,
+  copyTask: copyTask
 }

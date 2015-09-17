@@ -58,10 +58,10 @@
           </div>
         </div>
       </section>
- 
-
-    <div ng-if="tasks.selectUsersPage" ng-repeat="user in tasks.allUsers">
-    <h2>Send It to a Friend</h2>
+ <div ng-if="tasks.selectUsersPage">
+      <h2>Send It to a Friend</h2>
+    <div  ng-repeat="user in tasks.allUsers">
+   
       <div class="row">
         <div class="col-xs-4">
          <img ng-src="{{user.img_url}}" alt="user" class="profile-img">
@@ -76,6 +76,7 @@
        </div>
      </div>
      <hr>
+   </div>
    </div>
  <!--   <div class="form-group" ng-show="tasks.formComplete"> -->
     <!-- <button type="submit" class=" btn-success btn">Send</button> -->

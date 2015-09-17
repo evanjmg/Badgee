@@ -28,9 +28,11 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
 
   // Setup defaults
   self.task             = {};
+  self.all = Task.query();
   self.showCamera       = false;
   self.selectUsersPage  = false;
   self.task.completion = self.task.completion || {};
+  if ($stateParams.query) $scope.query = $stateParams.query
 
   if ($stateParams.id) {
     self.task = Task.get({id: $stateParams.id}, function (response) {
@@ -53,7 +55,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     });
   }
 
-  if ($('canvas').length !== 0) { 
+  if ($('canvas').length !== 0 || $('#shareChallengeButton').css('display') !== 'none') { 
     Geo.locate(function (data) {
       self.lat =  data.coords.latitude;
       self.lon =  data.coords.longitude;
@@ -102,19 +104,41 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     $state.go('myTasks');
     }   
   }
-
+  self.acceptResponse = function () {
+    Task.acceptResponse({ id: $stateParams.id}, function (response) {
+      console.log(response);
+      $state.go('createdTasks');
+      Flash.create('success', "<h4> Successfully accepted "+ self.task._tagged_member.name +"'s response</h4>", 'custom-class');
+    });
+  }
+  self.rejectResponse = function () {
+    Task.rejectResponse({ id: $stateParams.id}, function (response) {
+      console.log(response);
+      $state.go('createdTasks');
+      Flash.create('warning', "<h4> Rejected "+ self.task._tagged_member.name +"'s response</h4>", 'custom-class');
+    })
+  }
   self.completeTask = function () {
-
-    self.task.completion.minutes = $('#input-number').val();
-
-    console.log(self.task);
     Task.complete({ id: self.task._id , task: self.task, lat: self.lat, lon: self.lon }, function (response) {
       $state.go('myTasks');
       // $('.taskInvitesHeader').append();
       Flash.create('success', "<h4> You responded to "+ self.task._creator.name +"'s challenge. Awaiting confirmation.</h4>", 'custom-class');
     })
   }
+ self.copyTask = function (user) {
+  self.task._id = undefined;
+  self.task._creator = self.currentUser.id; 
+  self.task._tagged_member = user.id;
+  self.task.completed = null;
+  console.log(self.task);
+  Task.copy({ task: self.task, lat: self.lat, lon: self.lon }, function (response){
+    console.log(response);
+    $state.go('createdTasks');
+    Flash.create('success', "<h4> You shared this challenge with "+ self.task._tagged_member.name +". Awaiting their response.</h4>", 'custom-class');
+  });
 
+
+ }
   self.upload = function () {
     if (!self.file) {
       PhotoUpload.upload(null, function(img_url){
@@ -161,7 +185,6 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
  
   self.showUsersPage = function () {
     self.selectUsersPage = true;
-
   }
   // self.addUser = function (user, $event) {
   //   console.log(user);

@@ -1,0 +1,23 @@
+<div ng-controller="TasksController as tasks">
+<input type="text" ng-model="query" class="form-control">
+<h2>Search Results for '{{query}}'</h2>
+<div ng-show="(tasks.all | filter: query).length == 0">
+  No results. 
+</div>
+<div ng-repeat="task in tasks.all | filter: query" ng-hide="(tasks.all | filter: query).length == 0">
+<div class="row">
+<div class="col-xs-3">
+  <img class="img-responsive" width="75" ng-show="task.img_url" src="{{task.img_url}}" alt="">
+  <img class="img-responsive" width="75" ng-show="task.img_url" src="/images/badgee-profile-filler1.png" alt="">
+  </div>
+  <div class="col-xs-6">
+    {{task.description}} 
+    <br/>
+    by {{task._creator.name}}
+  </div>
+  <div class="col-xs-3">
+    <a ui-sref="showTask({ id: task._id})" class="btn btn-info">View</a>
+  </div>
+  </div>
+</div>
+</div>

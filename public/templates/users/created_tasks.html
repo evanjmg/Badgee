@@ -1,6 +1,6 @@
 
 <div flash-message="10000" ></div> 
-<h2 class="taskInvitesHeader">Challenges</h2>
+<h2 class="taskInvitesHeader">My Challenges</h2>
 <div ng-controller="UsersController as users">
 <ul class="nav nav-pills nav-justified">
   <li ><a ui-sref="myTasks">Received <span class="badge"></span></a></li>
@@ -12,17 +12,37 @@
   You have not created any challenges. <br> Challenge a friend below. <br/>
   <a ui-sref="createTask" class="btn btn-success center">Send a Challenge</a>
 </div>
-<div ng-if="users.createdTasks.length > 0" ng-repeat="task in users.createdTasks">
+<div ></div>
+<div ng-if="users.createdTasks.length > 0"  class="row">
+ <div class="col-xs-2"></div> 
+ <div class="col-xs-3">
+   <span>From</span>
+ </div> 
+
+ <div class="col-xs-4">
+   <span>Challenge</span><br/>
+   <span ng-show="task.location.name">@ {{task.location.name}}</span><br/></div>
+   <div  class="col-xs-3">
+     <span >Status</span>
+   </div>
+ </div>
+<div ng-repeat="task in users.createdTasks">
   <div class="row">
-   <div class="col-xs-4"><img src="{{task._tagged_member.img_url}}" class="img-responsive profile-img" alt=""></div> 
+   <div class="col-xs-2"><img src="{{task._tagged_member.img_url}}" class="img-responsive profile-img" alt=""></div> 
+    <div class="col-xs-3">
+     <span>{{task._tagged_member.name}}</span>
+   </div> 
    <div class="col-xs-4">
+    
    <span>{{task.description}}</span><br/>
    <span ng-show="task.location.name">@ {{task.location.name}}</span><br/>
-
+  
     </div> 
-   <div ng-if="task.completed == null" class="col-xs-4"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">No Response</a></div>
-   <div ng-if="task.completed == false" class="col-xs-4"><a class="btn btn-warning" ui-sref="showResponse({ id: task._id })">Submission Needs Approval</a></div>
+   <div ng-if="task.completed == null" class="col-xs-3"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">No Response</a></div>
+   <div ng-if="task.completed == false" class="col-xs-3"><a class="btn btn-warning" ui-sref="showResponse({ id: task._id })">Submission Needs Approval</a></div>
+   <div ng-if="task.completed == true" class="col-xs-3"><a class="btn btn-warning" ui-sref="showResponse({ id: task._id })">Approved</a></div>
   </div>
   <hr>
+</div>
 </div>
 </div>

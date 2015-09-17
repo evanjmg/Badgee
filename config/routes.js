@@ -43,6 +43,9 @@ var router = express.Router();
   .get(TeamsController.showTeam);
 
 // TASKS
+router.route('/tasks/copy')
+  .post(TasksController.copyTask);
+  
 router.route('/tasks/created')
   .post(TasksController.createdTasks);
 
@@ -67,6 +70,7 @@ router.route('/tasks/:id/review')
 
 router.route('/tasks/:id/reject')
   .get(TasksController.rejectTask);
+
   
 router.route('/tasks')
   .get(TasksController.indexTasks)

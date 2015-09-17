@@ -13,7 +13,8 @@ function Task ($resource) {
     'review': { method: 'POST', url: url + ':id/review'},
     'reject': { method: 'GET', url: url + ':id/reject'},
     'rejectResponse': { method: 'GET', url: url + ':id/reject-response'},
-    'acceptResponse': { method: 'GET', url: url + ':id/reject-response'} 
+    'acceptResponse': { method: 'GET', url: url + ':id/accept-response'},
+    'copy': { method: 'POST', url: url + 'copy'}
   
 });
 

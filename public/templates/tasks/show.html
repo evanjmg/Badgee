@@ -1,32 +1,66 @@
-<div ng-controller="TasksController as tasks">
+<div ng-controller="TasksController as tasks" class="task-show-page-container">
+<div ng-hide="tasks.selectUsersPage">
 <img src="{{tasks.task.img_url}}" id="task-image" alt="">
-<div class="row">
-  <div class="text-center"><h3 ng-if="tasks.currentUser.id == tasks.task._creator.id" class="center ">{{ tasks.task._tagged_member.name}}'s Challenge:</h3><br/>
-    {{tasks.task.description}}</div>
-</div>
-<div class="row" ng-show="tasks.task.location.name">
-<h4>{{tasks.task.location.name}}</h4>
-<div id="map" style="width:200px;height:200px;"></div>
+  <div class="row">
+    <div class="text-center"><h3 ng-if="tasks.currentUser.id == tasks.task._creator.id" class="center ">{{ tasks.task._tagged_member.name}}'s Challenge:</h3><br/>
+      {{tasks.task.description}}</div>
+    </div>
+    <div class="row" ng-show="tasks.task.location.name">
+      <h4>{{tasks.task.location.name}}</h4>
+      <div id="map" style="width:200px;height:200px;" ng-show="tasks.task.location.lat"></div>
+
+    </div>
+    <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == null" class="row text-center center">
+      <div class="col-xs-6 col-md-6">
+        <a ui-sref="createdTasks" class="btn btn-info" style="margin-left:20px">My Challenges</a>
+      </div>
+      <div class="col-xs-6 col-md-6">
+        <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>  
+      </div>
+
+    </div>
+    <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == false" class="row text-center center">
+      <div class="row">
+        <a ui-sref="showResponse({ id: task._id})" class="btn btn-info" style="margin-left:20px">Review Response</a>
+      </div>
+    </div>
+  </div>
+  <!-- SEND CHALLENGE TO FRIEND -->
+  <div ng-if="tasks.currentUser.id !== tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
+    <div class="row">
+      <a ng-hide="tasks.selectUsersPage"ng-click="tasks.showUsersPage()"class="btn btn-info" id="shareChallengeButton" style="margin-left:20px">Send this Challenge to a Friend</a>
+    </div>
+  </div>
+  <div ng-if="tasks.selectUsersPage">
+   <h2>Send It to a Friend</h2>
+   <div  ng-repeat="user in tasks.allUsers">
+
+     <div class="row">
+       <div class="col-xs-4">
+        <img ng-src="{{user.img_url}}" alt="user" class="profile-img">
+      </div>
+      <div class="col-xs-4">
+        <span> {{user.name}}</span>
+      </div>
+      <div class="col-xs-4">
+        <a class="btn btn-success addToNewTeam" ng-click="tasks.copyTask(user)" >SEND</a>
+        <!-- <a class="btn btn-success addToNewTeam" ng-click="tasks.addUser(user, $event)" >SEND</a> -->
+        <!-- <a class="btn btn-danger removeFromNewTeam" ng-click="tasks.removeUser(user, $event)" >-</a> -->
+      </div>
+    </div>
+    <hr>
+  </div>
+  </div>
+  <!-- RESPOND TO CHALLENGE -->
+  <div  ng-show="tasks.currentUser.id === tasks.task._tagged_member.id && tasks.task.completed == null" class="row text-center center">
+    <div class="col-xs-6 col-md-6">
+      <a ng-click="tasks.decideTask(true)" class="btn btn-success" style="margin-left:20px">Submit Answer</a>
+    </div>
+    <div class="col-xs-6 col-md-6">
+      <a ng-click="tasks.decideTask(false)" class="btn btn-danger">Reject</a>  
+    </div>
+
+  </div>
 
 </div>
-<div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
-<div class="col-xs-6 col-md-6">
-  <a ui-sref="myTasks" class="btn btn-info" style="margin-left:20px">Back to My Challenges</a>
-  </div>
-  <div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>  
-  </div>
 
-</div>
-<div ng-show="tasks.currentUser.id === tasks.task._tagged_member.id" class="row text-center center">
-<div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.decideTask(true)" class="btn btn-success" style="margin-left:20px">Submit Answer</a>
-  </div>
-  <div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.decideTask(false)" class="btn btn-danger">Reject</a>  
-  </div>
-
-</div>
-
-  </div>
- 

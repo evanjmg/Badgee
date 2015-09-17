@@ -11,6 +11,7 @@ function UsersController(User, TokenService, $state, $location){
   if (TokenService.isAuthed()) {
     self.all = User.query();
     self.currentUser = TokenService.parseJwt();
+    console.log(self.currentUser);
     self.teams = User.teams( { "userId": self.currentUser.id});
   }
 
@@ -31,16 +32,17 @@ function UsersController(User, TokenService, $state, $location){
     self.completedTasks = response;
   }); 
 }
+
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
   }
   self.login = function() {
     User.login({email: self.user.email , password: self.user.password },function(response){
-      console.log(response);
+
     if (TokenService.isAuthed()) {
       self.currentUser = TokenService.parseJwt();
     }
-      $state.go('createTeam');
+      $state.go('myTasks');
     })
   }
   self.update = function () {
@@ -49,8 +51,11 @@ function UsersController(User, TokenService, $state, $location){
     })
   }
   self.signup = function() {
+    if (!self.user.img_url) {
+      self.user.img_url = 'http://localhost:5000/images/badgee-profile-filler'+Math.floor(Math.random()*2)+'.png';
+    }
     User.signup(self.user,function(response){
-      $state.go('createTeam');
+      $state.go('myTasks');
     })
   
     }

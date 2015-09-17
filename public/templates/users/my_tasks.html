@@ -1,28 +1,48 @@
 
 <div flash-message="10000" ></div> 
-<h2 class="taskInvitesHeader">Challenges</h2>
+<h2 class="taskInvitesHeader">My Challenges</h2>
 <div ng-controller="UsersController as users">
-<ul class="nav nav-pills nav-justified">
-  <li class="active"><a ui-sref="myTasks">Received <span class="badge">{{users.pending.length}}</span></a></li>
-  <li><a ui-sref="createdTasks">Created</a></li>
-  <li><a ui-sref="completedTasks">Completed</a></li>
-</ul>
-<p></p>
-<div ng-if="users.pending.length == 0">
-  You have no challenges. <br> Challenge a friend below. <br/>
-  <a ui-sref="createTask" class="btn btn-success center">Send a Challenge</a>
-</div>
-<div ng-if="users.pending.length > 0" ng-repeat="task in users.pending">
-  <div class="row">
-   <div class="col-xs-4"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
-   <div class="col-xs-4">
-   <span>{{task.description}}</span><br/>
-   <span ng-show="task.location.name">@ {{task.location.name}}</span><br/>
-
-    </div> 
-   <div ng-if="task.completed == null" class="col-xs-4"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">View</a></div>
-   <div ng-if="task.completed == false" class="col-xs-4"><a class="btn btn-warning" ui-sref="showTask({ id: task._id })">Awaiting Review</a></div>
+  <ul class="nav nav-pills nav-justified">
+    <li class="active"><a ui-sref="myTasks">Received <span class="badge">{{users.pending.length}}</span></a></li>
+    <li><a ui-sref="createdTasks">Created</a></li>
+    <li><a ui-sref="completedTasks">Completed</a></li>
+  </ul>
+  <p></p>
+  <div ng-if="users.pending.length == 0">
+    You have no challenges. <br> Challenge a friend below. <br/>
+    <a ui-sref="createTask" class="btn btn-success center">Send a Challenge</a>
   </div>
-  <hr>
-</div>
-</div>
+  <div ng-if="users.pending.length > 0">
+    <div class="row">
+     <div class="col-xs-2"></div> 
+     <div class="col-xs-3">
+     <span>From</span>
+     </div> 
+
+     <div class="col-xs-4">
+       <span>Challenge</span><br/>
+       <span ng-show="task.location.name">@ {{task.location.name}}</span><br/></div>
+       <div  class="col-xs-3">
+         <span >Status</span>
+       </div>
+     </div>
+     <div  ng-repeat="task in users.pending">
+      <div class="row">
+        <div class="col-xs-2" ng-hide="task._creator.img_url">
+          <img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt="">
+        </div> 
+        <div class="col-xs-2"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
+        <div class="col-xs-3">
+         <span>{{task._creator.name}}</span>
+       </div> 
+       <div class="col-xs-4">
+         <span>{{task.description}}</span><br/>
+         <span ng-show="task.location.name">@ {{task.location.name}}</span><br/></div>
+
+         <div ng-if="task.completed == null" class="col-xs-3"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">View</a></div>
+         <div ng-if="task.completed == false" class="col-xs-3"><a class="btn btn-warning" ui-sref="showTask({ id: task._id })">Awaiting Review</a></div>
+       </div>
+       <hr>
+     </div>
+   </div>
+ </div>

@@ -264,4 +264,9 @@ canvas {
 .addToNewTeamButton {
   display: block; }
 
+.task-show-page-container {
+  max-width: 700px;
+  margin: auto;
+  padding: 15px; }
+
 /*# sourceMappingURL=app.css.map */

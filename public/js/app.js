@@ -18,6 +18,11 @@ function MainRouter($stateProvider, $urlRouterProvider) {
   .state('logout', {
     url: '/login'
   })
+  .state('search', 
+  {
+    url: '/search/:query',
+    templateUrl: 'templates/tasks/index.html'
+  })
   .state('completeTask', 
   {
     url: '/tasks/:id/complete',
@@ -51,13 +56,18 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/teams/:id',
     templateUrl: 'templates/teams/show.html',
   })
+  .state('createTask', {
+    url: '/tasks/new',
+    templateUrl: 'templates/tasks/new.html',
+    controller: 'TasksController'
+  })
   .state('showTask', {
     url: '/tasks/:id',
     templateUrl: 'templates/tasks/show.html'
   })
   .state('showResponse', {
     url: '/tasks/:id/response',
-    templateUrl: 'templates/task/show-response.html'
+    templateUrl: 'templates/tasks/show-response.html'
   })
   .state('completedTasks', {
     url: '/users/tasks/completed',
@@ -67,11 +77,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/users/tasks/created',
     templateUrl: 'templates/users/created_tasks.html'
   })
-  .state('createTask', {
-    url: '/tasks/new',
-    templateUrl: 'templates/tasks/new.html',
-    controller: 'TasksController'
-  })
-  $urlRouterProvider.otherwise('/') 
+  $urlRouterProvider.otherwise('/tasks/new') 
   
   }

@@ -14,7 +14,7 @@ function createTeam (req, res) {
     }
     User.find({
       '_id': { $in: member_ids }}).populate('teams').exec(function (error, users) {
-        console.log('**********', users);
+   
         users.forEach(function(user) {
           user.teams.push(team._id);
           user.save(function(){});

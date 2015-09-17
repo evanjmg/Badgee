@@ -17,9 +17,7 @@ var TaskSchema = new mongoose.Schema({
   completion: {
     img_url: String,
     message: String,
-    minutes: Number,
-    start_time: Date,
-    end_time: Date,
+    time_completed: Date,
     location: {
       name: String,
       address: String,
