@@ -8,6 +8,7 @@ var UserSchema = new mongoose.Schema({
   teams: [{ type: mongoose.Schema.ObjectId, ref: 'Team'}],
   name: {type: String, required: true },
   email: {type: String, required: true, unique: true},
+  total_coins: { type: Number, default: 0 },
   img_url: String,
   local: {
     password: String

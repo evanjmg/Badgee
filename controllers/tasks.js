@@ -171,8 +171,17 @@ function acceptResponse (req,res) {
     task.updated_at = Date.now;
 
     task.save(function (error) {
-      res.status(200).send(task);
-    } )
+      if (error) res.status(403).send({ message: "could not save task on accept response"});
+      User.findById(task._tagged_member, function (er, user) {
+          if (er) res.status(403).send({ message: "could not find user to add coin"});
+          user.total_points++;
+
+          user.save(function (erro) {
+            if (erro) res.status(403).send({ message: "could not save user on coin update"});
+            res.status(200).send(task);
+          })
+      })
+    })
   })
 }
 function rejectResponse (req, res) {
