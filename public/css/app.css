@@ -144,18 +144,18 @@ a#login-with-email:hover {
   margin: auto; }
 
 section.video {
-  margin: auto;
-  max-width: 500px;
   padding: 0;
-  min-height: 100vh;
-  margin-bottom: 0;
-  margin-top: 0;
-  overflow: hidden;
+  max-height: 100vh;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: -1; }
+
+video {
+  max-height: 100vh;
+  max-width: 600px; }
 
 #capture-preview {
   max-width: 300px;
@@ -192,10 +192,8 @@ section.video {
 
 @media screen and (max-width: 500px) {
   a#start-button {
-    border-radius: 50%;
     width: 50px !important;
     height: 50px !important;
-    margin-top: -5%;
     z-index: 1000; }
 
   #camera-icon {
@@ -213,7 +211,7 @@ body, html {
   min-height: 100% !important; }
 
 body {
-  padding-top: 70px; }
+  padding-top: 80px; }
 
 .fadedText {
   opacity: 0.7;
@@ -302,11 +300,14 @@ body {
 canvas {
   display: none; }
 
+canvas {
+  max-width: 600px;
+  max-height: 100vh; }
+
 #start-button {
-  border-radius: 50%;
+  margin-top: -15%;
   width: 75px;
   height: 75px;
-  margin-top: -5%;
   z-index: 1000; }
 
 #photo {
@@ -361,12 +362,46 @@ canvas {
 
   .navbar-brand > img {
     width: 35px; } }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
+  .container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
+    width: 100% !important; }
+
   h2 {
     font-size: 18px; }
 
-  #account-nav {
-    content: "Account"; } }
+  span#account-nav {
+    content: "Account"; }
+
+  .navbar-header .navbar-brand {
+    font-size: 16px; }
+
+  .navbar-form .form-control {
+    font-size: 12px;
+    padding: 3px;
+    width: 100%;
+    max-width: 100%; }
+
+  .navbar-nav > li > a {
+    font-size: 14px; }
+
+  .navbar-form input.form-control {
+    font-size: 8px;
+    padding: 0;
+    margin: 0;
+    height: 30px;
+    padding-left: 0;
+    max-width: 100%;
+    width: 100% !important; } }
+@media screen and (max-width: 800px) {
+  section.video {
+    padding: 0;
+    height: 650px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: -1; } }
 @media screen and (max-width: 800px) {
   .container-fluid > .navbar-collapse .navbar-nav > li, .container-fluid > .navbar-header .navbar-nav > li, .container > .navbar-collapse .navbar-nav > li, .container > .navbar-header .navbar-nav > li {
     padding-top: 0; }
@@ -404,7 +439,7 @@ canvas {
   padding: 10px;
   margin-left: 0 !important; }
 
-#map {
+.map-container {
   display: none; }
 
 .task-show-page-container {
@@ -437,7 +472,18 @@ canvas {
   text-align: right;
   color: #333;
   font-weight: 500;
-  opacity: 0.6; }
+  opacity: 0.6;
+  text-decoration: none; }
+
+a.map-button span:hover {
+  opacity: 1;
+  text-decoration: none !important;
+  color: black; }
+
+span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member-name:hover {
+  color: black;
+  opacity: 1 !important;
+  text-decoration: none !important; }
 
 #badgee-coin {
   max-width: 50px;

@@ -42,20 +42,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
      if (self.task.created_at) {
        self.format_created_at = moment(self.task.created_at).startOf('hour').fromNow(); 
      }
-      initMap();
-      function initMap() {
-        var myLatLng = {lat: parseFloat(self.task.location.lat), lng: parseFloat(self.task.location.lon) }
-        
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map
-        });
-      }
+      
     });
   }
 
@@ -89,7 +76,28 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       }, 200);
     }
   });
+  self.openMap = function () {
+    $('.map-container').show();
+    initMap();
+    function initMap() {
+      var myLatLng = {lat: parseFloat(self.task.location.lat), lng: parseFloat(self.task.location.lon) }
+      
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: myLatLng
+      });
 
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map
+      });
+    }
+    $('.card-bottom').hide();
+  }
+  self.closeMap = function () {
+    $('.map-container').hide();
+    $('.card-bottom').show();
+  }
   self.takePicture = function() {
     PhotoUpload.takepicture();
   }

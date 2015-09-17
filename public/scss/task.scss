@@ -3,7 +3,7 @@
   padding:10px;
   margin-left:0 !important;
 }
-#map {
+.map-container {
   display:none;
 } 
 .task-show-page-container {
@@ -40,8 +40,18 @@
   color:#333;
   font-weight: 500;
   opacity:0.6;
+  text-decoration: none;
 }
-
+a.map-button span:hover {
+  opacity:1;
+  text-decoration: none !important;
+  color:black;
+}
+span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member-name:hover {
+  color:black;
+  opacity: 1 !important;
+  text-decoration: none !important;
+}
 #badgee-coin {
   max-width:50px;
   padding-right:10px;

@@ -34,7 +34,7 @@
       </div>
       <p></p>
       <div class="form-group">
-      <a ng-click="tasks.showUsersPage()" class="btn btn-success">Send It to a Friend</a>
+      <a ng-click="tasks.showUsersPage()" class="btn btn-success green">Send It to a Friend</a>
       </div>
       </div>
 
@@ -43,16 +43,16 @@
         <div class="camera">
           <section class="video">
             <button class="btn" id="cancelPhoto" ng-click="tasks.exitCapture()" >X</button>
-            <video id="video">Video stream not available.</video>
+            <video muted autoplay id="video">Video stream not available.</video>
             <canvas id="canvas"></canvas>
-            <a ng-click="tasks.takePicture()" id="start-button" class="btn-info btn"><img id='camera-icon' src="/images/white-camera.png" alt=""></a>
+            <a ng-click="tasks.takePicture()" id="start-button" class=" img-circle btn-info btn"><img id='camera-icon' src="/images/white-camera.png" alt=""></a>
           </section>
           <div class="row cameraOptionButtons">
             <div class="col-xs-6">
-              <a id="sendPhoto" class="btn-success btn" value="Upload" ng-click="tasks.upload()">Upload</a>
+              <a id="sendPhoto" class="btn-success btn green" value="Upload" ng-click="tasks.upload()">Upload</a>
             </div>
             <div class="col-xs-6">
-              <a class='pull-right' id="retakeButton" class="btn btn-info teal" ng-click="tasks.retakePhoto()">Retake</a>
+              <a class='pull-right' class="btn btn-info teal" id="retakeButton"  ng-click="tasks.retakePhoto()"><span class="btn btn-info teal">Retake</span></a>
             </div>
           </div>
         </div>
