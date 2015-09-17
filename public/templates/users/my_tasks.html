@@ -7,9 +7,12 @@
     <li><a ui-sref="createdTasks">Created</a></li>
     <li><a ui-sref="completedTasks">Completed</a></li>
   </ul>
+
+    <input type="text" ng-model="query" ng-hide="users.pending.length == 0" class="form-control" placeholder="Search Received Challenges">
+  
   <p></p>
   <div ng-if="users.pending.length == 0">
-    You have no challenges. <br> Challenge a friend below. <br/>
+    There are no challenges. <br> Challenge a friend below. <br/>
     <a ui-sref="createTask" class="btn btn-success center">Send a Challenge</a>
   </div>
   <div ng-if="users.pending.length > 0">
@@ -26,7 +29,7 @@
          <span >Status</span>
        </div>
      </div>
-     <div  ng-repeat="task in users.pending">
+     <div  ng-repeat="task in users.pending | filter: query">
       <div class="row">
         <div class="col-xs-2" ng-hide="task._creator.img_url">
           <img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt="">

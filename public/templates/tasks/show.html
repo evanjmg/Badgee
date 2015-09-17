@@ -30,10 +30,13 @@
     <div class="row">
       <a ng-hide="tasks.selectUsersPage"ng-click="tasks.showUsersPage()"class="btn btn-info" id="shareChallengeButton" style="margin-left:20px">Send this Challenge to a Friend</a>
     </div>
-  </div>
+  
   <div ng-if="tasks.selectUsersPage">
    <h2>Send It to a Friend</h2>
-   <div  ng-repeat="user in tasks.allUsers">
+     <div class="form-group">
+     <input type="text" class="form-control" ng-model="query" placeholder="Search Users">
+   </div>
+   <div  ng-repeat="user in tasks.allUsers | filter: query">
 
      <div class="row">
        <div class="col-xs-4">

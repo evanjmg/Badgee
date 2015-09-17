@@ -58,9 +58,12 @@
           </div>
         </div>
       </section>
- <div ng-if="tasks.selectUsersPage">
+ <div ng-if="tasks.selectUsersPage" class="text-center center">
       <h2>Send It to a Friend</h2>
-    <div  ng-repeat="user in tasks.allUsers">
+        <div class="form-group">
+        <input type="text" class="form-control" ng-model="query" placeholder="Search Users">
+      </div>
+    <div  ng-repeat="user in tasks.allUsers | filter: query">
    
       <div class="row">
         <div class="col-xs-4">

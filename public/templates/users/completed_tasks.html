@@ -7,6 +7,7 @@
   <li><a ui-sref="createdTasks">Created</a></li>
   <li class="active"><a ui-sref="completedTasks">Completed</a></li>
 </ul>
+<input type="text" ng-model="query" ng-hide="users.completedTasks.length == 0" class="form-control" placeholder="Search Completed Challenges">
 <p></p>
 <div ng-if="users.completedTasks.length == 0">
   You have not completed any challenges. <br> Challenge a friend below. <br/>
@@ -26,7 +27,7 @@
        <span >Status</span>
      </div>
    </div>
-<div ng-repeat="task in users.completedTasks">
+<div ng-repeat="task in users.completedTasks | filter: query">
   <div class="row">
    <div class="col-xs-2"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
     <div class="col-xs-3">
