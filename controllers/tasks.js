@@ -174,7 +174,7 @@ function acceptResponse (req,res) {
       if (error) res.status(403).send({ message: "could not save task on accept response"});
       User.findById(task._tagged_member, function (er, user) {
           if (er) res.status(403).send({ message: "could not find user to add coin"});
-          user.total_points++;
+          user.total_coins++;
 
           user.save(function (erro) {
             if (erro) res.status(403).send({ message: "could not save user on coin update"});
