@@ -7,8 +7,8 @@
 <div ng-repeat="task in tasks.all | filter: query" ng-hide="(tasks.all | filter: query).length == 0">
 <div class="row">
 <div class="col-xs-3">
-  <img class="img-responsive" width="75" ng-show="task.img_url" src="{{task.img_url}}" alt="">
-  <img class="img-responsive" width="75" ng-show="task.img_url" src="/images/badgee-profile-filler1.png" alt="">
+  <img class="img-responsive" width="100" ng-show="task.img_url" src="{{task.img_url}}" alt="">
+  <img class="img-responsive" width="100" ng-hide="task.img_url" src="/images/badgee-profile-filler1.png" alt="">
   </div>
   <div class="col-xs-6">
     {{task.description}} 

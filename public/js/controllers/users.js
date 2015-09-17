@@ -9,29 +9,33 @@ function UsersController(User, TokenService, $state, $location){
 
   self.users = {};
   if (TokenService.isAuthed()) {
+  
+    self.currentUser = User.get({ id: (TokenService.parseJwt()).id }, function (response) {
+      console.log(self.currentUser);
+        if ($location.path() == '/users/tasks') {
+          
+          User.pendingTasks({ userId: response.id }, function (response) {
+            self.pending = response;
+            console.log(self.pending);
+          }); 
+        }
+        if ($location.path() == '/users/tasks/created') {
+        User.createdTasks({ userId: response.id }, function (response) {
+          self.createdTasks = response;
+        }); 
+      }
+        if ($location.path() == '/users/tasks/completed') {
+        User.completedTasks({ userId: response.id }, function (response) {
+          self.completedTasks = response;
+        }); 
+      }
+    });
+    // console.log(self.currentUser);
     self.all = User.query();
-    self.currentUser = TokenService.parseJwt();
-    console.log(self.currentUser);
-    self.teams = User.teams( { "userId": self.currentUser.id});
+    // self.teams = User.teams( { "userId": self.currentUser.id});
   }
 
-  if ($location.path() == '/users/tasks') {
-    
-    User.pendingTasks({ userId: self.currentUser.id }, function (response) {
-      self.pending = response;
-      console.log(self.pending);
-    }); 
-  }
-  if ($location.path() == '/users/tasks/created') {
-  User.createdTasks({ userId: self.currentUser.id }, function (response) {
-    self.createdTasks = response;
-  }); 
-}
-  if ($location.path() == '/users/tasks/completed') {
-  User.completedTasks({ userId: self.currentUser.id }, function (response) {
-    self.completedTasks = response;
-  }); 
-}
+  
 
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});

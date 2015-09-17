@@ -50,7 +50,8 @@
          <span>{{task.description}}</span><br/>
          <span ng-show="task.location.name">@ {{task.location.name}}</span><br/></div>
 
-         <div ng-if="task.completed == null" class="col-xs-3"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">View</a></div>
+         <div ng-if="task.completed == null && task.completion == undefined" class="col-xs-3"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">View</a></div>
+         <div ng-if="task.completed == null && task.completion !== undefined" class="col-xs-3"><a class="btn btn-danger" ui-sref="showTask({ id: task._id })">Response Rejected</a></div>
          <div ng-if="task.completed == false" class="col-xs-3"><a class="btn btn-warning" ui-sref="showTask({ id: task._id })">Awaiting Review</a></div>
        </div>
        <hr>

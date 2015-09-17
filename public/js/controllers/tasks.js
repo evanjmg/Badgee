@@ -24,6 +24,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
 
   if (TokenService.isAuthed()) {
     self.currentUser = TokenService.parseJwt();
+  
   }
 
   // Setup defaults
@@ -37,7 +38,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
   if ($stateParams.id) {
     self.task = Task.get({id: $stateParams.id}, function (response) {
       self.task = response;
-      console.log(response);
+     
       initMap();
       function initMap() {
         var myLatLng = {lat: parseFloat(self.task.location.lat), lng: parseFloat(self.task.location.lon) }
@@ -59,7 +60,6 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     Geo.locate(function (data) {
       self.lat =  data.coords.latitude;
       self.lon =  data.coords.longitude;
-      console.log(self.task.lat, self.task.lon);
     });
   }
   
@@ -80,7 +80,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
 
   $scope.$watch('showCamera', function(showCamera){
     if (showCamera) {
-      console.log("SHOW")
+      
       setTimeout(function(){
         PhotoUpload.startup();
       }, 200);
@@ -95,32 +95,34 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     if (bool) {
       $state.go('completeTask', { id: $stateParams.id });
     } else {
-    console.log($stateParams.id);
+    
 
     Task.reject({ id: $stateParams.id }, function (response) {
-      console.log(response);
-      $('.taskInvitesHeader').prepend("<h4>"+response._creator.name + "'s challenge rejected</h4>");
+   
+      Flash.create('success', "<h4> Rejected "+ self.task._creator.name +"'s challenge</h4>", 'custom-class');
     });
     $state.go('myTasks');
     }   
   }
   self.acceptResponse = function () {
     Task.acceptResponse({ id: $stateParams.id}, function (response) {
-      console.log(response);
+      
       $state.go('createdTasks');
       Flash.create('success', "<h4> Successfully accepted "+ self.task._tagged_member.name +"'s response</h4>", 'custom-class');
     });
   }
   self.rejectResponse = function () {
     Task.rejectResponse({ id: $stateParams.id}, function (response) {
-      console.log(response);
+     
       $state.go('createdTasks');
       Flash.create('warning', "<h4> Rejected "+ self.task._tagged_member.name +"'s response</h4>", 'custom-class');
     })
   }
   self.completeTask = function () {
-    Task.complete({ id: self.task._id , task: self.task, lat: self.lat, lon: self.lon }, function (response) {
+
+    Task.complete({ task: self.task, lat: self.lat, lon: self.lon }, function (response) {
       $state.go('myTasks');
+
       // $('.taskInvitesHeader').append();
       Flash.create('success', "<h4> You responded to "+ self.task._creator.name +"'s challenge. Awaiting confirmation.</h4>", 'custom-class');
     })
@@ -130,9 +132,9 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
   self.task._creator = self.currentUser.id; 
   self.task._tagged_member = user.id;
   self.task.completed = null;
-  console.log(self.task);
+
   Task.copy({ task: self.task, lat: self.lat, lon: self.lon }, function (response){
-    console.log(response);
+    
     $state.go('createdTasks');
     Flash.create('success', "<h4> You shared this challenge with "+ self.task._tagged_member.name +". Awaiting their response.</h4>", 'custom-class');
   });
@@ -142,9 +144,9 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
   self.upload = function () {
     if (!self.file) {
       PhotoUpload.upload(null, function(img_url){
-     if ($('#createTaskPage') > 0) {
+     if ($('#createTaskPage').length > 0) {
         self.task.img_url = img_url;
-        console.log("Img_url set from camera: ", self.task.img_url);
+
       } else {
         self.task.completion.img_url = img_url; 
       }
@@ -156,7 +158,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
 
       if ($('#createTaskPage').length > 0) {
          self.task.img_url = img_url;
-         console.log("Img_url set from camera: ", self.task.img_url);
+       
        } else {
          self.task.completion.img_url = img_url; 
        }
@@ -211,9 +213,9 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     self.task._creator = self.currentUser.id;
     self.task._tagged_member = recipient.id;
     // self.task.team_id = $stateParams.team_id;
-    console.log(self.task);
+
     Task.save({ task: self.task, lat: self.lat, lon: self.lon  }, function (response) {
-      console.log(response, 'saved');
+
       $state.go('showTask', { id: response._id})
     });
   }
@@ -224,7 +226,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
 
   self.showTask = function () {
     Task.get({id: $state.params.id},function (response){
-      console.log(response);
+ 
       self.task = response;
     } )
   } 

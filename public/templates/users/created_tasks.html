@@ -49,7 +49,7 @@
     </div> 
    <div ng-if="task.completed == null" class="col-xs-3"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">No Response</a></div>
    <div ng-if="task.completed == false" class="col-xs-3"><a class="btn btn-warning" ui-sref="showResponse({ id: task._id })">Submission Needs Approval</a></div>
-   <div ng-if="task.completed == true" class="col-xs-3"><a class="btn btn-warning" ui-sref="showResponse({ id: task._id })">Approved</a></div>
+   <div ng-if="task.completed == true" class="col-xs-3"><a class="btn btn-success" ui-sref="showResponse({ id: task._id })">Approved</a></div>
   </div>
   <hr>
 </div>

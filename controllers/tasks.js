@@ -76,9 +76,12 @@ function completeTask (req, res) {
 
   Task.findById(req.body.task._id, function (err, task) {
     if (err) res.status(403).send({ message: "Could not find task"});
+
+    task.completion = {};
     task.completion.message = req.body.task.completion.message;
     task.completion.img_url = req.body.task.completion.img_url;
-    task.updated_at = Date.now;
+    task.completion.time_completed = new Date();
+    task.completed = false;
 
     if (!req.body.lon) {
      req.body.lat = "51.5286416"
@@ -94,31 +97,33 @@ function completeTask (req, res) {
    var query = req.body.task.completion.location.name
    task.completion.location.name = req.body.task.completion.location.name;
  }
-
- request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+ ','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-   var resp = JSON.parse(body);
-   console.log(resp);
-
-   var latlon = [resp.results[0].geometry.location.lat, resp.results[0].geometry.location.lng]
-   task.completion.time_completed = Date.now;
-   task.completion.location.lat = latlon[0];
-   task.completion.location.lon = latlon[1];
-   task.completed = false;
-   task.save(function (err) {
-    res.status(200).send(task);
+ if (req.body.task.location.name) {
+   request('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+ req.body.lat+ ','+ req.body.lon+'&radius=5000&name='+ query + '&key='+ process.env.GOOGLE_API_KEY, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+     var resp = JSON.parse(body);
+     console.log(resp);
+     if (resp.results[0]) {
+       var latlon = [resp.results[0].geometry.location.lat, resp.results[0].geometry.location.lng]
+       task.completion.location.lat = latlon[0];
+       task.completion.location.lon = latlon[1];
+     }
+     task.save(function (err, tas) {
+      res.status(200).send(tas);
+    });
+   }
+ }) 
+ } else {
+  task.save(function (err, tas) {
+    res.status(200).send(tas);
   });
  }
-
-}) 
 });
 }
 function rejectTask (req, res) {
-
   Task.findById(req.params.id).populate('_creator').exec( function (err, task) {
     if (err) res.status(403).send({ message: "Could not find task"});
     task._tagged_member = null;
-    task.updated_at = Date.now; 
+    task.updated_at = new Date();
     task.save( function (error) {
       if (error) res.status(403).send({ message: "Could not save task."});
       res.status(200).send(task);
@@ -137,7 +142,7 @@ function updateTask(req, res) {
   var update = req.body;
   Task.findByIdAndUpdate(req.params.id, update , function (err, task) {
     if(err) res.status(403).send({ message: "Error in finding task"});
-    task.updated_at = Date.now;
+    task.updated_at = new Date();
     task.save(function (error) {
       if (error) res.status(403).send({ message: "Error saving task on update"})
         res.status(200).send(task);
@@ -168,18 +173,18 @@ function acceptResponse (req,res) {
     if (err) res.status(403).send({ message: "An error occured when finding task to accept."});
 
     task.completed = true;
-    task.updated_at = Date.now;
+    task.updated_at = new Date();
 
     task.save(function (error) {
       if (error) res.status(403).send({ message: "could not save task on accept response"});
       User.findById(task._tagged_member, function (er, user) {
-          if (er) res.status(403).send({ message: "could not find user to add coin"});
-          user.total_coins++;
+        if (er) res.status(403).send({ message: "could not find user to add coin"});
+        user.total_coins++;
 
-          user.save(function (erro) {
-            if (erro) res.status(403).send({ message: "could not save user on coin update"});
-            res.status(200).send(task);
-          })
+        user.save(function (erro) {
+          if (erro) res.status(403).send({ message: "could not save user on coin update"});
+          res.status(200).send(task);
+        })
       })
     })
   })
@@ -189,7 +194,7 @@ function rejectResponse (req, res) {
     if (err) res.status(403).send({ message: "An error occured when finding task to reject."});
 
     task.completed = null;
-    task.updated_at = Date.now;
+    task.updated_at = new Date();
     task.save(function (error) {
       res.status(200).send(task);
     });
@@ -237,8 +242,8 @@ function copyTask (req,res) {
 
     // } else {
       res.status(200).send(task);
-    
-  });
+
+    });
 }
 function indexTasks (req,res) {
   Task.find({}).sort({ updated_at:-1}).populate('_creator').populate('_tagged_member').exec(function (err, tasks) {

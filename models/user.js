@@ -27,7 +27,8 @@ UserSchema.set('toJSON', {
       email: ret.email,
       name: ret.name,
       img_url: ret.img_url,
-      teams: ret.teams
+      teams: ret.teams,
+      total_coins : ret.total_coins
       // facebook: {
       //   id: ret.facebook.id,
       //   username: ret.facebook.username
