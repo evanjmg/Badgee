@@ -22,6 +22,70 @@ input:-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: rgba(102, 102, 102, 0.3); }
 
+.two {
+  color: #fff;
+  background-color: #6496c8;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #27496d; }
+
+.two:hover {
+  background-color: #417cb8; }
+
+.two:active {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px); }
+
+.teal {
+  color: #fff;
+  background-color: #5bc0de;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #40859B; }
+
+.teal:hover {
+  background-color: #52ABC6; }
+
+.teal:active {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px); }
+
+.red {
+  color: #fff;
+  background-color: #d9534f;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #803331; }
+
+.red:hover {
+  background-color: #BA4A47; }
+
+.red:active {
+  background-color: #d9534f;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px); }
+
+.green {
+  color: #fff;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #3F803F; }
+
+.green:hover {
+  background-color: #55A955; }
+
+.green:active {
+  background-color: #5cb85c;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px); }
+
+@media screen and (max-width: 500px) {
+  #submitCompletion {
+    display: block;
+    width: 100%; } }
 .landing-header {
   margin-top: 100px;
   font-family: 'Nevis Bold';
@@ -75,6 +139,69 @@ a#login-with-email:hover {
 @media screen and (max-width: 500px) {
   #login-button, #signup-button {
     width: 100%; } }
+.camera {
+  max-width: 500px;
+  margin: auto; }
+
+section.video {
+  margin: auto;
+  max-width: 500px;
+  padding: 0;
+  min-height: 100vh;
+  margin-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1; }
+
+#capture-preview {
+  max-width: 300px;
+  margin: auto;
+  text-align: center; }
+
+#sendPhoto {
+  margin-top: -1%; }
+
+.cameraOptionButtons {
+  max-width: 500px;
+  line-height: 30px;
+  margin-top: -100px;
+  padding-bottom: 20px; }
+
+#camera-icon {
+  width: 100%;
+  height: 100%;
+  padding: 10px; }
+
+#cancelPhoto {
+  margin-bottom: -7%;
+  margin-right: -55%;
+  background-color: transparent;
+  border: 1px solid white;
+  color: white; }
+
+#cancelPhoto:hover {
+  background-color: white;
+  color: black; }
+
+#video {
+  z-index: -1; }
+
+@media screen and (max-width: 500px) {
+  a#start-button {
+    border-radius: 50%;
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: -5%;
+    z-index: 1000; }
+
+  #camera-icon {
+    width: 100%;
+    height: 100%;
+    padding: 1px; } }
 .center {
   float: none;
   margin-left: auto;
@@ -110,6 +237,9 @@ body {
   text-transform: uppercase;
   background-color: #73D5E5;
   color: white; }
+  .container-fluid > .navbar-collapse .navbar-form .form-control, .container-fluid > .navbar-header .navbar-form .form-control, .container > .navbar-collapse .navbar-form .form-control, .container > .navbar-header .navbar-form .form-control {
+    font-size: 14px;
+    padding: 3px; }
   .container-fluid > .navbar-collapse .navbar-nav > li > a, .container-fluid > .navbar-header .navbar-nav > li > a, .container > .navbar-collapse .navbar-nav > li > a, .container > .navbar-header .navbar-nav > li > a {
     color: white;
     text-transform: uppercase;
@@ -129,7 +259,7 @@ body {
   .container-fluid > .navbar-collapse .navbar-toggle .icon-bar, .container-fluid > .navbar-header .navbar-toggle .icon-bar, .container > .navbar-collapse .navbar-toggle .icon-bar, .container > .navbar-header .navbar-toggle .icon-bar {
     background-color: white; }
   .container-fluid > .navbar-collapse .navbar-brand, .container-fluid > .navbar-header .navbar-brand, .container > .navbar-collapse .navbar-brand, .container > .navbar-header .navbar-brand {
-    font-size: 30px;
+    font-size: 26px;
     font-family: 'Nevis Bold';
     color: white;
     text-transform: uppercase;
@@ -166,62 +296,16 @@ body {
   font-size: 25px;
   color: #73D5E5; }
 
-.camera {
-  max-width: 500px;
-  margin: auto; }
-
-section.video {
-  margin: auto;
-  max-width: 500px;
-  padding: 0;
-  min-height: 100vh;
-  margin-bottom: 0;
-  margin-top: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: -1; }
-
-#capture-preview {
-  max-width: 300px;
-  margin: auto;
-  text-align: center; }
-
-#sendPhoto {
-  margin-top: -1%; }
-
-.cameraOptionButtons {
-  max-width: 500px;
-  line-height: 30px; }
-
-#camera-icon {
-  width: 100%;
-  height: 100%;
-  padding: 10px; }
-
-#cancelPhoto {
-  margin-bottom: -7%;
-  margin-right: -55%;
-  background-color: transparent;
-  border: 1px solid white;
-  color: white; }
-
-#cancelPhoto:hover {
-  background-color: white;
-  color: black; }
-
-#video {
-  z-index: -1; }
+#account-nav {
+  content: "Account"; }
 
 canvas {
   display: none; }
 
 #start-button {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   margin-top: -5%;
   z-index: 1000; }
 
@@ -230,6 +314,59 @@ canvas {
   margin: auto;
   display: block; }
 
+@media screen and (max-width: 940px) {
+  .navbar-nav > li > a {
+    font-size: 14px; }
+
+  #account-nav {
+    content: ""; }
+
+  .navbar-form .form-control {
+    font-size: 10px;
+    padding: 3px; }
+
+  .navbar-form > a.btn.btn-default {
+    font-size: 10px; }
+
+  .navbar-brand {
+    font-size: 16px; }
+
+  .navbar-brand > img {
+    width: 35px; } }
+@media screen and (max-width: 850px) {
+  .navbar-nav > li > a {
+    font-size: 10px; }
+
+  #account-nav {
+    content: ""; }
+
+  .navbar-form input.form-control {
+    font-size: 8px;
+    padding: 2px;
+    height: 20px;
+    padding-left: 0;
+    max-width: 138px;
+    margin-left: -10px;
+    width: 138px; }
+
+  .container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
+    width: 70px !important; }
+
+  .navbar-form > a.btn.btn-default {
+    font-size: 7px;
+    margin: 0; }
+
+  .container-fluid > .navbar-collapse .navbar-brand, .container-fluid > .navbar-header .navbar-brand, .container > .navbar-collapse .navbar-brand, .container > .navbar-header .navbar-brand {
+    font-size: 16px; }
+
+  .navbar-brand > img {
+    width: 35px; } }
+@media screen and (max-width: 500px) {
+  h2 {
+    font-size: 18px; }
+
+  #account-nav {
+    content: "Account"; } }
 @media screen and (max-width: 800px) {
   .container-fluid > .navbar-collapse .navbar-nav > li, .container-fluid > .navbar-header .navbar-nav > li, .container > .navbar-collapse .navbar-nav > li, .container > .navbar-header .navbar-nav > li {
     padding-top: 0; }
@@ -250,8 +387,8 @@ canvas {
 
   #startbutton {
     margin-top: -15%;
-    width: 75px;
-    height: 75px; } }
+    width: 50px;
+    height: 50px; } }
 .addToNewTeamButton, .removeFromNewTeamButton {
   margin: auto;
   text-align: center; }
@@ -277,8 +414,11 @@ canvas {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px; }
 
-.card-top, .card-bottom {
+.card-top {
   padding: 10px; }
+
+.card-bottom {
+  padding: 30px; }
 
 #creator-name, #created_at {
   line-height: 46px; }
@@ -286,12 +426,13 @@ canvas {
 #creator-name {
   padding-left: 20px;
   display: inline;
-  text-decoration: none; }
+  text-decoration: none;
+  font-weight: bold; }
 
 .show-page-profile-img {
   display: inline; }
 
-#created_at, #location-name {
+#created_at, #location-name, #task-minutes, #tagged-member-name {
   display: inline;
   text-align: right;
   color: #333;
@@ -299,21 +440,29 @@ canvas {
   opacity: 0.6; }
 
 #badgee-coin {
-  width: 50px;
+  max-width: 50px;
   padding-right: 10px; }
 
 .badgee-coin-header {
   padding-right: 30px; }
 
-#map-marker {
+#map-marker, #clock-icon, #at-icon {
   width: 35px;
   opacity: 0.3;
-  display: inline; }
+  display: inline;
+  padding: 5px; }
+
+#at-icon {
+  width: 30px; }
 
 #task-image, #photo {
   max-width: 430px;
   width: 100%;
   margin: auto;
   display: block; }
+
+@media screen and (max-width: 500px) {
+  .task-show-page-container {
+    border: none; } }
 
 /*# sourceMappingURL=app.css.map */

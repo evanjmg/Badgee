@@ -1,0 +1,76 @@
+ .two {
+  color: #fff;
+  background-color: #6496c8;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #27496d;
+}
+
+.two:hover {
+  background-color: #417cb8
+}
+
+.two:active {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+} 
+
+ .teal {
+  color: #fff;
+  background-color: #5bc0de;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #40859B;
+}
+
+
+.teal:hover {
+  background-color: #52ABC6;
+}
+
+.teal:active {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+} 
+
+ .red {
+  color: #fff;
+  background-color: #d9534f;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #803331;
+}
+
+.red:hover {
+  background-color:#BA4A47;
+}
+
+.red:active {
+  background-color: #d9534f;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+} 
+ .green {
+  color: #fff;
+  background-color: #5cb85c;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #3F803F;
+}
+
+.green:hover {
+  background-color:#55A955;
+}
+
+.green:active {
+  background-color: #5cb85c;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+} 
+@media screen and (max-width: 500px) { 
+  #submitCompletion {
+display: block; width: 100%; 
+}
+}
