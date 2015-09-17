@@ -7,7 +7,7 @@
 <h2 class="taskInvitesHeader">My Challenges</h2>
 </div>
 <div class="col-xs-6">
-<h4 class="pull-right badgee-coin-header"><img src="/images/badgee-coin.png" id="badgee-coin"  alt="coin">Badgee Coins: <span>{{ users.currentUser.total_coins}}</span><span ng-hide="users.currentUser.total_coins"> 0</span> </h4>
+<h4 class="pull-right badgee-coin-header"><img src="/images/badgee-coin.png" id="badgee-coin"  alt="coin">Badgee Coins: <span>{{ users.currentUser.total_coins}}</span></h4>
 </div>
 </div>
 <ul class="nav nav-pills nav-justified">
@@ -36,6 +36,9 @@
      </div>
    </div>
 <div ng-repeat="task in users.completedTasks | filter: query">
+<p>
+  
+</p>
   <div class="row">
    <div class="col-xs-2"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
     <div class="col-xs-3">
@@ -46,8 +49,12 @@
    <span ng-show="task.location.name">@ {{task.location.name}}</span><br/>
 
     </div> 
-   <div class="col-xs-3"><a class="btn btn-info" ui-sref="showTask({ id: task._id })">VIEW CHALLENGE</a>
-   <a class="btn btn-success" ui-sref="showTask({ id: task._id })">YOUR SUBMISSION </a>
+  
+   <div class="col-xs-3"><p><a class="btn btn-info" ui-sref="showTask({ id: task._id })">View Challenge</a>
+
+     
+   </p>
+   <a class="btn btn-success" ui-sref="showResponse({ id: task._id })">Your Submission </a>
    </div>
 
   <hr>

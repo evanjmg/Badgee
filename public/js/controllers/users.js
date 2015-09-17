@@ -46,7 +46,8 @@ function UsersController(User, TokenService, $state, $location){
     if (TokenService.isAuthed()) {
       self.currentUser = TokenService.parseJwt();
     }
-      $state.go('myTasks');
+     window.location.href = "/#/users/tasks";
+     window.location.reload();
     })
   }
   self.update = function () {
@@ -59,13 +60,15 @@ function UsersController(User, TokenService, $state, $location){
       self.user.img_url = 'http://localhost:5000/images/badgee-profile-filler'+Math.floor(Math.random()*2)+'.png';
     }
     User.signup(self.user,function(response){
-      $state.go('myTasks');
+      window.location.href = "/#/users/tasks";
+      window.location.reload();
     })
   
     }
     self.logout = function() {
       TokenService.logout && TokenService.logout();
-      $state.go('landing');
+      window.location.href = "/#/";
+      window.location.reload();
     }
     self.isAuthed = function() {
       return TokenService.isAuthed ? TokenService.isAuthed() : false

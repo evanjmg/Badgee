@@ -11,11 +11,12 @@ function facebookCallback (req,res, next) {
       if (!user) return res.status(401).send({ error: 'User already exists!' });
       var token = jwt.sign(user, process.env.TAGGY_SECRET, { expiresInMinutes: 1440 });
       console.log(token);
-      res.send( { 
+      res.set( { 
         'success': true,
         'message': "There is no going back now.",
         'token': token
       });
+      res.render('index.html')
   })(req, res, next);
 }
 
