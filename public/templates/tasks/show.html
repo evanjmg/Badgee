@@ -1,89 +1,102 @@
+
 <div ng-controller="TasksController as tasks" class="task-show-page-container">
-<div ng-hide="tasks.selectUsersPage">
-<img src="{{tasks.task.img_url}}" id="task-image" alt="">
-  <div class="row">
-    <div class="col-xs-3"> 
-      <img src="{{ task._creator.img_url}}" alt="profile" class="img-responsive">
-    </div>
-    <div class="col-xs-4">{{ task._creator.name}}</div>
-    <div class="col-xs-4"><img src="" alt=""></div>
-  </div>
-  <div class="row">
-    <div class="text-center"><h3 ng-if="tasks.currentUser.id == tasks.task._creator.id" class="center ">{{ tasks.task._tagged_member.name}}'s Challenge:</h3><br/>
-      {{tasks.task.description}}</div>
-    </div>
-    <div class="row" ng-show="tasks.task.location.name">
-      <h4>{{tasks.task.location.name}}</h4>
-      <div id="map" style="width:200px;height:200px;" ng-show="tasks.task.location.lat"></div>
 
-    </div>
-    <!-- JUST CREATED CHALLENGE - CREATOR -->
-    <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == null" class="row text-center center">
-      <div class="col-xs-6 col-md-6">
-        <a ui-sref="createdTasks" class="btn btn-info" style="margin-left:20px">My Challenges</a>
-      </div>
-      <div class="col-xs-6 col-md-6">
-        <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>  
+  <div ng-hide="tasks.selectUsersPage">
+    <div class="row card-top">
+      <div class="col-xs-6"> 
+        <img ng-src="{{ tasks.task._creator.img_url}}" alt="profile"  class="img-circle profile-img img-responsive show-page-profile-img">
+        <a href="#" id="creator-name" >{{ tasks.task._creator.name}}</a>
       </div>
 
+      <div class="col-xs-6 pull-right" id="created_at" >{{ tasks.format_created_at }}</div>
     </div>
-    <!-- GOT RESPONSE - CREATOR -->
-    <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == false" class="row text-center center">
-      <div class="row">
-        <a ui-sref="showResponse({ id: task._id})" class="btn btn-info" style="margin-left:20px">Review Response</a>
-      </div>
-    </div>
-  </div>
-  <!-- YOUR COMPLETED CHALLENGE - TAGGED_USER  -->
-  <div ng-if="tasks.currentUser.id !== tasks.task._creator.id && tasks.currentUser.id == tasks.task._tagged_member.id  && tasks.task.completed == true" class="row text-center center">
-    <div class="row">
-    <div class="col-xs-6 col-md-6">
-      <a ui-sref="myTasks" class="btn btn-info">My Challenges</a>  
-    </div>
-      <a ui-sref="showResponse({ id: task._id})" class="btn btn-info" style="margin-left:20px">My Response</a>
-    </div>
-  </div
+    <img src="{{tasks.task.img_url}}" class="img-responsive" id="task-image" alt="">
+    <div id="map" style="width:200px;height:200px;"></div>
+    <div class='row card-bottom'>
+      <div class="pull-right">
+        <a href=""> <span id='location-name'>{{ tasks.task.location.name}}</span>
+          <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive"></a>
+        </div>
+        <div class="row">
+          <h3 ng-if="tasks.currentUser.id == tasks.task._creator.id">{{ tasks.task._tagged_member.name}}'s Challenge:</h3>
+          {{tasks.task.description}}
+        </div>
 
-  <!-- SEND CHALLENGE TO FRIEND - PUBLIC -->
-  <div ng-if="tasks.currentUser.id !== tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
-    <div class="row">
-      <a ng-hide="tasks.selectUsersPage"ng-click="tasks.showUsersPage()"class="btn btn-info" id="shareChallengeButton" style="margin-left:20px">Send this Challenge to a Friend</a>
-    </div>
-  
-  <div ng-if="tasks.selectUsersPage">
-   <h2>Send It to a Friend</h2>
-     <div class="form-group">
-     <input type="text" class="form-control" ng-model="query" placeholder="Search Users">
-   </div>
-   <div  ng-repeat="user in tasks.allUsers | filter: query">
+        <div class="row" ng-show="tasks.task.location.name">
+          <h4>{{tasks.task.location.name}}</h4>
+        </div>
 
-     <div class="row">
-       <div class="col-xs-4">
-        <img ng-src="{{user.img_url}}" alt="user" class="profile-img">
-      </div>
-      <div class="col-xs-4">
-        <span> {{user.name}}</span>
-      </div>
-      <div class="col-xs-4">
-        <a class="btn btn-success addToNewTeam" ng-click="tasks.copyTask(user)" >SEND</a>
-        <!-- <a class="btn btn-success addToNewTeam" ng-click="tasks.addUser(user, $event)" >SEND</a> -->
-        <!-- <a class="btn btn-danger removeFromNewTeam" ng-click="tasks.removeUser(user, $event)" >-</a> -->
-      </div>
-    </div>
-    <hr>
-  </div>
-  </div>
-  </div>
-  <!-- RESPOND TO CHALLENGE -->
-  <div  ng-show="tasks.currentUser.id === tasks.task._tagged_member.id && tasks.task.completed == null" class="row text-center center">
-    <div class="col-xs-6 col-md-6">
-      <a ng-click="tasks.decideTask(true)" class="btn btn-success" style="margin-left:20px">Submit Answer</a>
-    </div>
-    <div class="col-xs-6 col-md-6">
-      <a ng-click="tasks.decideTask(false)" class="btn btn-danger">Reject</a>  
-    </div>
+        <!-- JUST CREATED CHALLENGE - CREATOR -->
+        <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == null" class="row text-center center">
+          <div class="col-xs-6 col-md-6">
+            <a ui-sref="createdTasks" class="btn btn-info" style="margin-left:20px">My Challenges</a>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <a ng-click="tasks.showEditTask()" class="btn btn-info">Edit</a>  
+          </div>
 
+        </div>
+        <!-- GOT RESPONSE - CREATOR -->
+        <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == false" class="row text-center center">
+          <div class="row">
+            <a ui-sref="showResponse({ id: task._id})" class="btn btn-info" style="margin-left:20px">Review Response</a>
+          </div>
+        </div>
+        <!-- YOUR COMPLETED CHALLENGE - TAGGED_USER  -->
+        <div ng-if="tasks.currentUser.id !== tasks.task._creator.id && tasks.currentUser.id == tasks.task._tagged_member.id  && tasks.task.completed == true" class="row text-center center">
+          <div class="row">
+            <div class="col-xs-6 col-md-6">
+              <a ui-sref="myTasks" class="btn btn-info">My Challenges</a>  
+            </div>
+            <div class="col-xs-6 col-md-6">
+              <a ui-sref="showResponse({ id: task._id})" class="btn btn-info" style="margin-left:20px">My Response</a>
+            </div>
+          </div>
+        </div>
+    </div>
+        <!-- SEND CHALLENGE TO FRIEND PUBLIC -->
+        <div ng-if="tasks.currentUser.id !== tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
+          <div class="row">
+            <a ng-hide="tasks.selectUsersPage"ng-click="tasks.showUsersPage()"class="btn btn-info" id="shareChallengeButton" style="margin-left:20px">Send this Challenge to a Friend</a>
+          </div>
+        </div>
+        <!-- RESPOND TO CHALLENGE -->
+        <div  ng-show="tasks.currentUser.id === tasks.task._tagged_member.id && tasks.task.completed == null" class="row text-center center">
+          <div class="col-xs-6 col-md-6">
+            <a ng-click="tasks.decideTask(true)" class="btn btn-success" style="margin-left:20px">Submit Answer</a>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <a ng-click="tasks.decideTask(false)" class="btn btn-danger">Reject</a>  
+          </div>
+        </div>
+      </div>
+      <div ng-if="tasks.selectUsersPage" >
+       <h2>Send It to a Friend</h2>
+       <div class="form-group">
+         <input type="text" class="form-control" ng-model="query" placeholder="Search Users">
+       </div>
+       <div  ng-repeat="user in tasks.allUsers | filter: query">
+
+         <div class="row">
+           <div class="col-xs-4">
+            <img ng-src="{{user.img_url}}" alt="user" class="profile-img">
+          </div>
+          <div class="col-xs-4">
+            <span> {{user.name}}</span>
+          </div>
+          <div class="col-xs-4">
+            <a class="btn btn-success addToNewTeam" ng-click="tasks.copyTask(user)" >SEND</a>
+            <!-- <a class="btn btn-success addToNewTeam" ng-click="tasks.addUser(user, $event)" >SEND</a> -->
+            <!-- <a class="btn btn-danger removeFromNewTeam" ng-click="tasks.removeUser(user, $event)" >-</a> -->
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
   </div>
+
+
+</div>
 
 </div>
 

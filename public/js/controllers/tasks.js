@@ -32,13 +32,16 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
   self.all = Task.query();
   self.showCamera       = false;
   self.selectUsersPage  = false;
+ 
   self.task.completion = self.task.completion || {};
   if ($stateParams.query) $scope.query = $stateParams.query
 
   if ($stateParams.id) {
     self.task = Task.get({id: $stateParams.id}, function (response) {
       self.task = response;
-     
+     if (self.task.created_at) {
+       self.format_created_at = moment(self.task.created_at).startOf('hour').fromNow(); 
+     }
       initMap();
       function initMap() {
         var myLatLng = {lat: parseFloat(self.task.location.lat), lng: parseFloat(self.task.location.lon) }

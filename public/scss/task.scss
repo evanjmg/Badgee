@@ -1,7 +1,40 @@
+.card-bottom > .row {
+  margin-right:0 !important;
+  padding:10px;
+  margin-left:0 !important;
+}
+#map {
+  display:none;
+} 
 .task-show-page-container {
-  max-width: 700px;
+  max-width: 400px;
   margin:auto;
-  padding:15px;
+  padding:0px;
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+}
+.card-top, .card-bottom  {
+  padding:10px;
+}
+#creator-name, #created_at {
+  line-height: 46px;
+}
+
+#creator-name {
+  padding-left:20px;
+  display:inline;
+  text-decoration: none;
+}
+.show-page-profile-img 
+ {
+  display:inline;
+ }
+#created_at, #location-name {
+  display:inline;
+  text-align: right;
+  color:#333;
+  font-weight: 500;
+  opacity:0.6;
 }
 #badgee-coin {
   width:50px;
@@ -10,7 +43,17 @@
 .badgee-coin-header {
   padding-right: 30px;
 }
-
+#map-marker {
+  width:35px;
+  opacity: 0.3;
+  display:inline;
+}
+#task-image, #photo {
+  max-width: 430px;
+  width:100%;
+  margin:auto;
+  display:block;
+}
 @media screen and (max-width: 800px) { 
 
   }
