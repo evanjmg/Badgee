@@ -1,7 +1,15 @@
 
 <div flash-message="10000" ></div> 
-<h2 class="taskInvitesHeader">My Challenges</h2>
+
 <div ng-controller="UsersController as users">
+<div class="row">
+<div class="col-xs-6">
+<h2 class="taskInvitesHeader">My Challenges</h2>
+</div>
+<div class="col-xs-6">
+<h4 class="pull-right badgee-coin-header"><img src="/images/badgee-coin.png" id="badgee-coin"  alt="coin">Badgee Coins: <span>{{ users.currentUser.total_coins}}</span><span ng-hide="users.currentUser.total_coins"> 0</span> </h4>
+</div>
+</div>
 <ul class="nav nav-pills nav-justified">
   <li ><a ui-sref="myTasks">Received <span class="badge"></span></a></li>
   <li><a ui-sref="createdTasks">Created</a></li>
