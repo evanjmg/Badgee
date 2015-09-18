@@ -16,7 +16,7 @@ function facebookCallback (req,res, next) {
         'message': "There is no going back now.",
         'token': token
       });
-      res.render('index.html')
+      next();
   })(req, res, next);
 }
 

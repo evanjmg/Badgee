@@ -123,6 +123,8 @@ canvas {
   margin:auto;
   display:block;
 }
+
+
 @media screen and (max-width: 940px) {
   .navbar-nav>li>a {
     font-size:14px ;
@@ -174,8 +176,20 @@ canvas {
    }
 } 
 @media screen and (max-width: 600px) {
+  a.btn {
+    font-size: 12px !important;
+  }
+  h4 {
+  font-size:11px;
+  }
+  img#badgee-coin {
+    width:25px;
+  }
+
+
    .container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
      width:100% !important;
+  
   }
 h2 {
   font-size:18px;

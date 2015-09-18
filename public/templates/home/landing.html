@@ -6,10 +6,28 @@
   .content-container {  margin:0;
   }
 </style>
+
 <div class="landing-container">
-<h1 class="landing-header text-center animated fadeIn"><img class="img-responsive animated fadeIn" id="landing-header-image"src="/images/badgee-logo-headband.png" alt=""><span class="">BADGEE</span></h1>
-<h4 class="center tagline">Be Fearless. Challenge Your Friends</h4>
-<a class="btn btn-facebook center animated fadeIn" href="http://localhost:5000/api/facebook" target="_self" id="login-with-facebook"><i class="fa fa-facebook animated fadeIn"></i> Login with Facebook</a>
-<a ui-sref="login"  class="btn btn-info center" id="login-with-email" >Login with Email</a>
+<div class=" animated badgee-the-badger bounce animations">
+  <img src="/images/badgee-the-badger.png"  alt="badgee">
 </div>
+<div class="mobile-landing-container">
+<h1 class="landing-header text-center animated fadeIn"><img class="img-responsive animated fadeIn" id="landing-header-image"src="/images/badgee-logo-headband.png" alt="badgee-logo"><span class="">BADGEE</span></h1>
+<h4 class="center tagline">Be Fearless. Challenge Your Friends</h4>
+<!-- <a class="btn btn-facebook center animated fadeIn" href="http://localhost:5000/api/facebook" target="_self" id="login-with-facebook"><i class="fa fa-facebook animated fadeIn"></i> Login with Facebook</a> -->
+<a ui-sref="login"  class="btn btn-primary center" id="login-with-email" >Login with Email</a>
+</div>
+</div>
+
 <div ng-include="'templates/shared/footer.html'" ></div>
+<script>
+  $(function () {
+    $('.badgee-the-badger').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+      $(this).css("-webkit-animation-iteration-count, 1");
+      $(this).removeClass('animations');
+        $(this).addClass('tada animated');
+        
+    });
+  })
+
+</script>

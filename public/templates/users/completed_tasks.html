@@ -5,20 +5,24 @@
 <div class="row">
 <div class="col-xs-6">
 <h2 class="taskInvitesHeader">My Challenges</h2>
+
 </div>
 <div class="col-xs-6">
 <h4 class="pull-right badgee-coin-header"><img src="/images/badgee-coin.png" id="badgee-coin"  alt="coin">Badgee Coins: <span>{{ users.currentUser.total_coins}}</span></h4>
 </div>
 </div>
+<hr>
 <ul class="nav nav-pills nav-justified">
   <li ><a ui-sref="myTasks">Received <span class="badge"></span></a></li>
   <li><a ui-sref="createdTasks">Created</a></li>
   <li class="active"><a ui-sref="completedTasks">Completed</a></li>
 </ul>
-<input type="text" ng-model="query" ng-hide="users.completedTasks.length == 0" class="form-control" placeholder="Search Completed Challenges">
 <p></p>
+<input type="text" ng-model="query" ng-hide="users.completedTasks.length == 0" class="form-control" placeholder="Search Completed Challenges">
+<hr>
 <div ng-if="users.completedTasks.length == 0">
   You have not completed any challenges. <br> Challenge a friend below. <br/>
+  <p></p>
   <a ui-sref="createTask" class="btn btn-success center">Send a Challenge</a>
 </div>
 <div ng-if="users.completedTasks.length > 0">

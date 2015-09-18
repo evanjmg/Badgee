@@ -20,7 +20,8 @@ var router = express.Router();
  .get(passport.authenticate('facebook', { scope: ['email']}))
 
  router.route('/facebook/callback').get(AuthenticationController.facebookCallback, function (req,res) {
-  res.render('/signup')
+  
+  res.redirect('/');
  });
 
  // USERS
