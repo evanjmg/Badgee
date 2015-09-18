@@ -19,19 +19,19 @@
       <div class='row card-bottom'>
 
         <div class="pull-right" ng-show="task.location.name">
-          <a href="" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{task.location.name}}</span>
+          <a href="" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{task.location.name | limitTo: 10}} ..</span>
           </a>
         </div>
         <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ task.minutes}} min</span>
         </div>
         <div  ng-if="task._tagged_member.id"><a id="tagged-member-name" href="">
-          <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name}} </span></a>
+          <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name | limitTo: 6 }} </span></a>
         </div>
         <br/>
         <div class="row">
           {{task.description | limitTo: 50}}
         </div>
-
+        <a ui-sref="showTask({ id: task._id})" class="btn btn-info">View</a>
       </div>
       <hr class="line-break">
     </div>
