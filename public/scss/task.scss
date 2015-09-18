@@ -20,11 +20,11 @@
 .card-bottom {
   padding:30px;
 }
-#creator-name, #created_at {
+#creator-name, #created_at, #tagged-member-name-head {
   line-height: 46px;
 }
 
-#creator-name {
+a#creator-name, a#tagged-member-name-head {
   padding-left:20px;
   display:inline;
   text-decoration: none;
@@ -75,6 +75,9 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   display:block;
 }
 @media screen and (max-width: 500px) { 
+  #tagged-member-name-head {
+    font-size: 14px;
+  }
     .task-show-page-container {
       border:none;
     }

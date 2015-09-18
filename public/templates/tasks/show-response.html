@@ -1,29 +1,50 @@
-<div ng-controller="TasksController as tasks">
-<img src="{{tasks.task.completion.img_url}}" id="task-image" alt="">
-<div class="row">
-  <div class="text-center"><h3 ng-if="tasks.currentUser.id == tasks.task._creator.id" class="center ">{{ tasks.task._tagged_member.name}}'s Response:</h3><br/>
-    {{tasks.task.completion.message}}</div>
-</div>
-<div class="row" ng-show="tasks.task.completion.location.name">
-<h4>{{tasks.task.completion.location.name}}</h4>
-<div id="map" style="width:200px;height:200px;"></div>
+<div ng-controller="TasksController as tasks" class="task-show-page-container">
 
+  <div class="row card-top">
+    <div class="col-xs-6"> 
+      <img ng-src="{{ tasks.task._tagged_member.img_url}}" alt="profile"  class="img-circle profile-img img-responsive show-page-profile-img">
+      <a href="#" id="tagged-member-name-head" >{{ tasks.task._tagged_member.name}}</a>
+    </div>
+
+    <div class="col-xs-6 pull-right" id="created_at" >{{ tasks.format_time_completed }}</div>
+  </div>
+  <img src="{{tasks.task.completion.img_url}}" class="img-responsive" id="task-image" alt="">
+  <div class="map-container">  <div class="pull-right">
+    <a ng-click="tasks.closeMap()" class="map-button">  <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive"><span id='location-name'>Close Map</span>
+    </a>
+  </div>
+  <div class="row">
+    <div id="map" style="width:90%;height:200px;margin:auto;"></div>
+  </div>
 </div>
-<div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id" class="row text-center center">
-<div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.acceptResponse()" class="btn btn-success" style="margin-left:20px">Accept Submission</a>
+<div class='row card-bottom'>
+  <div class="pull-right" ng-show="tasks.task.completion.location.name">
+    <a ng-click="tasks.openMap()" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ tasks.task.completion.location.name}}</span>
+    </a>
+  </div>
+  <div  ng-if="tasks.task._tagged_member.id"><a id="tagged-member-name" href="">
+    <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ tasks.task._creator.name}} </span></a>
+  </div>
+  <br/>
+  <div class="row"> 
+   {{tasks.task.completion.message}}
+ </div>
+
+ <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id && tasks.task.completed == false" class="row text-center center">
+  <div class="col-xs-6 col-md-6">
+    <a ng-click="tasks.acceptResponse()" class="btn btn-success" style="margin-left:20px">Accept Submission</a>
   </div>
   <div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.rejectResponse()" class="btn btn-danger">Reject Submission</a>  
+    <a ng-click="tasks.rejectResponse()" class="btn btn-danger">Reject Submission</a>  
   </div>
 
 </div>
 <div ng-if="tasks.currentUser.id !== tasks.task._creator.id && tasks.currentUser.id == tasks.task._tagged_member.id" class="row text-center center">
-<!-- <div class="col-xs-6 col-md-6"> -->
+  <!-- <div class="col-xs-6 col-md-6"> -->
   <a ui-sref="myTasks" class="btn btn-success" style="margin-left:20px">My Challenges</a>
   <!-- </div> -->
-  <!-- <div class="col-xs-6 col-md-6">
-  <a ng-click="tasks.rejectResponse()" class="btn btn-danger">Edit Submission</a>  
-  </div> -->
-
+<!--   <div class="col-xs-6 col-md-6">
+  <a ng-click="tasks.rejectResponse()" class="btn btn-danger">Edit Submission</a>   -->
+</div>
+</div>
 </div>
