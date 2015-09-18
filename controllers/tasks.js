@@ -24,10 +24,6 @@ function createTask (req, res) {
      if (!error && response.statusCode == 200) {
       var resp = JSON.parse(body)
 
-
-
-
-
       Task.create(req.body.task, function (er, task) {
        if (er) res.status(403).send({ message: "Could not create task, error occurred"});
        
@@ -45,13 +41,15 @@ function createTask (req, res) {
        }
 
 
-       task.save(function (err) {
-        if (err) res.status(403).send({ message: "Could not save task"});
-        res.send(task);
-        // team.tasks.push(task);
-        // team.save(function (error) {
-
-        // })
+       task.save(function (err, tas) {
+        User.findById(task._creator, function (err, user) {
+         user.created_tasks.push(tas);
+         user.save(function (er) {
+          if (err) res.status(403).send({ message: "Could not save task"});
+          res.send(task);
+        });
+         
+        })
      })
 
      }); 
@@ -175,11 +173,12 @@ function acceptResponse (req,res) {
     task.completed = true;
     task.updated_at = new Date();
 
-    task.save(function (error) {
+    task.save(function (error, tas) {
       if (error) res.status(403).send({ message: "could not save task on accept response"});
       User.findById(task._tagged_member, function (er, user) {
         if (er) res.status(403).send({ message: "could not find user to add coin"});
         user.total_coins++;
+        user.completed_tasks.push(tas);
 
         user.save(function (erro) {
           if (erro) res.status(403).send({ message: "could not save user on coin update"});

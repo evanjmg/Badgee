@@ -15,6 +15,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/login',
     templateUrl: 'templates/users/login.html'
   })
+  .state('profile', {
+    url: '/profile/:id',
+    templateUrl: 'templates/users/profile.html'
+  })
   .state('logout', {
     url: '/login'
   })

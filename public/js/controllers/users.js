@@ -1,13 +1,16 @@
 angular.module('taggyApp')
 .controller('UsersController', UsersController);
 
-UsersController.$inject = ['User', 'TokenService', '$state', '$location'];
-function UsersController(User, TokenService, $state, $location){
+UsersController.$inject = ['User', 'TokenService', '$state','$stateParams', '$location'];
+function UsersController(User, TokenService, $state,$stateParams, $location){
 
   var self = this;
   self.user = {}
 
   self.users = {};
+  if ($stateParams.id) {
+    self.user = User.get({ id: $stateParams.id})
+  }
   if (TokenService.isAuthed()) {
   
     self.currentUser = User.get({ id: (TokenService.parseJwt()).id }, function (response) {

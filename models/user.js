@@ -6,6 +6,8 @@ var Team = require('./team');
 var UserSchema = new mongoose.Schema({
 
   teams: [{ type: mongoose.Schema.ObjectId, ref: 'Team'}],
+  created_tasks: [{ type: mongoose.Schema.ObjectId, ref: 'Task'}],
+  completed_tasks: [{ type: mongoose.Schema.ObjectId, ref: 'Task'}],
   name: {type: String, required: true },
   email: {type: String, required: true, unique: true},
   total_coins: { type: Number, default: 0 },
@@ -28,7 +30,9 @@ UserSchema.set('toJSON', {
       name: ret.name,
       img_url: ret.img_url,
       teams: ret.teams,
-      total_coins : ret.total_coins
+      total_coins : ret.total_coins,
+      completed_tasks: ret.completed_tasks,
+      created_tasks: ret.created_tasks
       // facebook: {
       //   id: ret.facebook.id,
       //   username: ret.facebook.username

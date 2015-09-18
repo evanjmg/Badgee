@@ -18,7 +18,7 @@ function createUsers (req,res) {
   })
 }
 function getUser(req,res) {
-  User.findById(req.params.id, function (err, user) {
+  User.findById(req.params.id).populate('completed_tasks','completion.description completion.img_url').populate('created_tasks', 'description img_url').exec(function (err, user) {
     if (err) res.status(403).send({ message: "Could not find user"});
     res.send(user);
   }) 

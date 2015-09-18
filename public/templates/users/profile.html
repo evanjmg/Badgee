@@ -1,0 +1,42 @@
+
+<div ng-controller="UsersController as users" class="task-show-page-container">
+<div class="row">
+<img ng-src="{{ users.user.img_url}}" alt="profile"  class="img-circle profile-img img-responsive show-page-profile-img">
+<a href="#" id="creator-name" >{{ users.user.name}}</a>
+<div class="pull-right">
+<h4 class="pull-right badgee-coin-header"><img src="/images/badgee-coin.png" id="badgee-coin" style="margin-left:10px;width:40px;"  alt="coin"><span>{{ users.currentUser.total_coins}}</span></h4>
+</div>
+</div>
+<div class="challenges" ng-repeat="task in users.user.created_tasks">
+  <div class="row">
+    <div class="col-xs-3">
+      <img src="task.img_url" alt="task-image" class="profile-img">
+    </div>
+    <div class="col-xs-9">
+      <div class="pull-right" ng-show="task.location.name">
+      <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ task.location.name}}</span>
+    </div>
+      <div class="pull-right" ng-show="task.minutes"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ task.minutes}} min</span>
+    </div>
+        <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">
+      </div>
+      {{task.description | limitTo: 140}}
+    </div>
+  </div>
+  <div class="challenges" ng-repeat="task in users.user.completed_tasks">
+    <div class="row">
+      <div class="col-xs-3">
+        <img src="task.img_url" alt="task-image" class="profile-img">
+      </div>
+      <div class="col-xs-9">
+        <div class="pull-right" ng-show="task.location.name">
+        <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ task.location.name}}</span>
+      </div>
+        <div class="pull-right" ng-show="task.minutes"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ task.minutes}} min</span>
+      </div>
+          <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">
+        </div>
+        {{task.description | limitTo: 140}}
+      </div>
+    </div>
+  </div>
