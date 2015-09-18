@@ -22,7 +22,7 @@
   <div class='row card-bottom'>
 
     <div class="pull-right" ng-show="tasks.task.location.name">
-      <a ng-click="tasks.openMap()" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ tasks.task.location.name}}</span>
+      <a ng-click="tasks.openMap(true)" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ tasks.task.location.name}}</span>
       </a>
     </div>
     <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ tasks.task.minutes}} min</span>

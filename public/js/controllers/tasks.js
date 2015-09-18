@@ -79,10 +79,10 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
         }, 200);
       }
     });
-    self.openMap = function () {
+    self.openMap = function (bool) {
       $('.map-container').show();
 
-      initializeMap(function (latLon, map) {
+      initializeMap(bool, function (latLon, map) {
         var marker = new google.maps.Marker({
           position: latLon,
           map: map,
@@ -207,10 +207,16 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       self.selectUsersPage = true;
     }
 
-    function initializeMap (callback) {
+    function initializeMap (bool, callback) {
+      if (bool) {
       var lon  = parseFloat(self.task.location.lon);
       var lat = parseFloat(self.task.location.lat);
       var name = self.task.location.name;
+    } else {
+      var lon  = parseFloat(self.task.completion.location.lon);
+      var lat = parseFloat(self.task.completion.location.lat);
+      var name = self.task.completion.location.name;
+    }
       var map = new google.maps.Map(document.getElementById('map'), {
        zoom: 14,
        center: {lat: lat , lng: lon },

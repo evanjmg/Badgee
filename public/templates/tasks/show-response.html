@@ -19,7 +19,7 @@
 </div>
 <div class='row card-bottom'>
   <div class="pull-right" ng-show="tasks.task.completion.location.name">
-    <a ng-click="tasks.openMap()" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ tasks.task.completion.location.name}}</span>
+    <a ng-click="tasks.openMap(false)" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ tasks.task.completion.location.name}}</span>
     </a>
   </div>
   <div  ng-if="tasks.task._tagged_member.id"><a id="tagged-member-name" href="">
