@@ -449,6 +449,10 @@ canvas {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px; }
 
+.index-tasks-container {
+  margin-left: 20px;
+  margin-right: 20px; }
+
 .card-top {
   padding: 10px; }
 
@@ -502,12 +506,23 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   width: 30px; }
 
 #task-image, #photo {
-  max-width: 430px;
+  width: 430px;
+  max-height: 430px;
   width: 100%;
   margin: auto;
   display: block; }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
+  .index-tasks-container {
+    margin-left: 0;
+    margin-right: 0; }
+
+  body {
+    font-size: 12px; }
+
+  .profile-img {
+    width: 35px; }
+
   #tagged-member-name-head {
     font-size: 14px; }
 
