@@ -236,7 +236,17 @@ body, html {
   min-height: 100% !important; }
 
 body {
-  padding-top: 80px; }
+  padding-top: 80px;
+  background-color: #F5F8FA; }
+
+.white-container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: white;
+  max-width: 900px;
+  padding: 20px;
+  overflow: hidden;
+  margin: auto;
+  border-radius: 2px; }
 
 .fadedText {
   opacity: 0.7;
@@ -334,11 +344,6 @@ canvas {
   width: 75px;
   height: 75px;
   z-index: 1000; }
-
-#photo {
-  max-width: 300px;
-  margin: auto;
-  display: block; }
 
 @media screen and (max-width: 940px) {
   .navbar-nav > li > a {
@@ -484,11 +489,12 @@ canvas {
   margin: auto;
   padding: 0px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 5px; }
+  border-radius: 5px;
+  background-color: white; }
 
 .index-tasks-container {
-  margin-left: 20px;
-  margin-right: 20px; }
+  overflow: hidden;
+  width: 400px; }
 
 .card-top {
   padding: 10px; }
@@ -530,9 +536,6 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   max-width: 50px;
   padding-right: 10px; }
 
-.badgee-coin-header {
-  padding-right: 30px; }
-
 #map-marker, #clock-icon, #at-icon {
   width: 35px;
   opacity: 0.3;
@@ -549,11 +552,12 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   margin: auto;
   display: block; }
 
-@media screen and (max-width: 550px) {
-  .index-tasks-container {
-    margin-left: 0;
-    margin-right: 0; }
+#photo {
+  max-width: 300px;
+  margin: auto;
+  display: block; }
 
+@media screen and (max-width: 550px) {
   body {
     font-size: 12px; }
 
@@ -565,5 +569,56 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
 
   .task-show-page-container {
     border: none; } }
+.profile-challenges {
+  float: right;
+  width: 400px;
+  margin: auto;
+  padding: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 10px;
+  min-height: 189px; }
+
+.profile-header {
+  width: 100%;
+  position: fixed;
+  top: 50;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  max-height: 300px;
+  display: block;
+  margin: auto;
+  margin-top: -50px; }
+  .profile-header img {
+    max-width: 100px; }
+
+.task-post {
+  display: inline-block;
+  width: 400px;
+  margin: 10px; }
+
+.feed-container {
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: auto;
+  padding: 30px;
+  padding-top: 100px;
+  max-width: 900px; }
+
+#username {
+  font-weight: bold;
+  font-size: 22px; }
+
+#headline {
+  line-height: 20px;
+  font-weight: 200; }
+
+.profile-total-coins img {
+  width: 30px; }
+.profile-total-coins span {
+  font-size: 14px; }
 
 /*# sourceMappingURL=app.css.map */

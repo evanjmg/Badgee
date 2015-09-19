@@ -2,14 +2,21 @@ angular.module('taggyApp')
 .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', '$state','$stateParams', '$location'];
-function UsersController(User, TokenService, $state,$stateParams, $location){
+function UsersController(User, TokenService, $state, $stateParams, $location){
 
   var self = this;
   self.user = {}
 
   self.users = {};
-  if ($stateParams.id) {
-    self.user = User.get({ id: $stateParams.id})
+
+  if ($stateParams.user_id) {
+    self.feed = User.feed({ id: $stateParams.user_id}, function (resp) {
+      console.log(resp);
+      return resp;
+    });
+  }
+  if ($stateParams.user_id || $stateParams.id) {
+    self.user = User.get({ id: ($stateParams.user_id || $stateParams.id) });
   }
   if (TokenService.isAuthed()) {
   
@@ -22,6 +29,7 @@ function UsersController(User, TokenService, $state,$stateParams, $location){
             console.log(self.pending);
           }); 
         }
+
         if ($location.path() == '/users/tasks/created') {
         User.createdTasks({ userId: response.id }, function (response) {
           self.createdTasks = response;
@@ -33,12 +41,11 @@ function UsersController(User, TokenService, $state,$stateParams, $location){
         }); 
       }
     });
+
     // console.log(self.currentUser);
     self.all = User.query();
     // self.teams = User.teams( { "userId": self.currentUser.id});
   }
-
-  
 
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
@@ -77,8 +84,5 @@ function UsersController(User, TokenService, $state,$stateParams, $location){
       return TokenService.isAuthed ? TokenService.isAuthed() : false
     }
 
-  
-
-    
     return self;
   }

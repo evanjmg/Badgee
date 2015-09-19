@@ -1,5 +1,5 @@
 var User = require('../models/user.js');
-
+var Task = require('../models/task.js');
 
 function getMyTeams (req, res) {
  User.findById(req.body.userId).populate('teams').exec(function (err, user) {
@@ -8,7 +8,21 @@ function getMyTeams (req, res) {
   res.status(200).send(user.teams);
  });
 }
+function getUserFeed (req, res) {
+  Task.find({ "_tagged_member": { $eq: req.params.id }, "completed": { $ne: null}}).populate('_tagged_member').populate('_creator').exec(function (err, tasks) {
+    if (err) res.status(403).send({ message: 'an error occured while finding tasks'});
 
+    Task.find({ "_creator": { $eq: req.params.id}, "completed": { $ne: true }}).populate('_creator').populate('_tagged_member').exec(function (er, tas) {
+      if (er) res.status(403).send({ message: 'an error occured while finding tasks'});
+    
+      console.log(tas);
+      console.log('*********',tasks)
+     var tasksArray = [].concat(tasks).concat(tas);
+     
+      res.status(200).send(tasksArray);
+    })
+  })
+}
 function createUsers (req,res) {
   User.create(req.body, function (error,user) {
     if (error) return res.status(403).send({
@@ -54,6 +68,7 @@ function updateUser(req,res) {
   })
 }
 module.exports = {
+  getUserFeed : getUserFeed,
   getUser: getUser,
   getMyTeams: getMyTeams,
   updateUser: updateUser,

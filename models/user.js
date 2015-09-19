@@ -12,6 +12,7 @@ var UserSchema = new mongoose.Schema({
   email: {type: String, required: true, unique: true},
   total_coins: { type: Number, default: 0 },
   img_url: String,
+  headline: String,
   local: {
     password: String
   },
@@ -32,7 +33,8 @@ UserSchema.set('toJSON', {
       teams: ret.teams,
       total_coins : ret.total_coins,
       completed_tasks: ret.completed_tasks,
-      created_tasks: ret.created_tasks
+      created_tasks: ret.created_tasks,
+      headline: ret.headline
       // facebook: {
       //   id: ret.facebook.id,
       //   username: ret.facebook.username

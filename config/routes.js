@@ -33,7 +33,9 @@ var router = express.Router();
  .put(UsersController.updateUser);
  router.route('/users/teams')
  .post(UsersController.getMyTeams);
-
+ router.route('/users/:id/feed')
+ .get(UsersController.getUserFeed);
+ 
  // TEAMS
  router.route('/teams')
   .post(TeamsController.createTeam)

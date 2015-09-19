@@ -25,7 +25,7 @@
         <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ task.minutes}} min</span>
         </div>
         <div  ng-if="task._tagged_member.id"><a id="tagged-member-name" href="">
-          <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name | limitTo: 6 }} </span></a>
+          <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name | split:',':0 }} </span></a>
         </div>
         <br/>
         <div class="row">

@@ -20,22 +20,21 @@
     </div>
   </div>
   <div class='row card-bottom'>
-
+  <br/>
+  <div class="row">
+    {{tasks.task.description}}
+  </div>
+  <br/>
     <div class="pull-right" ng-show="tasks.task.location.name">
       <a ng-click="tasks.openMap(true)" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ tasks.task.location.name}}</span>
       </a>
     </div>
     <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ tasks.task.minutes}} min</span>
- 
+  
   </div>
   <div  ng-if="tasks.task._tagged_member.id"><a id="tagged-member-name" href="">
     <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ tasks.task._tagged_member.name}} </span></a>
   </div>
-  <br/>
-  <div class="row">
-    {{tasks.task.description}}
-  </div>
-
   <!-- JUST CREATED CHALLENGE - CREATOR -->
   <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id  && tasks.task.completed == null" class="row text-center center">
     <div class="col-xs-6 col-md-6">

@@ -16,7 +16,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/users/login.html'
   })
   .state('profile', {
-    url: '/profile/:id',
+    url: '/profile/:user_id',
     templateUrl: 'templates/users/profile.html'
   })
   .state('logout', {

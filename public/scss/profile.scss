@@ -1,0 +1,58 @@
+.profile-challenges {
+  float:right;
+  width: 400px;
+  margin:auto;
+  padding:0px;
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius: 5px;
+  overflow:hidden;
+  padding:10px;
+  min-height: 189px;
+}
+.profile-header {
+  width:100%;
+  position:fixed;
+  top:50;
+  left:0;
+  right:0;
+  z-index: 1000;
+  max-height: 300px;
+  display:block;
+  margin:auto;
+  margin-top:-50px;
+
+  img {
+  max-width: 100px;
+  }
+}
+.task-post {
+  display:inline-block;
+  width: 400px;
+  margin:10px;
+}
+.feed-container {
+
+  width:100%;
+  height:100%;
+  display:block;
+  margin:auto;
+  padding:30px;
+  padding-top: 100px;
+  max-width: 900px;
+}
+#username {
+  font-weight: bold;
+  font-size: 22px;
+}
+#headline {
+  line-height:20px;
+  font-weight: 200;
+}
+.profile-total-coins {
+  img {
+    width:30px;
+  }
+  span {
+    font-size: 14px;
+  }
+}
