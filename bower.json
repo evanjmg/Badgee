@@ -20,6 +20,7 @@
     "tests"
   ],
   "dependencies": {
+    "angular": "~1.4.6",
     "angular-auto-validate": "~1.18.16",
     "angular-flash": "~0.1.14",
     "angular-flash-alert": "~1.1.1",
@@ -32,5 +33,9 @@
     "bootstrap-social": "~4.10.1",
     "ladda": "~0.9.8",
     "moment": "~2.10.6",
-    "nouislider": "~8.0.2" }
+    "nouislider": "~8.0.2"
+  },
+  "resolutions": {
+    "angular": "~1.4.6"
+  }
 }
