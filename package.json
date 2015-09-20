@@ -1,10 +1,11 @@
 {
-  "name": "taggy",
+  "name": "badgee",
   "version": "1.0.0",
-  "description": "A mobile social game app where users can tag and challenge another.",
+  "description": "A mobile social app where users can challenge each other.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -19,9 +20,7 @@
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/evanjmg/Taggy/issues"
-  }, "scripts": {
-        "postinstall": "./node_modules/bower/bin/bower install"
-    },
+  }, 
   "homepage": "https://github.com/junedev/scavengerhunt#readme",
   "dependencies": {
     "bower": "0.6.x",
@@ -42,8 +41,7 @@
     "passport": "^0.3.0",
     "passport-facebook": "^2.0.0",
     "passport-local": "^1.0.0",
-    "request": "^2.61.0",
-    "socket.io": "^1.3.6"
+    "request": "^2.61.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
