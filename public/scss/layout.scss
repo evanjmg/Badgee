@@ -7,6 +7,10 @@ body, html {
 body { padding-top: 80px; 
 background-color: #F5F8FA;
 }
+// .btn {
+//     white-space: normal !important;
+//     word-wrap: break-word;
+// }
 .white-container {
   border:1px solid rgba(0,0,0,0.1);
   background-color: white;
@@ -199,9 +203,7 @@ canvas {
 
    }
    
-   .btn { 
-    width:100%;
-   }
+  
 
     .navbar-nav>li:hover {
     background-color: white;
@@ -234,9 +236,7 @@ canvas {
     justify-content: center;
     z-index: -1;
   }
-  a.btn {
-    font-size: 12px !important;
-  }
+  
   h4 {
   font-size:11px;
   }

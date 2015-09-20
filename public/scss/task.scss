@@ -102,6 +102,11 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   body {
     font-size:12px;
   }
+  .btn {
+    font-size: 10px !important;
+    white-space: normal !important;
+    word-wrap: break-word;
+  }
   .profile-img {
     width:35px;
   }

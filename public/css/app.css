@@ -399,8 +399,6 @@ canvas {
 
   .container-fluid > .navbar-collapse .navbar-nav > li, .container-fluid > .navbar-header .navbar-nav > li, .container > .navbar-collapse .navbar-nav > li, .container > .navbar-header .navbar-nav > li {
     padding-top: 0; }
-  .container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
-    width: 100%; }
   .container-fluid > .navbar-collapse .navbar-nav > li:hover, .container-fluid > .navbar-header .navbar-nav > li:hover, .container > .navbar-collapse .navbar-nav > li:hover, .container > .navbar-header .navbar-nav > li:hover {
     background-color: white;
     color: black; }
@@ -428,9 +426,6 @@ canvas {
     align-items: center;
     justify-content: center;
     z-index: -1; }
-
-  a.btn {
-    font-size: 12px !important; }
 
   h4 {
     font-size: 11px; }
@@ -573,6 +568,11 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
 @media screen and (max-width: 550px) {
   body {
     font-size: 12px; }
+
+  .btn {
+    font-size: 10px !important;
+    white-space: normal !important;
+    word-wrap: break-word; }
 
   .profile-img {
     width: 35px; }
