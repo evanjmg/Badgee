@@ -2,7 +2,7 @@ angular
 .module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash"])
 .config(MainRouter)
 .config(AuthInterceptor)
-.constant("API", "http://172.19.4.187:5000/api");
+.constant("API", "http://www.badgee.uk/api");
 
 function AuthInterceptor($httpProvider){
   $httpProvider.interceptors.push("authInterceptor");
