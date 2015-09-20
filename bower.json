@@ -34,10 +34,5 @@
     "moment": "~2.10.6",
     "nouislider": "~8.0.2",
     "spin.js": "~2.3.2"
-  },
-  "resolutions": {
-    "spin.js": "~2.3.2",
-    "angular": "1.2.0-rc.3",
-    "bootstrap": "v4.0.0-alpha"
   }
 }
