@@ -6,10 +6,14 @@
   padding:10px;
   margin-left:0 !important;
 }
-
+.task-description {
+  padding-left:20px;
+  padding-bottom: 20px;
+}
 .map-container {
   display:none;
 } 
+
 .task-show-page-container {
   max-width: 400px;
   margin:auto;
@@ -17,6 +21,9 @@
   border:1px solid rgba(0,0,0,0.1);
   border-radius: 5px;
   background-color: white;
+  padding-bottom: 20px;
+  display:inline-block;
+  vertical-align:top;
 }
 .index-tasks-container {
   overflow:hidden;
@@ -26,14 +33,15 @@
   padding:10px;
 }
 .card-bottom {
-  padding:30px;
+  padding:25px;
+  padding-top: 0px;
+  padding-bottom: 10px;
 }
 #creator-name, #created_at, #tagged-member-name-head {
   line-height: 46px;
 }
 
 a#creator-name, a#tagged-member-name-head {
-  padding-left:20px;
   display:inline;
   text-decoration: none;
   font-weight: bold;

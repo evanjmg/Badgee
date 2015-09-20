@@ -1,42 +1,51 @@
 <div ng-controller="TasksController as tasks">
+<div class="white-container search-container">
   <input type="text" ng-model="query" class="form-control" placeholder="Search challenges">
-  <h2>Search Results for '{{query}}'</h2>
+  <h2 ng-show="query">Search Results for '{{query}}'</h2>
   <div ng-show="(tasks.all | filter: query).length == 0">
     No results. 
   </div>
-  <div ng-repeat="task in tasks.all | filter: query" ng-hide="(tasks.all | filter: query).length == 0" class="task-show-page-container" style="display:inline-block;">
-  <div class="index-tasks-container">
-      <div class="row card-top">
-        <div class="col-xs-8"> 
-          <img ng-src="{{ task._creator.img_url}}" width="" alt="profile"  class="img-circle profile-img img-responsive show-page-profile-img">
-          <a href="#" id="creator-name" >{{ task._creator.name}}</a>
-        </div>
-
-        <div class="col-xs-4 pull-right" id="created_at" >{{ tasks.format_created_at }}</div>
-      </div>
-      <img src="{{ task.img_url}}" class="img-responsive" id="task-image" alt="">
-
-      <div class='row card-bottom'>
-
-        <div class="pull-right" ng-show="task.location.name">
-          <a href="" class="map-button"> <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{task.location.name | limitTo: 10}} ..</span>
-          </a>
-        </div>
-        <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive"> <span id='task-minutes'>{{ task.minutes}} min</span>
-        </div>
-        <div  ng-if="task._tagged_member.id"><a id="tagged-member-name" href="">
-          <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name | split:',':0 }} </span></a>
-        </div>
-        <br/>
-        <div class="row">
-          {{task.description | limitTo: 50}}
-        </div>
-        <a ui-sref="showTask({ id: task._id})" class="btn btn-info">View</a>
-      </div>
-      <hr class="line-break">
-    </div>
   </div>
+  <div class="feed-container">
+    <div ng-repeat="task in tasks.all | filter: query" ng-hide="(tasks.all | filter: query).length == 0" class="white-container task-post" >
 
+      <div class="row">
+        <div class="row">
+         <div class="col-xs-6">
+           <a ui-sref="profile({ user_id: task._creator.id })" id="creator-name">
+             <img  style="display:inline" src="{{task._creator.img_url}}" alt="profile" class="profile-img img-responsive">
+             <div style="display:inline">
+               <span style="display:inline">{{ task._creator.name}}</span>
+             </div>
+           </a>
+         </div>
+         <div class="col-xs-6" style="text-align:right; padding-right:20px;">
+           <span  id="created_at" >{{ task.created_at | date: mediumDate }}</span>
+         </div>
+       </div>
+       <div class="row" style="padding-top:10px;">
+         <img ng-show="task.img_url"src="{{task.img_url}}" alt="task-image" class="img-responsive" style="min-width:100%;">
+       </div>
+       <p></p>
+       <div class="row">
+
+        <div class="col-xs-12 task-description">{{task.description | limitTo: 143}} <a ui-sref="showTask({ id: task._id})"> more</a></div>
+      </div>
+      <div class="pull-left"><a id="tagged-member-name" ui-sref="profile({ user_id: task._tagged_member.id })">
+        <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name}} </span></a>
+      </div>
+      <div class="pull-right">
+        <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ task.location.name}}</span>
+      </div>
+      <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive">
+       <span id='task-minutes'>{{ task.minutes}} min</span>
+     </div>
+
+
+
+   </div>
+
+ </div>
 </div>
 
    <!--    <div class="row">

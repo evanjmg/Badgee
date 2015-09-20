@@ -3,10 +3,10 @@
 
 
 
-  <div id="createTaskPage" class="white-container">
+  <div id="createTaskPage">
 
     <!-- <form ng-submit="tasks.createTask()" novalidate='novalidate' id="createTaskForm"> -->
-      <div ng-hide="tasks.selectUsersPage || showCamera" id="createTaskMainForm">
+      <div ng-hide="tasks.selectUsersPage || showCamera" id="createTaskMainForm" class="white-container">
       <h2>Create Challenge</h2>
       <form ng-submit="tasks.showUsersPage()" form="createTaskForm" novalidate='novalidate'>
       <div class="form-group">
@@ -41,7 +41,7 @@
       </div>
 
 
-      <section ng-if="showCamera == true">
+      <section ng-if="showCamera == true" class='white-container'>
         <div class="camera">
           <section class="video">
             <button class="btn" id="cancelPhoto" ng-click="tasks.exitCapture()" >X</button>
@@ -59,7 +59,7 @@
           </div>
         </div>
       </section>
- <div ng-if="tasks.selectUsersPage" class="text-center center">
+ <div ng-if="tasks.selectUsersPage" class="text-center center white-container">
       <h2>Send It to a Friend</h2>
         <div class="form-group">
         <input type="text" class="form-control" ng-model="query" placeholder="Search Users">

@@ -54,7 +54,6 @@ function createTask (req, res) {
 
      }); 
     } }) 
-// })
 }
 
 function reviewTaskCompletion (req, res) {

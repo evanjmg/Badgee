@@ -1,13 +1,9 @@
 .profile-challenges {
-  float:right;
-  width: 400px;
   margin:auto;
-  padding:0px;
-  border:1px solid rgba(0,0,0,0.1);
-  border-radius: 5px;
-  overflow:hidden;
-  padding:10px;
-  min-height: 189px;
+
+  vertical-align:top;
+}
+.profile-container {
 }
 .profile-header {
   width:100%;
@@ -20,15 +16,31 @@
   display:block;
   margin:auto;
   margin-top:-50px;
-
+  margin-bottom: 100px;
   img {
   max-width: 100px;
   }
 }
+
 .task-post {
+  border-radius: 5px;
+  overflow:hidden;
+  min-height: 189px;
+  border:1px solid rgba(0,0,0,0.1);
   display:inline-block;
-  width: 400px;
+  min-width: 400px;
   margin:10px;
+  max-width: 400px;
+  vertical-align: top;
+  float:left;
+  background-color: white;
+}
+.single-post {
+  margin:auto !important;
+  float:none !important;
+  display:block !important;
+  max-width:400px;
+  padding-bottom: 20px;
 }
 .feed-container {
 
@@ -37,8 +49,10 @@
   display:block;
   margin:auto;
   padding:30px;
-  padding-top: 100px;
   max-width: 900px;
+}
+.profile-padding {
+  padding-top: 100px;
 }
 #username {
   font-weight: bold;
@@ -56,3 +70,31 @@
     font-size: 14px;
   }
 }
+
+@media screen and (max-width: 768px) { 
+ .profile-total-coins {
+  float: right;
+ }
+  .feed-container {
+    padding:0;
+  }
+
+  .profile-padding {
+    padding-top: 40px;
+  }
+  .task-post {
+    max-width: 400px;
+    width:100%;
+    min-width: 200px;
+    margin:4px;
+    padding-bottom: 15px;
+  }
+  .profile-header { 
+  top:30;  
+  padding:5px;
+    max-height: 60px;
+    img {
+    max-width: 50px;
+    }
+     }
+  }
