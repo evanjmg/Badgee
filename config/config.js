@@ -1,3 +1,3 @@
 module.exports = {
-  'secret': process.env.TAGGY_SECRET
+  'secret': process.env.BADGEE_SECRET
 };

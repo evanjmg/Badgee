@@ -34,7 +34,7 @@ var routes = require('./config/routes');
 app.use('/api', routes);
 
 
-app.use('/api', expressJWT({secret: process.env.TAGGY_SECRET})
+app.use('/api', expressJWT({secret: process.env.BADGEE_SECRET})
   .unless({path: ['/api/login', '/api/signup', '/api/facebook', '/api/facebook/callback'], method: ['post', 'get']}));
 
  app.use(function (error, request, response, next) {
