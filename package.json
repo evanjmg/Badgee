@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "A mobile social app where users can challenge each other.",
   "main": "index.js",
+  "cacheDirectories": ["node_modules", "bower_components"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "bower install && grunt build"
   },
   "repository": {
     "type": "git",
