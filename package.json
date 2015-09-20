@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "description": "A mobile social app where users can challenge each other.",
   "main": "index.js",
-  "cacheDirectories": ["node_modules", "bower_components"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "bower install && grunt build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/evanjmg/Taggy.git"
+    "url": "git+ssh://git@github.com/evanjmg/Badgee.git"
   },
   "keywords": [
     "taggy",
@@ -20,11 +18,10 @@
   "author": "Evan Gillogley",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/evanjmg/Taggy/issues"
+    "url": "https://github.com/evanjmg/Badgee/issues"
   }, 
   "homepage": "https://github.com/junedev/scavengerhunt#readme",
   "dependencies": {
-    "bower": "0.6.x",
     "aws-sdk": "^2.2.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
