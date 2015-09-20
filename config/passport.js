@@ -44,7 +44,7 @@ module.exports = function(passport) {
   passport.use('facebook', new FacebookStrategy({
     clientID        : process.env.FACEBOOK_API_TAGGY,
     clientSecret    : process.env.FACEBOOK_API_SECRET_TAGGY,
-    callbackURL     : 'http://localhost:5000/api/facebook/callback',
+    callbackURL     : 'http://www.badgee.uk/api/facebook/callback',
     enableProof     : true,
     profileFields   : ['name', 'emails']
   }, function(access_token, refresh_token, profile, done) {

@@ -67,7 +67,7 @@ function UsersController(User, TokenService, $state, $stateParams, $location){
   }
   self.signup = function() {
     if (!self.user.img_url) {
-      self.user.img_url = 'http://localhost:5000/images/badgee-profile-filler'+Math.floor(Math.random()*2)+'.png';
+      self.user.img_url = 'http://www.badgee.uk/images/badgee-profile-filler'+Math.floor(Math.random()*2)+'.png';
     }
     User.signup(self.user,function(response){
       window.location.href = "/#/users/tasks";

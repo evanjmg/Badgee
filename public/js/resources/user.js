@@ -6,7 +6,7 @@ User.$inject = ['$resource'];
 
 function User ($resource) {
 
- var url = 'http://localhost:5000/api'
+ var url = 'http://www.badgee.uk/api'
 
  var UserResource = $resource(
   url + '/users/:id',
