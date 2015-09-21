@@ -1,8 +1,8 @@
 angular
-.module("taggyApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash"])
+.module("badgeeApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash"])
 .config(MainRouter)
 .config(AuthInterceptor)
-.constant("API", "http://www.badgee.uk/api");
+.constant("API", "https://badgeeapp.heroku.com/api");
 
 function AuthInterceptor($httpProvider){
   $httpProvider.interceptors.push("authInterceptor");

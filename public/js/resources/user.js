@@ -1,12 +1,12 @@
 angular
-.module('taggyApp')
+.module('badgeeApp')
 .factory('User', User);
 
 User.$inject = ['$resource'];
 
 function User ($resource) {
 
- var url = 'http://www.badgee.uk/api'
+ var url = 'https://badgeeapp.heroku.com/api'
 
  var UserResource = $resource(
   url + '/users/:id',

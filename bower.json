@@ -1,5 +1,5 @@
 {
-  "name": "taggy",
+  "name": "badgee",
   "version": "0.0.0",
   "authors": [
     "evanjmg <evanjmg@gmail.com>"
@@ -11,7 +11,7 @@
     "awesome"
   ],
   "license": "Apache-2.0",
-  "homepage": "http://taggyapp.uk",
+  "homepage": "http://badgee.uk",
   "ignore": [
     "**/.*",
     "node_modules",

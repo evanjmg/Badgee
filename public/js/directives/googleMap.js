@@ -1,4 +1,4 @@
-angular.module('taggyApp')
+angular.module('badgeeApp')
 .directive('map', function() {
   var directive = {};
     directive.restrict    = "A";

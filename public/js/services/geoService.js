@@ -1,5 +1,5 @@
 angular
-.module('taggyApp').factory('Geo', Geo)
+.module('badgeeApp').factory('Geo', Geo)
 
 function Geo () {
   function locate (callback) {

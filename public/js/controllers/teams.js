@@ -1,4 +1,4 @@
-angular.module('taggyApp')
+angular.module('badgeeApp')
 .controller('TeamsController', TeamsController);
 
 $(function () {

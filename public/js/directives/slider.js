@@ -1,5 +1,5 @@
 angular
-  .module('taggyApp')
+  .module('badgeeApp')
   .directive('slider', Slider);
 
 function Slider() {

@@ -1,5 +1,5 @@
 angular
-.module('taggyApp')
+.module('badgeeApp')
 .service('PhotoUpload', PhotoUpload);
 
 PhotoUpload.$inject = ['$http']

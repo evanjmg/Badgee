@@ -1,11 +1,11 @@
 angular
-.module('taggyApp')
+.module('badgeeApp')
 .factory('Task', Task);
 
 Task.$inject = ['$resource'];
 function Task ($resource) {
 
- var url = 'http://www.badgee.uk/api/tasks/'
+ var url = 'https://badgeeapp.heroku.com/api/tasks/'
 
  var TaskResource = $resource(url + ':id' ,{id: '@_id'},
   { 'update' : { method: 'PUT' },

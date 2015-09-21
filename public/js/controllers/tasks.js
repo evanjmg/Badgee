@@ -1,4 +1,4 @@
-angular.module('taggyApp')
+angular.module('badgeeApp')
 .controller('TasksController', TasksController);
 
 TasksController.$inject = ['Flash', 'User', 'Task', '$state', '$stateParams', 'TokenService', '$location','PhotoUpload', '$scope', 'Geo'];

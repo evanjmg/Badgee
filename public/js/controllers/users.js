@@ -1,4 +1,4 @@
-angular.module('taggyApp')
+angular.module('badgeeApp')
 .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', '$state','$stateParams', '$location'];
