@@ -81,6 +81,6 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/users/tasks/created',
     templateUrl: 'templates/users/created_tasks.html'
   })
-  $urlRouterProvider.otherwise('/') 
+  $urlRouterProvider.otherwise('/#/') 
   
   }

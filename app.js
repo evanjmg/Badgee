@@ -63,18 +63,18 @@ app.post('/api/aws', function (req, res) {
 });
 
 
-// app.use(function(req, res, next) {
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   if ('OPTIONS' == req.method) {
-//          res.send(200);
-//      }
-//      else {
-//          next();
-//      }
-// });
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  if ('OPTIONS' == req.method) {
+         res.send(200);
+     }
+     else {
+         next();
+     }
+});
 
 
 app.listen(process.env.PORT || 5000);
