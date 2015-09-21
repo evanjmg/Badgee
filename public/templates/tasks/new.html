@@ -23,15 +23,16 @@
         <input type="text" ng-model="tasks.task.location.name" placeholder="Where is it? e.g. Pizza Union, Shoreditch, London" class="form-control">
       </div>
         <div class="row">
-          <div class="col-xs-4">
-            <a ng-click="tasks.startCamera()" id="showCameraButton"class="btn btn-info">Take a Photo</a>
-          </div>
-          <div class="col-xs-4 text-center fadedText">
-           OR 
+          <div class="col-xs-4 pull-right">
+             <file-field  ng-model="uploadFile" preview="previewImage" class=" btn-info btn" id="uploadFileButton" file>Upload File</file-field>
          </div>
-         <div class="col-xs-4 pull-right">
-            <file-field  ng-model="uploadFile" preview="previewImage" class=" btn-info btn" id="uploadFileButton" file>Upload File</file-field>
-        </div>
+          <div class="col-xs-4 text-center fadedText">
+           <span id="or">OR </span>
+         </div>
+         <div class="col-xs-4">
+           <a ng-click="tasks.startCamera()" id="showCameraButton"class="btn btn-info">Take a Photo</a>
+         </div>
+        
       </div>
       <p></p>
       <div class="form-group">
@@ -103,6 +104,7 @@
     }
     if (iOS === true) {
        $("#showCameraButton").hide();
+       $('#or').hide();
     }
   });
 </script>
