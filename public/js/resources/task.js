@@ -5,7 +5,7 @@ angular
 Task.$inject = ['$resource'];
 function Task ($resource) {
 
- var url = 'https://badgeeapp.heroku.com/api/tasks/'
+ var url = '/api/tasks/'
 
  var TaskResource = $resource(url + ':id' ,{id: '@_id'},
   { 'update' : { method: 'PUT' },

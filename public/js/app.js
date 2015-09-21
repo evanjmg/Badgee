@@ -2,7 +2,7 @@ angular
 .module("badgeeApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash"])
 .config(MainRouter)
 .config(AuthInterceptor)
-.constant("API", "https://badgeeapp.heroku.com/api");
+.constant("API", "/api");
 
 function AuthInterceptor($httpProvider){
   $httpProvider.interceptors.push("authInterceptor");

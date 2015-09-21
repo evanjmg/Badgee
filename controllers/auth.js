@@ -25,7 +25,7 @@ function signup(req, res, next) {
     if (err) return res.status(500).send(err);
     if (!user) return res.status(401).send({ error: 'User already exists!' + JSON.parse(info) });
 
-    var token = jwt.sign(user, process.env.TAGGY_SECRET, { expiresInMinutes: 1440 });
+    var token = jwt.sign(user, process.env.BADGEE_SECRET, { expiresInMinutes: 1440 });
 
     return res.status(200).send({ 
       success: true,
@@ -45,7 +45,7 @@ function login(req, res, next) {
 
     if (!user.validPassword(req.body.password)) return res.status(403).send({ message: 'Authentication failed. Wrong password.' });
 
-    var token = jwt.sign(user, process.env.TAGGY_SECRET, { expiresInMinutes: 1440 });
+    var token = jwt.sign(user, process.env.BADGEE_SECRET, { expiresInMinutes: 1440 });
 
     return res.status(200).send({
       success: true,

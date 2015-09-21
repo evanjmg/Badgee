@@ -1,5 +1,5 @@
  angular
-  .module('taggyApp')
+  .module('badgeeApp')
   .service('TokenService', TokenService)
 
  TokenService.$inject = ['$window' , 'jwtHelper']

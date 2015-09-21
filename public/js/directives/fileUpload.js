@@ -41,7 +41,7 @@ angular.module('bootstrap.fileField',[])
 });
 
 angular
-  .module('taggyApp')
+  .module('badgeeApp')
   .directive('file', UpdateFile);
 
 function UpdateFile(){

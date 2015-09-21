@@ -6,7 +6,7 @@ User.$inject = ['$resource'];
 
 function User ($resource) {
 
- var url = 'https://badgeeapp.heroku.com/api'
+ var url = '/api'
 
  var UserResource = $resource(
   url + '/users/:id',
