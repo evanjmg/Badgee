@@ -63,7 +63,6 @@ function BindEvent(scope, el, attrs){
     scope.file = file;
 
     scope.$parent.tasks.file = file;
-    console.log("Inside directive ", scope.$parent.tasks.file);
 
     scope.$parent.tasks.upload();
 

@@ -6,15 +6,11 @@ angular.module('badgeeApp')
     task: '@',
     question: "@"
     }
-  // E - element, C - class, A - attr, M - message/comment
+  
     directive.replace     = true;
    directive.link =   function ($scope, element, attrs) {
-    console.log($scope);
-    console.log(attrs);
-
-      // parseFloat()
-    // var tag = '<div id="map" style="width:200px;height:200px"></div>';
-    // element.append(tag);
+    
+  
 
   var myLatLng = {"lat": $scope.tasks.task.location.lat, "lng": $scope.tasks.task.location.lon }
 

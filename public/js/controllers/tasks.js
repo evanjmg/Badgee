@@ -64,11 +64,12 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       }
       response.splice(index, 1);
       self.allUsers = response;
-      console.log(response[0].id);
     });
 
     self.startCamera = function(){
       $scope.showCamera = true;
+      Flash.create('success', "Take a picture, then draw on it!", 'custom-class');
+   
     }
 
     $scope.$watch('showCamera', function(showCamera){

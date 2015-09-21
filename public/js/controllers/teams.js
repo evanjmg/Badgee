@@ -24,10 +24,10 @@ function TeamsController(User, Team, $state, $stateParams, TokenService){
   });
   
   self.addUserToNewTeam = function (user, $event) {
-    console.log(user);
+
     self.team.members = self.team.members || [];
     self.team.members.push({ _member: user.id});
-    console.log(self.team.members);
+    
     $($event.target).hide();
     $($event.target).next('.removeFromNewTeamButton').css('display', 'block');
   }
@@ -43,20 +43,19 @@ function TeamsController(User, Team, $state, $stateParams, TokenService){
         break; 
       }
     }
-    console.log(index);
-    console.log(self.team.members);
+ 
     self.team.members.splice(index, 1);
   }
   
   self.createTeam = function () {
-    console.log('hello', self.currentUser.id)
+
     self.team.members.push({ _member: self.currentUser.id });
     Team.save(self.team, function (response) {
         self.showTeam(response);
     });
   }
   self.showTeam = function (team) {
-    console.log(team);
+
     Team.get({id: team._id}, function (response) {
       self.team = response;
       $state.go('showTeam', { id: self.team._id });

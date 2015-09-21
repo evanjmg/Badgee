@@ -11,7 +11,7 @@ function UsersController(User, TokenService, $state, $stateParams, $location){
 
   if ($stateParams.user_id) {
     self.feed = User.feed({ id: $stateParams.user_id}, function (resp) {
-      console.log(resp);
+
       return resp;
     });
   }
@@ -21,12 +21,12 @@ function UsersController(User, TokenService, $state, $stateParams, $location){
   if (TokenService.isAuthed()) {
   
     self.currentUser = User.get({ id: (TokenService.parseJwt()).id }, function (response) {
-      console.log(self.currentUser);
+
         if ($location.path() == '/users/tasks') {
           
           User.pendingTasks({ userId: response.id }, function (response) {
             self.pending = response;
-            console.log(self.pending);
+      
           }); 
         }
 
@@ -62,7 +62,7 @@ function UsersController(User, TokenService, $state, $stateParams, $location){
   }
   self.update = function () {
     User.update(self.user, function (response) {
-      console.log(response);
+ 
     })
   }
   self.signup = function() {

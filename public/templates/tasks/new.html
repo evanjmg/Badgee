@@ -41,7 +41,10 @@
       </div>
 
 
-      <section ng-if="showCamera == true" class='white-container'>
+      <section ng-if="showCamera == true">
+      <div flash-message="5000">
+       
+      </div>
         <div class="camera">
           <section class="video">
             <button class="btn" id="cancelPhoto" ng-click="tasks.exitCapture()" >X</button>
@@ -56,7 +59,9 @@
             <div class="col-xs-6">
               <a class='pull-right' class="btn btn-info teal" id="retakeButton"  ng-click="tasks.retakePhoto()"><span class="btn btn-info teal">Retake</span></a>
             </div>
+           
           </div>
+
         </div>
       </section>
  <div ng-if="tasks.selectUsersPage" class="text-center center white-container">

@@ -16,12 +16,12 @@ function PhotoUpload($http) {
   self.uniqueFileName = '';
 
   self.upload = function(file, callback) { 
-    console.log("Inside Photoupload", file)
+    
 
     if (!file) {
       var file = canvas.toDataURL('image/png');
       file     = dataURItoBlob(file);
-      console.log(file);
+     
     }
     
     if (file) {
@@ -156,7 +156,7 @@ self.startup = function () {
   }
 
   self.takepicture = function () {
-    console.log("INSIDE DIRECTIVE");
+
 
     var context = canvas.getContext('2d');
     if (width && height) {
