@@ -467,6 +467,9 @@ canvas {
     padding-left: 0;
     max-width: 100%;
     width: 100% !important; } }
+@media screen and (max-width: 480px) {
+  .content-container {
+    margin: 0; } }
 .addToNewTeamButton, .removeFromNewTeamButton {
   margin: auto;
   text-align: center; }
@@ -491,6 +494,9 @@ canvas {
 
 .map-container {
   display: none; }
+
+#search-results {
+  font-size: 14px; }
 
 .task-show-page-container {
   max-width: 400px;

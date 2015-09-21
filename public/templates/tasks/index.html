@@ -1,7 +1,7 @@
 <div ng-controller="TasksController as tasks">
 <div class="white-container search-container">
   <input type="text" ng-model="query" class="form-control" placeholder="Search challenges">
-  <h2 ng-show="query">Search Results for '{{query}}'</h2>
+  <h2 ng-show="query" id="search-results">Search Results for '{{query}}'</h2>
   <div ng-show="(tasks.all | filter: query).length == 0">
     No results. 
   </div>

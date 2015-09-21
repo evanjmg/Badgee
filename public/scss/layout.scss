@@ -5,7 +5,7 @@ body, html {
   min-height: 100% !important;
 }
 body { padding-top: 80px; 
-background-color: #F5F8FA;
+  background-color: #F5F8FA;
 }
 // .btn {
 //     white-space: normal !important;
@@ -27,8 +27,8 @@ background-color: #F5F8FA;
   line-height: 30px;
 }
 .content-container { 
-height:100% !important;
-margin:10px;
+  height:100% !important;
+  margin:10px;
 
 }
 .profile-img {
@@ -44,40 +44,40 @@ margin:10px;
   background-color: $primary-color;
   color: white;
   .navbar-form .form-control {
-     font-size: 14px;
-     padding:3px;
-   }
-  .navbar-nav>li>a {
+   font-size: 14px;
+   padding:3px;
+ }
+ .navbar-nav>li>a {
 
-    color:white;
-    text-transform: uppercase;
-    box-size: content-box;
-    padding-left:0;
-    padding-right:0;
-  }
-  .navbar-nav>li {
-    padding-left:10px;
-    padding-right:10px;
-  }
-  .navbar-nav>li>a:hover {
-   padding-bottom: 2px;
-   border-bottom: 2px solid white;
-   padding-left:0;
-   padding-right:0;
-  }
-  .navbar-toggle {
-    border:2px solid white;
-  }
-   .navbar-toggle .icon-bar {
-    background-color: white;
-   }
-   .navbar-brand {
-    font-size: 26px;
-     font-family: 'Nevis Bold';
-     color:white;
-     text-transform: uppercase;
-     font-weight: 700;
-   }
+  color:white;
+  text-transform: uppercase;
+  box-size: content-box;
+  padding-left:0;
+  padding-right:0;
+}
+.navbar-nav>li {
+  padding-left:10px;
+  padding-right:10px;
+}
+.navbar-nav>li>a:hover {
+ padding-bottom: 2px;
+ border-bottom: 2px solid white;
+ padding-left:0;
+ padding-right:0;
+}
+.navbar-toggle {
+  border:2px solid white;
+}
+.navbar-toggle .icon-bar {
+  background-color: white;
+}
+.navbar-brand {
+  font-size: 26px;
+  font-family: 'Nevis Bold';
+  color:white;
+  text-transform: uppercase;
+  font-weight: 700;
+}
 }
 .navbar-brand>img {
   margin-top: -15px;
@@ -102,17 +102,17 @@ margin:10px;
   color: $primary-color;
 }
 
- #input-number {
+#input-number {
   text-align: center;
   width:40px;
-margin:auto;
-display:inline;
-border:none;
-margin-top: 15px;
-padding-right:0;
-font-weight: bold;
-font-size: 25px;
-color: $primary-color;
+  margin:auto;
+  display:inline;
+  border:none;
+  margin-top: 15px;
+  padding-right:0;
+  font-weight: bold;
+  font-size: 25px;
+  color: $primary-color;
 }
 
 #account-nav {
@@ -139,7 +139,7 @@ canvas {
   #account-nav {
     content:""
   } 
- .navbar-form .form-control {
+  .navbar-form .form-control {
     font-size: 10px;
     padding:3px;
   }
@@ -150,31 +150,31 @@ canvas {
    font-size: 16px; }
    .navbar-brand>img {
     width:35px;
-   }
+  }
 }
 @media only screen and (max-width: 945px) {
   
   .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container {
-  .navbar-nav>li>a {
-    font-size:13px ;
+    .navbar-nav>li>a {
+      font-size:13px ;
 
+    }
+    #account-nav {
+      content:""
+    } 
+    .navbar-form .form-control {
+      font-size: 10px;
+      padding:3px;
+    }
+    .navbar-form > a.btn.btn-default {
+      font-size: 10px;
+    }
+    .navbar-brand {
+     font-size: 16px; }
+     .navbar-brand>img {
+      width:35px;
+    }
   }
-  #account-nav {
-    content:""
-  } 
- .navbar-form .form-control {
-    font-size: 10px;
-    padding:3px;
-  }
-  .navbar-form > a.btn.btn-default {
-    font-size: 10px;
-  }
-  .navbar-brand {
-   font-size: 16px; }
-   .navbar-brand>img {
-    width:35px;
-   }
- }
 }
 .search-container {
   background-color: #547DA7;
@@ -184,7 +184,7 @@ canvas {
   position:fixed;
   width:100%;
   margin-right: auto;
-    margin-left: auto;
+  margin-left: auto;
   top:0;
   margin-top: 50px;
   right:0 !important;
@@ -197,58 +197,58 @@ canvas {
   .search-container {
     padding:5px;
   }
-   .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
+  .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
    .navbar-nav>li {
     padding-top:0;
 
-   }
-   
+  }
+  
   
 
-    .navbar-nav>li:hover {
+  .navbar-nav>li:hover {
     background-color: white;
     color:black;
-    }
-    .navbar-nav>li>a:hover {
-      color:black;
-    }
   }
-    #minutes, #input-number {
-      font-size: 20px;
-    }
-    
-    #capture-preview {
-      max-width: 200px;
-      max-height: 400px;
-    }
-    #startbutton {
-      margin-top: -15%;
-      width:50px;
-      height:50px;
+  .navbar-nav>li>a:hover {
+    color:black;
   }
-  section.video {
-    padding:0 ;
-    height:650px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: -1;
-  }
-  
-  h4 {
+}
+#minutes, #input-number {
+  font-size: 20px;
+}
+
+#capture-preview {
+  max-width: 200px;
+  max-height: 400px;
+}
+#startbutton {
+  margin-top: -15%;
+  width:50px;
+  height:50px;
+}
+section.video {
+  padding:0 ;
+  height:650px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+}
+
+h4 {
   font-size:11px;
-  }
-  img#badgee-coin {
-    width:25px;
-  }
+}
+img#badgee-coin {
+  width:25px;
+}
 
 
-   .container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
-     width:100% !important;
-  
-  }
+.container-fluid > .navbar-collapse .btn, .container-fluid > .navbar-header .btn, .container > .navbar-collapse .btn, .container > .navbar-header .btn {
+ width:100% !important;
+ 
+}
 h2 {
   font-size:18px;
 }
@@ -256,28 +256,32 @@ span#account-nav {
   content:"Account";
 } 
 .navbar-header .navbar-brand {
-   font-size: 16px; }
-   .navbar-form .form-control {
-      font-size: 12px;
+ font-size: 16px; }
+ .navbar-form .form-control {
+  font-size: 12px;
 
-      padding:3px;
-      width:100%;
-      max-width:100%;
-    }
-
-  .navbar-nav>li>a {
-    font-size:14px ;
-    text-align: center;
-  }
-  .navbar-form input.form-control {
-     font-size: 8px;
-     padding:0;
-     margin:0;
-     height:30px;
-     padding-left: 0;
-     max-width:100%;
-     width:100% !important;
-   
-   }
+  padding:3px;
+  width:100%;
+  max-width:100%;
 }
 
+.navbar-nav>li>a {
+  font-size:14px ;
+  text-align: center;
+}
+.navbar-form input.form-control {
+ font-size: 8px;
+ padding:0;
+ margin:0;
+ height:30px;
+ padding-left: 0;
+ max-width:100%;
+ width:100% !important;
+ 
+}
+}
+@media screen and (max-width: 480px) {
+  .content-container {
+    margin:0;
+  }
+}
