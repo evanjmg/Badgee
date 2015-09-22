@@ -20,13 +20,13 @@
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/evanjmg/Badgee/issues"
-  }, 
+  },
   "homepage": "https://github.com/junedev/scavengerhunt#readme",
   "dependencies": {
-    "bower": "1.5.2",
     "aws-sdk": "^2.2.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.3",
+    "bower": "1.5.2",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-jwt": "^3.1.0",
@@ -41,7 +41,8 @@
     "passport": "^0.3.0",
     "passport-facebook": "^2.0.0",
     "passport-local": "^1.0.0",
-    "request": "^2.61.0"
+    "request": "^2.61.0",
+    "swagger-tools": "^0.9.5"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

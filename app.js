@@ -35,7 +35,7 @@ app.use('/api', routes);
 
 
 app.use('/api', expressJWT({secret: process.env.BADGEE_SECRET})
-  .unless({path: ['/api/login', '/api/signup', '/api/facebook', '/api/facebook/callback'], method: ['post', 'get']}));
+  .unless({path: ['/api/login', '/api/signup', '/api/facebook', '/api/facebook/callback', '/api', '/api/'], method: ['post', 'get']}));
 
  app.use(function (error, request, response, next) {
    if (error.name === 'UnauthorizedError') {
@@ -45,10 +45,14 @@ app.use('/api', expressJWT({secret: process.env.BADGEE_SECRET})
    }
  }); 
 
+ app.use('/a',  express.static(__dirname + '/apidocs/docs/') );
+
 app.get('/', function(req, res) {
    res.render("index.html");
  });
-
+app.get('/api', function (req, res){
+  res.render('./apidocs/docs/index.html')
+})
 
 AWS.config.update({accessKeyId: process.env.AWS_API_KEY, secretAccessKey:  process.env.AWS_API_SECRET});
 AWS.config.region = 'eu-west-1';
