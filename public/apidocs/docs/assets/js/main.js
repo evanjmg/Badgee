@@ -10,7 +10,7 @@ function choose(url) {
     f = f.split("#")[0];
   }
   $('div.non-sidebar').empty();
-  $('div.non-sidebar').load("../operations/" + f + ".html", function(){
+  $('div.non-sidebar').load("/apidocs/docs/operations/" + f + ".html", function(){
     goToAnchor();
     // rebind the models
     $(".model a").on("click", function(e){
@@ -28,7 +28,7 @@ function choose(url) {
         $('div.model-container').append(selectionImage);
       }
 
-      selectionImage.load("../apidocs/docs/models/" + encodedWord + ".html")
+      selectionImage.load("/apidocs/docs/models/" + encodedWord + ".html")
       selectionImage.attr('href',url.replace('{term}',encodeURI(model))).css({
         left: e.pageX + 20,
         top:  e.pageY - 10,

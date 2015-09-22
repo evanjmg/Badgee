@@ -1,9 +1,15 @@
 .line-numbers {
   margin-right: 1.0em;
 }
-
+code {
+  color:#547DA7;
+}
+ol > li {
+  margin-bottom: 10px;
+}
 .content {
   padding-bottom: 100px;
+  padding-left:15px;
 }
 
 .column_header_name {
@@ -110,6 +116,7 @@
 
 .content {
   padding-top: 100px;
+  padding-left: 15px;
 }
 
 .content h1 {

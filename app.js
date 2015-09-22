@@ -45,12 +45,12 @@ app.use('/api', expressJWT({secret: process.env.BADGEE_SECRET})
    }
  }); 
 
- app.use('/a',  express.static(__dirname + '/apidocs/docs/') );
+ app.use('/api',  express.static(__dirname + '/apidocs/docs/') );
 
 app.get('/', function(req, res) {
    res.render("index.html");
  });
-app.get('/api', function (req, res){
+app.use('/api', function (req, res){
   res.render('./apidocs/docs/index.html')
 })
 

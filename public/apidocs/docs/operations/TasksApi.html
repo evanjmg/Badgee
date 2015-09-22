@@ -1,14 +1,9 @@
 <div class="main-content">
-  <h2><a name=""></a></h2>
-  <p>This is the  API</p>
-
-  
-  
   <h2><a name="tasksGet"></a>tasksGet</h2>
   <hr>
   <p></p>
-  <p>Index challenges</p>
-  <h3 class="section">URL</h3>
+  <p>Get a list of all the public challenges </p>
+  <h3 class="section">ENDPOINT</h3>
   <code>https://www.badgee.uk/api/tasks</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
@@ -23,7 +18,7 @@
   <hr>
   <p></p>
   <p>Create challenges</p>
-  <h3 class="section">URL</h3>
+  <h3 class="section">ENDPOINT</h3>
   <code>https://www.badgee.uk/api/tasks</code>
   <h3 class="section">HTTP Method</h3>
   <code>POST</code>
@@ -31,10 +26,9 @@
   <div class="model" data-model="Tasks"><a href="">Tasks</a></div>
   <h3 class="section">Parameters</h3>
   <ul>
-  	
+  	<span class="param-in">Send the following in the body: </span>
 	  <li class="parameter">
       
-      <span class="param-in">Query: </span>
       
       
       
@@ -46,8 +40,6 @@
     
 	  <li class="parameter">
       
-      <span class="param-in">Query: </span>
-      
       
       
       <span class="param-name">lon</span>
@@ -58,14 +50,20 @@
     
 	  <li class="parameter">
       
-      <span class="param-in">Query: </span>
       
       
       
       <span class="param-name">task</span>
-      <span class="param-type">Map(String)</span>
+      <span class="param-type"></span>
       
-      <p class="param-description">Send task object</p>
+      <p class="param-description">Send task object - see example:</p>
+      <div style="width:300px">
+      <code>
+        { "task":<br> { "description": "d", <br> "minutes": 9,<br>
+         "location.name": "name",<br> "_creator": "560067f771cbc90300d58c38",<br>
+          "_tagged_member": "55ff3d3f523c55030003ec93" <br>}, <br>"lat": "51.374277" ,<br>"lon": "-0.101937" }
+      </code>
+      </div>
 	  </li>
     
   </ul>
@@ -73,14 +71,13 @@
   <h2><a name="tasksIdGet"></a>tasksIdGet</h2>
   <hr>
   <p></p>
-  <p>Index challenges</p>
-  <h3 class="section">URL</h3>
+  <p>Show's a challenge/task by Id</p>
+  <h3 class="section">ENDPOINT</h3>
   <code>https://www.badgee.uk/api/tasks/:id</code>
   <h3 class="section">HTTP Method</h3>
   <code>GET</code>
   <h3 class="section">Response Type</h3>
-  <div class="model" data-model="Tasks"><a href="">Tasks</a></div>
-  <h3 class="section">Parameters</h3>
+  <div class="model" data-model="Tasks"><a href="">Task</a></div>
   <ul>
   	
   </ul>

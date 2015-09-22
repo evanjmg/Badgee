@@ -13,31 +13,34 @@
 <body>
   <div class="header">
     <div class="top-bar">
-      <h1 id="logo"><a class="logo" href="/"><img src="/images/badgee-logo-headband.png" width="50px" alt="badgee logo" style="float:left;"><span>Badgee API Docs</span></a></h1>
+      <h1 id="logo"><a class="logo" href="/"><img src="/images/badgee-logo-headband.png" width="50px" alt="badgee logo" style="float:left;"><span>Badgee API</span></a></h1>
     </div>
   </div>
   <div class="model-container"></div>
   <div class="content">
     <div class="box clearfix">
-      <div class="sidebar">
-        <div class="section-box">
-          <div class="section-header">
+      <div class="sidebar panel">
+        <div class="section-box ">
+      
+          <div class="section-header ">
             Overview
           </div>
           <ul>
-            <li>Getting Started</li>
+            <li><a href="#!/GettingStarted">Getting Started</a></li>
+            <li><a href="#!/About">About</a></li>
+            <li><a href="/">Use App</a></li>
           </ul>
         </div>
         
     		
         <div class="section-box">
           <div class="section-header">
-            <a href="/api/#!/LoginApi">LoginApi</a>
+            <a href="#!/LoginApi">LoginApi</a>
           </div>
           <ul>
 			      
 			      
-            <li><a href="/apidocs/docs/#!/LoginApi#loginPost">loginPost</a></li>
+            <li><a href="#!/LoginApi#loginPost">loginPost</a></li>
             
             
           </ul>
@@ -45,12 +48,12 @@
         
         <div class="section-box">
           <div class="section-header">
-            <a href="/apidocs/docs/#!/SignupApi">SignupApi</a>
+            <a href="#!/SignupApi">SignupApi</a>
           </div>
           <ul>
 			      
 			      
-            <li><a href="/apidocs/docs/#!/SignupApi#signupPost">signupPost</a></li>
+            <li><a href="#!/SignupApi#signupPost">signupPost</a></li>
             
             
           </ul>
@@ -58,7 +61,7 @@
         
         <div class="section-box">
           <div class="section-header">
-            <a href="/api/#!/TasksApi">TasksApi</a>
+            <a href="#!/TasksApi">TasksApi</a>
           </div>
           <ul>
 			      
@@ -91,15 +94,24 @@
         
       </div>
     <div class="non-sidebar">
-      <div class="main-content">
+      <div class="panel panel-default ">
+      <div class="panel-heading">
         <h2>Getting Started</h2>
+        </div>
+        <div class="panel-body">
+
         <ol>
-          <li>Get Your API Key by making a post request to <a href="#">api/signup - click here to see the required parameters.</a></li>
+          <li>Get Your API Key by making a post request to <a href="#!/SignupApi">api/signup - click here to see the required parameters.</a></li>
+
           <li>Add the token you received from api/signup to your header like so: 
             <code> Authorization: Bearer TOKEN</code></li>
           <li>Start making requests to the other endpoints with that same header. There's no need to login again or get a new token.</li>
+          <li> Make sure to keep your API KEY safe and put it in an environment variable</li>
         </ol>
+        <img style="margin:auto;display:block;" src="/images/badgee-the-badger.png" width="100px" alt="badgee badger">
+        </div>
       </div>
+
     </div>
   </div>
 </body>
