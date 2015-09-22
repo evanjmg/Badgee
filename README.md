@@ -7,7 +7,10 @@ Backend API:
 - Node.js, Express, MongoDb, Mongoose
 - Facebook Oauth
 - Amazon AWS storage
+
 ![Challenge Example](https://s3-eu-west-1.amazonaws.com/taggyapp/media/challenge-example.jpg)
+
+
 Frontend: 
 - Angular
 - jQuery
