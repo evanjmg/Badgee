@@ -57,7 +57,7 @@ footer {
         color:#333;
         opacity:0.3;
       }
-      a:hover {
+      a:hover, a:active, a:selection {
         text-align: center;
         opacity: 0.9;
         color:#333 !important;

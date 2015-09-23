@@ -45,14 +45,10 @@ app.use('/api', expressJWT({secret: process.env.BADGEE_SECRET})
    }
  }); 
 
- app.use('/api',  express.static(__dirname + '/apidocs/docs/') );
 
 app.get('/', function(req, res) {
    res.render("index.html");
  });
-app.use('/api', function (req, res){
-  res.render('./apidocs/docs/index.html')
-})
 
 AWS.config.update({accessKeyId: process.env.AWS_API_KEY, secretAccessKey:  process.env.AWS_API_SECRET});
 AWS.config.region = 'eu-west-1';
@@ -62,9 +58,17 @@ app.post('/api/aws', function (req, res) {
     var params = {Bucket: 'taggyapp/images', Key: req.body.name, ContentType: req.body.type};
     s3.getSignedUrl('putObject', params, function(err, url) {
         if(err) console.log(err);
+        console.log(url);
         res.json({url: url});
     });
 });
+
+
+
+app.get('/api', function (req, res){
+  res.render('./apidocs/docs/index.html')
+})
+app.use('/api-docs',  express.static(__dirname + '/apidocs/docs/') );
 
 
 app.use(function(req, res, next) {

@@ -16,18 +16,19 @@ function PhotoUpload($http) {
   self.uniqueFileName = '';
 
   self.upload = function(file, callback) { 
-    
+
 
     if (!file) {
       var file = canvas.toDataURL('image/png');
       file     = dataURItoBlob(file);
+     
      
     }
     
     if (file) {
       self.file     = file;
       self.fileSize = Math.round(parseInt(self.file.size));
-
+       
       // Validating the size of the file
       if (self.fileSize > 10585760) {
         alert('Sorry, file size must be under 10MB');
@@ -42,6 +43,7 @@ function PhotoUpload($http) {
         size: self.fileSize, 
         type: self.file.type
       }).then(function(res) {
+       
         $.ajax({
           url: res.data.url,
           type: 'PUT',
@@ -49,7 +51,7 @@ function PhotoUpload($http) {
           processData: false,
           contentType: self.file.type,
       }).success(function(res){
-        console.log('File uploaded');
+        
 
         // UI to add the file to the page
         $('#createTaskMainForm').prepend("<img id='capture-preview' class='center' src='https://s3-eu-west-1.amazonaws.com/taggyapp/images/"+self.uniqueFileName+"'>")
