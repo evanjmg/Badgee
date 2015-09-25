@@ -190,7 +190,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       self.task._tagged_member = self.task._tagged_member.id;
       Task.update(self.task, function (response) {
         $state.go('showTask', { team_id: $stateParams.team_id, id: $stateParams.id});
-      })
+      });
     }
 
     self.retakePhoto = function () {

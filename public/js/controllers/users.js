@@ -1,8 +1,8 @@
 angular.module('badgeeApp')
 .controller('UsersController', UsersController);
 
-UsersController.$inject = ['User', 'TokenService', '$state','$stateParams', '$location'];
-function UsersController(User, TokenService, $state, $stateParams, $location){
+UsersController.$inject = ['Flash','User', 'TokenService', '$state','$stateParams', '$location'];
+function UsersController(Flash, User, TokenService, $state, $stateParams, $location){
 
   var self = this;
   self.user = {}
@@ -49,30 +49,31 @@ function UsersController(User, TokenService, $state, $stateParams, $location){
 
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
-  }
+  };
   self.login = function() {
     User.login({email: self.user.email , password: self.user.password },function(response){
 
     if (TokenService.isAuthed()) {
       self.currentUser = TokenService.parseJwt();
     }
-     window.location.href = "/#/users/tasks";
+     window.location.href = "/#/tasks/new";
      window.location.reload();
-    })
-  }
+    });
+  };
   self.update = function () {
     User.update(self.user, function (response) {
  
-    })
-  }
+    });
+  };
   self.signup = function() {
     if (!self.user.img_url) {
       self.user.img_url = 'http://www.badgee.uk/images/badgee-profile-filler'+Math.floor(Math.random()*2)+'.png';
     }
     User.signup(self.user,function(response){
-      window.location.href = "/#/users/tasks";
+      window.location.href = "/#/tasks/new";
       window.location.reload();
-    })
+      Flash.create('info', "Challenge a friend :) now ", 'custom-class');
+    });
   
     }
     self.logout = function() {
