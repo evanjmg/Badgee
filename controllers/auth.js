@@ -26,7 +26,7 @@ var request = require('request');
   var params = {
     code: req.body.code,
     client_id: req.body.clientId,
-    client_secret: process.env.FACEBOOK_API_SECRET_TAGGY,
+    client_secret: process.env.FACEBOOK_API_SECRET_BADGEE,
     redirect_uri: req.body.redirectUri
   };
 

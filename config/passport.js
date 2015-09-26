@@ -1,5 +1,5 @@
 var LocalStrategy = require('passport-local').Strategy;
-var FacebookStrategy = require('passport-facebook').Strategy;
+
 var User          = require("../models/user");
 var jwt           = require('jsonwebtoken');
 
@@ -36,45 +36,6 @@ module.exports = function(passport) {
           if (err) return done(err);
           return done(null, newUser);
         });
-      });
-    });
-  }));
-  
-  // FACEBOOK SIGN UP
-  passport.use('facebook', new FacebookStrategy({
-    clientID        : process.env.FACEBOOK_API_TAGGY,
-    clientSecret    : process.env.FACEBOOK_API_SECRET_TAGGY,
-    callbackURL     : '/api/facebook/callback',
-    enableProof     : true,
-    profileFields   : ['name', 'emails']
-  }, function(access_token, refresh_token, profile, done) {
-
-    console.log(profile);
-    process.nextTick(function() {
-
-      User.findOne({ email: profile.emails[0].value }, function(err, user) {
-        if (err) return done(err);
-        if (user) {
-          user.facebook.id = profile.id;
-          user.facebook.access_token = access_token; 
-          user.save(function(err) {
-            if (err) throw err;
-            return done(null, user);
-          })
-      
-        } else {
-
-          var newUser = new User();
-          newUser.facebook.id           = profile.id;
-          newUser.facebook.access_token = access_token;
-          newUser.name  = profile.name.givenName + ' ' + profile.name.familyName
-          newUser.email        = profile.emails[0].value;
-
-          newUser.save(function(err) {
-            if (err) throw err;
-            return done(null, newUser);
-          });
-        };
       });
     });
   }));
