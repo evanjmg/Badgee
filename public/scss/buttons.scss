@@ -1,3 +1,7 @@
+ a.btn {
+  white-space: normal !important;
+ }
+
  .two {
   color: #fff;
   background-color: #6496c8;
@@ -70,6 +74,18 @@
   transform: translateY(5px);
 } 
 @media screen and (max-width: 500px) { 
+  .btn-info, .btn-success {
+    width:100%;
+  }
+  #shareChallengeButton {
+  width: 80%;
+  margin:auto;
+
+  }
+  .green, .red, .teal, .two { width:100%; 
+    box-shadow: 0 0px #3F803F;
+    border-radius: 4px;
+  }
   #submitCompletion {
 display: block; width: 100%; 
 }
