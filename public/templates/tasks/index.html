@@ -9,7 +9,7 @@
   <div class="feed-container">
     <div ng-repeat="task in tasks.all | filter: query" ng-hide="(tasks.all | filter: query).length == 0" class="white-container task-post" >
 
-      <div class="row">
+      
         <div class="row">
          <div class="col-xs-6">
            <a ui-sref="profile({ user_id: task._creator.id })" id="creator-name">
@@ -43,7 +43,7 @@
 
 
 
-   </div>
+
 
  </div>
 </div>

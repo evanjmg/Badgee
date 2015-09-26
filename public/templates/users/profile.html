@@ -14,11 +14,10 @@
     </div>
   </div>
   <div class="feed-container profile-padding">
-  <div ng-show="users.feed.length == 0" class="white-container">
+  <div ng-show="users.feed.length == 0">
     {{users.user.name}} has no challenges or responses
   </div>
   <div ng-repeat="task in users.feed" class="task-post" >
-      <div class="row white-container">
         <div class="row ">
          <div class="col-xs-6">
            <a ui-sref="profile({ user_id: users.user.id })" id="creator-name">
@@ -56,7 +55,7 @@
        <span id='task-minutes'>{{ task.minutes}} min</span>
      </div>
 
-   </div>
+   
  </div>
 
 </div>

@@ -141,7 +141,7 @@ footer {
       text-align: center;
       color: #333;
       opacity: 0.3; }
-    footer ul li a:hover {
+    footer ul li a:hover, footer ul li a:active, footer ul li a:selection {
       text-align: center;
       opacity: 0.9;
       color: #333 !important;
@@ -635,6 +635,7 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
 .task-post {
   border-radius: 5px;
   overflow: hidden;
+  padding: 10px;
   min-height: 189px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: inline-block;
@@ -690,10 +691,10 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
     max-width: 400px;
     width: 100%;
     min-width: 200px;
-    margin: 4px;
     padding-bottom: 15px; }
 
   .profile-header {
+    margin-top: -30px;
     top: 50;
     padding: 5px;
     max-height: 60px; }
