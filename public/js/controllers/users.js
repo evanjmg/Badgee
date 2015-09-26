@@ -1,9 +1,9 @@
 angular.module('badgeeApp')
 .controller('UsersController', UsersController);
 
-UsersController.$inject = ['Flash','User', 'TokenService', '$state','$stateParams', '$location'];
-function UsersController(Flash, User, TokenService, $state, $stateParams, $location){
-
+UsersController.$inject = ['Flash','User', 'TokenService', '$state','$stateParams', '$location', '$auth', '$window', '$rootScope', '$scope'];
+function UsersController(Flash, User, TokenService, $state, $stateParams, $location, $auth, $window, $rootScope, $scope){
+  
   var self = this;
   self.user = {}
 
@@ -46,8 +46,19 @@ function UsersController(Flash, User, TokenService, $state, $stateParams, $locat
     self.all = User.query();
     // self.teams = User.teams( { "userId": self.currentUser.id});
   }
-  self.linkFacebook = function() { }
-  
+  self.linkFacebook = function() {
+  $auth.link('facebook')
+      .then(function(response) {
+     console.log(response);
+     $window.localStorage.setItem('token', response.data.token);
+     window.location.href = "/#/search/";
+     window.location.reload();
+
+      }).catch(function(response) {
+          console.log(response.data);
+       });
+  }
+
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
   };
@@ -57,7 +68,7 @@ function UsersController(Flash, User, TokenService, $state, $stateParams, $locat
     if (TokenService.isAuthed()) {
       self.currentUser = TokenService.parseJwt();
     }
-     window.location.href = "/#/tasks/new";
+     window.location.href = "/#/search/";
      window.location.reload();
     });
   };
@@ -78,6 +89,10 @@ function UsersController(Flash, User, TokenService, $state, $stateParams, $locat
   
     }
     self.logout = function() {
+      if ($window.localStorage.getItem('satellizer_token'))
+      {
+        $window.localStorage.removeItem('satellizer_token')
+      }
       TokenService.logout && TokenService.logout();
       window.location.href = "/#/";
       window.location.reload();

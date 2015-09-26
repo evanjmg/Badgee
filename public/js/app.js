@@ -1,5 +1,5 @@
 angular
-.module("badgeeApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash"])
+.module("badgeeApp", ['ngResource','angular-jwt', 'ui.router', 'jcs-autoValidate', 'bootstrap.fileField', "flash", 'satellizer'])
 .config(MainRouter)
 .config(AuthInterceptor)
 .constant("API", "/api");
@@ -9,7 +9,7 @@ function AuthInterceptor($httpProvider){
 }
 
 
-function MainRouter($stateProvider, $urlRouterProvider) {
+function MainRouter($stateProvider, $urlRouterProvider, $authProvider) {
   
   $stateProvider.state('login', {
     url: '/login',
@@ -81,6 +81,22 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: '/users/tasks/created',
     templateUrl: 'templates/users/created_tasks.html'
   })
-  $urlRouterProvider.otherwise('/#/') 
+  $urlRouterProvider.otherwise('/#/');
+
+  $authProvider.loginUrl = 'http://localhost:3000/auth/login';
+  $authProvider.signupUrl = 'http://localhost:3000/auth/signup';
+
+ $authProvider.facebook({
+  clientId: '781089508666393',
+   url: '/api/auth/facebook',
+   authorizationEndpoint: 'https://www.facebook.com/v2.3/dialog/oauth',
+   redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
+   requiredUrlParams: ['display', 'scope'],
+   scope: ['email'],
+   scopeDelimiter: ',',
+   display: 'popup',
+   type: '2.0',
+   popupOptions: { width: 580, height: 400 }
+ });
   
   }

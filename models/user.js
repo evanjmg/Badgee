@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
   created_tasks: [{ type: mongoose.Schema.ObjectId, ref: 'Task'}],
   completed_tasks: [{ type: mongoose.Schema.ObjectId, ref: 'Task'}],
   name: {type: String, required: true },
-  email: {type: String, required: true, unique: true},
+  email: {type: String, required: true, unique: true}, 
   total_coins: { type: Number, default: 0 },
   img_url: String,
   headline: String,
@@ -18,8 +18,7 @@ var UserSchema = new mongoose.Schema({
   },
   facebook: {
     id: String,
-    username: String,
-    access_token: String
+    username: String
   } 
 });
 
