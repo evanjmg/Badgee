@@ -46,7 +46,8 @@ function UsersController(Flash, User, TokenService, $state, $stateParams, $locat
     self.all = User.query();
     // self.teams = User.teams( { "userId": self.currentUser.id});
   }
-
+  self.linkFacebook = function() { }
+  
   self.getUser = function(user) {
     self.getUser = User.get({id: user._id});
   };
