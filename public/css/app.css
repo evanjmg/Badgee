@@ -419,6 +419,9 @@ canvas {
   z-index: 1000; }
 
 @media screen and (max-width: 768px) {
+  .content-container {
+    margin: 0; }
+
   .search-container {
     padding: 5px; }
 
