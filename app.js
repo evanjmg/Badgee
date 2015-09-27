@@ -32,7 +32,7 @@ app.use(logger('dev'));
 
 var routes = require('./config/routes');
 app.use('/api', expressJWT({secret: process.env.BADGEE_SECRET})
-  .unless({path: ['/api/login', '/api/signup', '/api/auth/facebook', '/api/facebook/callback', '/api', '/api/'], method: ['post', 'get']}));
+  .unless({path: ['/api/login', '/api/signup', '/api/auth/facebook', '/api', '/api/'], method: ['post', 'get']}));
   
 app.use('/api', routes);
 

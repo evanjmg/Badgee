@@ -3,22 +3,6 @@ var jwt      = require('jsonwebtoken');
 var passport = require('passport');
 var request = require('request');
 
-// function facebookCallback (req,res, next) {
-//     passport = req._passport.instance;
-//     passport.authenticate('facebook', function (err,user, info) {
-//       console.log('here');
-//       if (err) return res.status(500).send(err);
-//       if (!user) return res.status(401).send({ error: 'User already exists!' });
-//       var token = jwt.sign(user, process.env.TAGGY_SECRET, { expiresInMinutes: 1440 });
-//       console.log(token);
-//       res.set( { 
-//         'success': true,
-//         'message': "There is no going back now.",
-//         'token': token
-//       });
-//       next();
-//   })(req, res, next);
-// }
 
  function facebookCallback (req, res) {
   var accessTokenUrl = 'https://graph.facebook.com/v2.3/oauth/access_token';
@@ -42,16 +26,16 @@ var request = require('request');
       if (response.statusCode !== 200) {
         return res.status(500).send({ message: profile.error.message });
       }
-     console.log(req.headers);
+
       if (req.headers.authorization) {
-        console.log('*****************',req.headers.authorization);
+       
         User.findOne({ 'facebook.id' : profile.id }, function(err, existingUser) {
           if (existingUser) {
             return res.status(409).send({ message: 'There is already a Facebook account that belongs to you' });
           }
           var token = req.headers.authorization.split(' ')[1];
           var payload = jwt.decode(token, process.env.BADGEE_SECRET);
-          console.log('payload..sub***********',payload.sub);
+
 
           User.findById(payload.sub, function(err, user) {
             if (!user) {
@@ -73,17 +57,14 @@ var request = require('request');
             var token = jwt.sign(existingUser, process.env.BADGEE_SECRET, { expiresInMinutes: 1440 });
             return res.send({ token: token });
           }
-          console.log('creating new user');
+
           var user = new User();
           user.email = profile.email;
           user.facebook.id = profile.id;
           user.img_url = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
           user.name = profile.name;
-          user.save(function(resp, resp2) {
-            console.log(user);
-            console.log('********rep****', resp);
-            console.log('********rep2****', resp2);
-            console.log('saved new user');
+          user.save(function() {
+      
             var token = jwt.sign(user, process.env.BADGEE_SECRET, { expiresInMinutes: 1440 });
             res.send({ token: token });
           });
