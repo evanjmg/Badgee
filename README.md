@@ -8,6 +8,7 @@ A mobile social game app where friends tag and challenge each other  for badgee 
 - Facebook Oauth
 - Amazon AWS storage
 - Google Places
+- Facebook OAuth
 
 ![Challenge Example](https://s3-eu-west-1.amazonaws.com/taggyapp/media/challenge-example.jpg)
 
@@ -15,6 +16,7 @@ A mobile social game app where friends tag and challenge each other  for badgee 
 ##Frontend: 
 - Angular
 - jQuery
+- Satellizer Facebook OAuth
 - Bootstrap
 - HTML Canvas
 - Camera, Geolocation DOM APIs
