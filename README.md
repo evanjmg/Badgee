@@ -12,11 +12,12 @@ Backend API:
 ![Challenge Example](https://s3-eu-west-1.amazonaws.com/taggyapp/media/challenge-example.jpg)
 
 
-Frontend: 
+#Frontend: 
 - Angular
 - jQuery
 - Bootstrap
 - HTML Canvas
 - Camera, Geolocation DOM APIs
+#
 ![Challenge-Page](https://s3-eu-west-1.amazonaws.com/taggyapp/media/my-challenges-page.jpg)
 
