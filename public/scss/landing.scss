@@ -30,7 +30,7 @@
   background-color: $primary-color;
   max-width:650px;
   margin:auto;
-  height:70%;
+  height:60%;
 }
 .tagline {
   color:white;
@@ -47,10 +47,16 @@
 footer {
   color: white;
   text-align: center;
-  padding:20px;
-  height:30%;
+  padding:15px;
+  height:40%;
   font-weight: 600;
+  margin:auto;
+  max-width: 600px;
   ul {
+
+    display:block;
+    float:left;
+   
     li {
       a {
         text-align: center;
@@ -88,14 +94,23 @@ a#login-with-email:hover {
   display:block;
 }
 @media screen and (max-width: 600px) {
+  .landing-container { height: 40%;}
   footer {
+    float:none;
+    width:100%;
     padding: 0px;
     ul {
+      margin:auto;
+      margin-left: -15px;
+      width:100%;
       text-align: center;
+
     }
     li {
+      padding:0;
+      display:block;
+      margin:auto;
       text-align: center;
-      padding: 5px;
     }
   }
   .landing-container {

@@ -27,6 +27,10 @@ function MainRouter($stateProvider, $urlRouterProvider, $authProvider) {
     url: '/search/:query',
     templateUrl: 'templates/tasks/index.html'
   })
+  .state('privacyPolicy', {
+    url: '/privacy-policy',
+    templateUrl: 'templates/home/privacy_policy.html'
+  })
   .state('completeTask', 
   {
     url: '/tasks/:id/complete',

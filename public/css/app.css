@@ -129,7 +129,7 @@ a.btn {
   background-color: #73D5E5;
   max-width: 650px;
   margin: auto;
-  height: 70%; }
+  height: 60%; }
 
 .tagline {
   color: white;
@@ -146,21 +146,26 @@ a.btn {
 footer {
   color: white;
   text-align: center;
-  padding: 20px;
-  height: 30%;
-  font-weight: 600; }
-  footer ul li {
-    display: inline-block;
-    padding: 20px; }
-    footer ul li a {
-      text-align: center;
-      color: #333;
-      opacity: 0.3; }
-    footer ul li a:hover, footer ul li a:active, footer ul li a:selection {
-      text-align: center;
-      opacity: 0.9;
-      color: #333 !important;
-      text-decoration: none; }
+  padding: 15px;
+  height: 40%;
+  font-weight: 600;
+  margin: auto;
+  max-width: 600px; }
+  footer ul {
+    display: block;
+    float: left; }
+    footer ul li {
+      display: inline-block;
+      padding: 20px; }
+      footer ul li a {
+        text-align: center;
+        color: #333;
+        opacity: 0.3; }
+      footer ul li a:hover, footer ul li a:active, footer ul li a:selection {
+        text-align: center;
+        opacity: 0.9;
+        color: #333 !important;
+        text-decoration: none; }
 
 a#login-with-facebook, a#login-with-email {
   margin: 20px; }
@@ -178,13 +183,23 @@ a#login-with-email:hover {
   display: block; }
 
 @media screen and (max-width: 600px) {
+  .landing-container {
+    height: 40%; }
+
   footer {
+    float: none;
+    width: 100%;
     padding: 0px; }
     footer ul {
+      margin: auto;
+      margin-left: -15px;
+      width: 100%;
       text-align: center; }
     footer li {
-      text-align: center;
-      padding: 5px; }
+      padding: 0;
+      display: block;
+      margin: auto;
+      text-align: center; }
 
   .landing-container {
     width: 100%; }
@@ -427,6 +442,11 @@ canvas {
   width: 75px;
   height: 75px;
   z-index: 1000; }
+
+footer a:hover {
+  text-decoration: none;
+  color: #333;
+  opacity: 1; }
 
 @media only screen and (max-width: 992px) {
   .navbar-nav > li > a {

@@ -175,6 +175,13 @@ canvas {
   z-index: 1000;
 }
 
+footer {
+  a:hover {
+    text-decoration: none;
+    color:#333;
+    opacity: 1;
+  }
+}
 @media only screen and (max-width: 992px) {
   .navbar-nav>li>a {
     font-size:14px ;
