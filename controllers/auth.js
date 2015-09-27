@@ -52,7 +52,7 @@ var request = require('request');
         });
       } else {
         // Step 3b. Create a new user account or return an existing one.
-        User.findOne({ "facebook.id": profile.id }, function(err, existingUser) {
+        User.findOne({ "email": profile.email }, function(err, existingUser) {
           if (existingUser) {
             var token = jwt.sign(existingUser, process.env.BADGEE_SECRET, { expiresInMinutes: 1440 });
             return res.send({ token: token });
