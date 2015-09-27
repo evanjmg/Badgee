@@ -35,10 +35,10 @@
 
  <div ng-if="tasks.currentUser.id == tasks.task._creator.id && tasks.currentUser.id !== tasks.task._tagged_member.id && tasks.task.completed == false" class="row text-center center">
   <div class="col-xs-6 col-md-6">
-    <a ng-click="tasks.acceptResponse()" class="btn btn-success" style="margin-left:20px">Accept Submission</a>
+    <a ng-click="tasks.acceptResponse()" class="btn btn-success" style="margin-left:20px">Accept</a>
   </div>
   <div class="col-xs-6 col-md-6">
-    <a ng-click="tasks.rejectResponse()" class="btn btn-danger">Reject Submission</a>  
+    <a ng-click="tasks.rejectResponse()" class="btn btn-danger">Reject</a>  
   </div>
 
 </div>
