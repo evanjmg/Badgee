@@ -4,7 +4,9 @@
   <div ng-hide="tasks.selectUsersPage">
     <div class="row card-top">
       <div class="col-xs-8"> 
-        <img ng-src="{{ tasks.task._creator.img_url}}" alt="profile"  class="img-circle profile-img img-responsive show-page-profile-img">
+      <div class="image-cropper--small profile-image-show-page">
+        <img ng-src="{{ tasks.task._creator.img_url}}" alt="profile"  class="image-cropper__image">
+        </div>
         <a ui-sref="profile({user_id: tasks.task._creator.id})" id="creator-name" >{{ tasks.task._creator.name}}</a>
       </div>
 

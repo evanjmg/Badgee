@@ -13,7 +13,9 @@
         <div class="row">
          <div class="col-xs-6">
            <a ui-sref="profile({ user_id: task._creator.id })" id="creator-name">
-             <img  style="display:inline" src="{{task._creator.img_url}}" alt="profile" class="profile-img img-responsive">
+           <div class="image-cropper--small profile-image-show-page">
+             <img src="{{task._creator.img_url}}" alt="profile" class="image-cropper__image">
+             </div>
              <div style="display:inline">
                <span style="display:inline">{{ task._creator.name}}</span>
              </div>

@@ -2,7 +2,9 @@
 <div ng-controller="UsersController as users" class="profile-container">
   <div class="row white-container profile-header">
     <div class="col-xs-2">
-      <img ng-src="{{ users.user.img_url}}" alt="profile"  class="img-circle img-responsive show-page-profile-img">
+    <div class="image-cropper--profile">
+      <img ng-src="{{ users.user.img_url}}" alt="profile"  class="image-cropper__image">
+    </div>
     </div>
     <div class="col-xs-5" style="text-align:left;" >
       <a style="line-height:50px;" ui-sref="profile({ user_id: users.user.id })" id="username" >{{ users.user.name}}</a>
@@ -21,8 +23,10 @@
         <div class="row ">
          <div class="col-xs-6">
            <a ui-sref="profile({ user_id: users.user.id })" id="creator-name">
-             <img  style="display:inline" ng-if="task._creator.id == users.user.id" src="{{task._creator.img_url}}" alt="profile" class="profile-img img-responsive">
-             <img style="display:inline" ng-if="task._tagged_member.id == users.user.id" src="{{task._tagged_member.img_url}}" alt="profile" class="profile-img img-responsive">
+           <div class="profile-image-show-page image-cropper--small">
+             <img   ng-if="task._creator.id == users.user.id" src="{{task._creator.img_url}}" alt="profile" class="image-cropper__image">
+             <img ng-if="task._tagged_member.id == users.user.id" src="{{task._tagged_member.img_url}}" alt="profile" class="image-cropper__image">
+             </div>
              <div style="display:inline">
                <span style="display:inline" ng-if="task._creator.id == users.user.id">{{ task._creator.name}}</span>
                <span  style="display:inline"ng-if="task._tagged_member.id == users.user.id">{{ task._tagged_member.name | split:' ':0 }}</span>

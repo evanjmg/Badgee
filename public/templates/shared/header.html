@@ -31,8 +31,11 @@
          <li><a ui-sref="myTasks" id="my-challenges-nav-link">My Challenges</a></li>
            <li><a href="#" ng-hide="users.currentUser">Login</a></li>
            <li ng-show="users.currentUser"class="dropdown">
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-             <img ng-src="{{ users.currentUser.img_url }}" style="display:inline;padding-right:5px;width:30px;" class="img-responsive profile-img" alt=""><span id="account-nav"></span>  <span class="caret"></span></a>
+             <a href="#" class="dropdown-toggle nav__profile-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          
+             <div class="image-cropper--nav">
+             <img ng-src="{{ users.currentUser.img_url }}" class="img-responsive image-cropper__image" alt=""></div><span id="account-nav"></span>  <span class="caret"></span></a>
+             
              <ul class="dropdown-menu">
                
                <li role="separator" class="divider"></li>

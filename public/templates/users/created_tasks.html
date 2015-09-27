@@ -40,9 +40,13 @@
  </div>
 <div ng-repeat="task in users.createdTasks | filter: query" class='listofTasks'>
   <div class="row">
-   <div class="col-xs-2"><img src="{{task._tagged_member.img_url}}" class="img-responsive profile-img" alt=""></div> 
+
+   <div class="col-xs-2">
+   <div class="image-cropper--small">
+   <img src="{{task._tagged_member.img_url}}" class="image-cropper__image" alt=""></div> 
+   </div>
     <div class="col-xs-3">
-     <span>{{task._tagged_member.name}}</span>
+    <span> <a ui-sref="profile({ user_id: task._tagged_member.id })" id="creator-name">{{task._tagged_member.name}}</a></span>
    </div> 
    <div class="col-xs-4">
     

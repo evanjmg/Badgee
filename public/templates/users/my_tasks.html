@@ -40,11 +40,11 @@
        </div>
      </div>
      <div  ng-repeat="task in users.pending | filter: query">
-      <div class="row">
-        <div class="col-xs-2" ng-hide="task._creator.img_url">
-          <img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt="">
-        </div> 
-        <div class="col-xs-2"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
+      <div class="row"> 
+        <div class="col-xs-2">
+        <div class="image-cropper--small">
+        <img src="{{task._creator.img_url}}" class="image-cropper__image" alt="">
+        </div></div> 
         <div class="col-xs-3">
          <span>{{task._creator.name}}</span>
        </div> 

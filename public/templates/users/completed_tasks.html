@@ -44,9 +44,9 @@
   
 </p>
   <div class="row">
-   <div class="col-xs-2"><img src="{{task._creator.img_url}}" class="img-responsive profile-img" alt=""></div> 
+   <div class="col-xs-2"><div class="image-cropper--small"><img src="{{task._creator.img_url}}" class="image-cropper--small" alt=""></div></div> 
     <div class="col-xs-3">
-     <span>{{task._creator.name}}</span>
+     <span><a ui-sref="profile({ user_id: task._creator.id })" id="creator-name">{{task._creator.name}}</a></span>
    </div> 
    <div class="col-xs-4">
    <span>{{task.description}}</span><br/>

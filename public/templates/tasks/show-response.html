@@ -2,7 +2,9 @@
 
   <div class="row card-top">
     <div class="col-xs-6"> 
-      <img ng-src="{{ tasks.task._tagged_member.img_url}}" alt="profile"  class="img-circle profile-img img-responsive show-page-profile-img">
+    <div class="image-cropper--small profile-image-show-page">
+      <img ng-src="{{ tasks.task._tagged_member.img_url}}" alt="profile"  class="image-cropper__image">
+      </div>
       <a ui-sref="profile({user_id: tasks.task._tagged_member.id })" id="tagged-member-name-head" >{{ tasks.task._tagged_member.name}}</a>
     </div>
 
