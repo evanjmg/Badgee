@@ -1,7 +1,8 @@
 <div ng-controller="TasksController as tasks">
 <div class="white-container search-container" >
+<h3 >Search Challenges <span class="fadedText ">( e.g eating, running, iphone)</span></h3>
 <div class="input-group">
-<input class="form-control" ng-change="tasks.onSearch(query);" type="text" ng-model="query" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }" placeholder="Search for..." />
+<input class="form-control" ng-change="tasks.onSearch(query);" type="text" ng-model="query" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }" placeholder="Search Challenges" />
       <span class="input-group-btn">
         <button class="btn btn-info search-button" type="button" ng-click="tasks.onSearch(query)">Go</button>
         </span>
