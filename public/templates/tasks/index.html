@@ -1,25 +1,39 @@
 <div ng-controller="TasksController as tasks">
-<div class="white-container search-container">
-  <input type="text" ng-model="query" class="form-control" placeholder="Search challenges">
+<div class="white-container search-container" >
+<div class="input-group">
+<input class="form-control" ng-change="tasks.onSearch(query);" type="text" ng-model="query" ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 250, 'blur': 0 } }" placeholder="Search for..." />
+      <span class="input-group-btn">
+        <button class="btn btn-info search-button" type="button" ng-click="tasks.onSearch(query)">Go</button>
+        </span>
+        </div>
   <h2 ng-show="query" id="search-results">Search Results for '{{query}}'</h2>
-  <div ng-show="(tasks.all | filter: query).length == 0">
+  <div ng-show="(tasks.results | filter: query).length == 0">
     No results. 
   </div>
   </div>
   <div class="feed-container">
-    <div ng-repeat="task in tasks.all | filter: query" ng-hide="(tasks.all | filter: query).length == 0" class="white-container task-post" >
+    <div ng-repeat="task in tasks.results track by $index | orderBy: created_at"  class="white-container task-post" >
 
+    <!-- ng-hide="(tasks.all | filter: query).length == 0"| filter: query -->
       
         <div class="row">
          <div class="col-xs-6">
-           <a ui-sref="profile({ user_id: task._creator.id })" id="creator-name">
+           <a ng-if="task._creator.id" ui-sref="profile({ user_id: task._creator.id })" id="creator-name">
            <div class="image-cropper--small profile-image-show-page">
              <img src="{{task._creator.img_url}}" alt="profile" class="image-cropper__image">
              </div>
              <div style="display:inline">
-               <span style="display:inline">{{ task._creator.name}}</span>
+               <span style="display:inline">{{ task._creator.name | limitTo: 19}}</span>
              </div>
            </a>
+          <div ng-if="!task._creator.id">
+           <div class="image-cropper--small profile-image-show-page">
+             <img src="{{task._creator.img_url}}" alt="profile" class="image-cropper__image">
+             </div>
+             <div style="display:inline">
+               <span style="display:inline">{{ task._creator.name | limitTo: 19}}</span>
+             </div>
+             </div>
          </div>
          <div class="col-xs-6" style="text-align:right; padding-right:20px;">
            <span  id="created_at" >{{ task.created_at | date: mediumDate }}</span>
@@ -33,19 +47,15 @@
 
         <div class="col-xs-12 task-description">{{task.description | limitTo: 143}} <a ui-sref="showTask({ id: task._id})"> more</a></div>
       </div>
-      <div class="pull-left"><a id="tagged-member-name" ui-sref="profile({ user_id: task._tagged_member.id })">
+      <div ng-if="task._tagged_member" class="pull-left"><a  id="tagged-member-name" ui-sref="profile({ user_id: task._tagged_member.id })">
         <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name}} </span></a>
       </div>
-      <div class="pull-right">
+      <div ng-if="task.location" class="pull-right">
         <span id='location-name'> <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive">{{ task.location.name}}</span>
       </div>
-      <div class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive">
+      <div ng-if="task.minutes" class="pull-right"><img src="/images/clock-icon.png" id="clock-icon" alt="clock" class="img-responsive">
        <span id='task-minutes'>{{ task.minutes}} min</span>
      </div>
-
-
-
-
 
  </div>
 </div>

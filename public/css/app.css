@@ -86,6 +86,10 @@ a.btn {
   transform: translateY(5px); }
 
 @media screen and (max-width: 500px) {
+  .search-button {
+    width: 45px !important;
+    height: 140% !important; }
+
   .btn-info, .btn-success {
     width: 100%; }
 
@@ -744,6 +748,7 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   display: block;
   margin: auto;
   padding: 30px;
+  padding-top: 90px;
   max-width: 900px; }
 
 .profile-padding {

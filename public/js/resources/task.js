@@ -14,7 +14,8 @@ function Task ($resource) {
     'reject': { method: 'GET', url: url + ':id/reject'},
     'rejectResponse': { method: 'GET', url: url + ':id/reject-response'},
     'acceptResponse': { method: 'GET', url: url + ':id/accept-response'},
-    'copy': { method: 'POST', url: url + 'copy'}
+    'copy': { method: 'POST', url: url + 'copy'},
+    'search': { method: 'GET', url: '/api/search/:query', isArray: true }
   
 });
 

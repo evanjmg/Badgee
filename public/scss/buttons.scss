@@ -74,6 +74,10 @@
   transform: translateY(5px);
 } 
 @media screen and (max-width: 500px) { 
+  .search-button {
+    width:45px !important;
+    height:140% !important; 
+  }
   .btn-info, .btn-success {
     width:100%;
   }

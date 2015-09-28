@@ -6,6 +6,8 @@ var router = express.Router();
  var TasksController = require('../controllers/tasks');
  var TeamsController = require('../controllers/teams');
  var UsersController = require('../controllers/users');
+ var SearchController = require('../controllers/search');
+
  var AuthenticationController = require('../controllers/auth');
  var passport = require('passport');
  var jwt      = require('jsonwebtoken');
@@ -38,7 +40,8 @@ var router = express.Router();
   router.route('/teams/:id')
   // .put(TeamsController.updateTeam)
   .get(TeamsController.showTeam);
-
+// SEARCH 
+router.route('/search/:query').get(SearchController.searchInstagram);
 // TASKS
 router.route('/tasks/copy')
   .post(TasksController.copyTask);
