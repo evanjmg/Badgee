@@ -505,10 +505,13 @@ footer a:hover {
     color: white; }
 
 @media screen and (max-width: 768px) {
+  #search-results {
+    display: none; }
+
   .search-container h3 {
-    font-size: 17px; }
+    font-size: 15px; }
     .search-container h3 span {
-      font-size: 14px; }
+      font-size: 12px; }
 
   .image-cropper--profile {
     height: 50px;
@@ -587,6 +590,10 @@ footer a:hover {
     max-width: 100%;
     width: 100% !important; } }
 @media screen and (max-width: 480px) {
+  #search-container {
+    padding: 3px;
+    margin-top: -5px; }
+
   .content-container {
     margin: 0; } }
 .addToNewTeamButton, .removeFromNewTeamButton {
@@ -757,7 +764,7 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
   display: block;
   margin: auto;
   padding: 30px;
-  padding-top: 90px;
+  padding-top: 150px;
   max-width: 900px; }
 
 .profile-padding {
@@ -781,7 +788,8 @@ span#location-name:hover, a.map-button:hover, #map-marker:hover, a#tagged-member
     float: right; }
 
   .feed-container {
-    padding: 0; }
+    padding: 0;
+    padding-top: 70px; }
 
   .profile-padding {
     padding-top: 40px; }

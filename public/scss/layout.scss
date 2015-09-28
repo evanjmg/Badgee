@@ -247,11 +247,14 @@ footer {
   z-index: 1000;
 }
 @media screen and (max-width: 768px) {
+  #search-results {
+    display:none;
+  }
   .search-container {
     h3 {
-      font-size: 17px;
+      font-size: 15px;
       span {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
@@ -350,6 +353,10 @@ span#account-nav {
 }
 @media screen and (max-width: 480px) {
 
+  #search-container {
+    padding:3px;
+    margin-top: -5px;
+  }
   .content-container {
     margin:0;
   }
