@@ -26,7 +26,9 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     self.currentUser = TokenService.parseJwt();
     
   }
-
+// if ($stateParams.object) {
+//   self.task = $stateParams.object;
+// }
   // Setup defaults
   self.task             = {};
   self.all = Task.query();
@@ -42,16 +44,20 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
           console.log(response);
           console.log(response2);
           console.log(response3);
-           var databaseResults = self.all.filter(function (task) {
-              return (((task.description).indexOf($scope.query)) > -1);
-          });
-          self.results = databaseResults.concat(response).concat(response2).concat(response3);
+          console.log(self.all, 'self.all')
+          //  var databaseResults = self.all.filter(function (task) {
+          //     return (((task.description).indexOf($scope.query)) > -1);
+          // }); databaseResults.concat(
+          self.results = response.concat(response2).concat(response3);
         });
       });
     });
   }
-
+if ($stateParams.instagram) {
+ self.task = $stateParams.instagram
+}
   if ($stateParams.id) {
+
     self.task = Task.get({id: $stateParams.id}, function (response) {
       self.task = response;
       if (self.task.created_at) {
@@ -185,9 +191,12 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       $state.go('createdTasks');
       Flash.create('success', "<h4> You shared this challenge with "+ self.task._tagged_member.name +". Awaiting their response.</h4>", 'custom-class');
     });
+  };
 
-
-  }
+  self.showInstagramTask = function (task) {
+          $state.go('showInstagramPhoto', { instagram: task });     
+  };
+ 
   self.upload = function () {
     if (!self.file) {
       PhotoUpload.upload(null, function(img_url){

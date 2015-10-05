@@ -12,8 +12,9 @@
 
       <div class="col-xs-4 pull-right" id="created_at" >{{ tasks.format_created_at }}</div>
     </div>
-    <img ng-show="tasks.task.img_url" src="{{tasks.task.img_url}}" class="img-responsive" id="task-image" alt="">
-    <div class="map-container">  <div class="pull-right">
+ 
+    <img ng-show="tasks.task.img_url" src="{{tasks.task.img_url}}" class="img-responsive " id="task-image" alt="">
+     <div class="map-container">  <div class="pull-right">
       <a ng-click="tasks.closeMap()" class="map-button">  <img src="/images/map-marker.png" id="map-marker" alt="" class="img-responsive"><span id='location-name'>Close Map</span>
       </a>
     </div>

@@ -15,6 +15,13 @@ function MainRouter($stateProvider, $urlRouterProvider, $authProvider) {
     url: '/login',
     templateUrl: 'templates/users/login.html'
   })
+  .state('showInstagramPhoto', {
+    url: '/instagram',
+    templateUrl:'templates/tasks/instagram.html',
+    params: {
+        instagram: null
+    }
+  })
   .state('profile', {
     url: '/profile/:user_id',
     templateUrl: 'templates/users/profile.html'

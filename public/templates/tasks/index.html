@@ -14,8 +14,6 @@
   </div>
   <div class="feed-container">
     <div ng-repeat="task in tasks.results track by $index | orderBy: created_at"  class="white-container task-post" >
-
-    <!-- ng-hide="(tasks.all | filter: query).length == 0"| filter: query -->
       
         <div class="row">
          <div class="col-xs-6">
@@ -46,7 +44,10 @@
        <p></p>
        <div class="row">
 
-        <div class="col-xs-12 task-description">{{task.description | limitTo: 143}} <a ui-sref="showTask({ id: task._id})"> more</a></div>
+        <div ng-show="task._id" class="col-xs-12 task-description">{{task.description | limitTo: 143}} <a ui-sref="showTask({ id: task._id})"> More</a></div>
+         <div ng-show="!task.id" class="col-xs-12 task-description">{{task.description | limitTo: 143}} 
+<!-- ng-click="tasks.showInstagramTask(task) -->
+<a ng-click="tasks.showInstagramTask(task)"> More</a></div>
       </div>
       <div ng-if="task._tagged_member" class="pull-left"><a  id="tagged-member-name" ui-sref="profile({ user_id: task._tagged_member.id })">
         <img id="at-icon" src="/images/at-icon.png" alt=""><span> {{ task._tagged_member.name}} </span></a>
@@ -61,18 +62,4 @@
  </div>
 </div>
 
-   <!--    <div class="row">
-        <div class="col-xs-3">
-          <img class="img-responsive" width="100" ng-show="task.img_url" src="{{task.img_url}}" alt="">
-          <img class="img-responsive" width="100" ng-hide="task.img_url" src="/images/badgee-profile-filler1.png" alt="">
-        </div>
-        <div class="col-xs-6">
-          {{task.description}} 
-          <br/>
-          by {{task._creator.name}}
-        </div>
-        <div class="col-xs-3">
-          <a ui-sref="showTask({ id: task._id})" class="btn btn-info">View</a>
-        </div>
-      </div>
-    </div> -->
+   
