@@ -78,7 +78,11 @@ function MainRouter($stateProvider, $urlRouterProvider, $authProvider) {
   })
   .state('showTask', {
     url: '/tasks/:id',
-    templateUrl: 'templates/tasks/show.html'
+    templateUrl: 'templates/tasks/show.html',
+    params: {
+        instagram: null
+    }
+
   })
   .state('showResponse', {
     url: '/tasks/:id/response',

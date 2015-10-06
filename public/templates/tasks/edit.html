@@ -1,4 +1,4 @@
-<div ng-controller="TasksController as tasks">
+<div ng-controller="TasksController as tasks" class="white-container">
   <div id="createTaskPage">
 
     <!-- <form ng-submit="tasks.createTask()" novalidate='novalidate' id="createTaskForm"> -->
@@ -34,7 +34,9 @@
       <label for="recipient">Sent To:</label>
        <div class="row">
          <div class="col-xs-4">
-          <img ng-src="{{tasks.task._tagged_member.img_url}}" alt="user" class="profile-img">
+         <div class="image-cropper--small">
+          <img ng-src="{{tasks.task._tagged_member.img_url}}" alt="user" class="image-cropper__image">
+          </div>
         </div>
         <div class="col-xs-4">
           <span> {{tasks.task._tagged_member.name}}</span>
@@ -73,7 +75,9 @@
     <div  ng-if="tasks.selectUsersPage" ng-repeat="user in tasks.allUsers">
       <div class="row">
         <div class="col-xs-4">
-         <img ng-src="{{user.img_url}}" alt="user" class="profile-img">
+        <div class="image-cropper--small">
+         <img ng-src="{{user.img_url}}" alt="user" class="image-cropper__image">
+         </div>
        </div>
        <div class="col-xs-4">
          <span> {{user.name}}</span>
@@ -86,42 +90,10 @@
      </div>
      <hr>
    </div>
- <!--   <div class="form-group" ng-show="tasks.formComplete"> -->
-    <!-- <button type="submit" class=" btn-success btn">Send</button> -->
+
   </div>
 <!-- </form> -->
 </div>
 </div>
 
   
- <!--  <img id="photo" ng-src="{{previewImage}}">
-  <div class="output" style="display:none;">
-</div>
-<img id="photo" ng-hide="previewImage" ng-src="{{tasks.task.img_url}}" alt="The screen capture will appear in this box.">
-
-<div>
-         <form ng-submit="tasks.upload()">
-      
-      <file-field ng-model="uploadFile" preview="previewImage" file>Upload File</file-field>
-      <input type="submit" class="btn-success btn" value="Upload"  >
-  </form>
-  <form ng-submit="tasks.updateTask()" novalidate='novalidate' id="updateTaskForm">
-  <div class="form-group">
-  <label for="challenge">Your Challenge:</label>
-    <input type="text"  ng-model="tasks.task.description" name="description" class="form-control">
-    </div>
-    <div class="form-group">
-    <label for="minutes">How Long Should It Take?</label>
-    <slider></slider>
-    <span id="minutes"class="center">Minutes</span>
-  </div>
-  <div class="form-group">
-  <label for="">Location</label>
-  <input type="text" ng-model="tasks.task.location.name" class="form-control">
-  </div>
-    <div class="form-group">
-    <button type="submit" class=" btn-success btn">Send</button>
-    </div>
-  </form>
-  </div>
-</div> -->

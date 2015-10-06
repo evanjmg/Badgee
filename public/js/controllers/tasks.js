@@ -53,9 +53,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       });
     });
   }
-if ($stateParams.instagram) {
- self.task = $stateParams.instagram
-}
+
   if ($stateParams.id) {
 
     self.task = Task.get({id: $stateParams.id}, function (response) {
@@ -69,6 +67,9 @@ if ($stateParams.instagram) {
 
   });
   }
+  if ($stateParams.instagram) {
+ self.task = $stateParams.instagram;
+}
 
   if ($('canvas').length !== 0 || $('#shareChallengeButton').css('display') !== 'none') { 
     Geo.locate(function (data) {
@@ -194,7 +195,7 @@ if ($stateParams.instagram) {
   };
 
   self.showInstagramTask = function (task) {
-          $state.go('showInstagramPhoto', { instagram: task });     
+          $state.go('showTask', { instagram: task });     
   };
  
   self.upload = function () {
