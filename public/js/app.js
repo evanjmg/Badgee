@@ -8,7 +8,6 @@ function AuthInterceptor($httpProvider){
   $httpProvider.interceptors.push("authInterceptor");
 }
 
-
 function MainRouter($stateProvider, $urlRouterProvider, $authProvider) {
   
   $stateProvider.state('login', {

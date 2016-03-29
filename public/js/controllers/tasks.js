@@ -26,10 +26,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     self.currentUser = TokenService.parseJwt();
     
   }
-// if ($stateParams.object) {
-//   self.task = $stateParams.object;
-// }
-  // Setup defaults
+
   self.task             = {};
   self.all = Task.query();
   self.showCamera       = false;
@@ -41,13 +38,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
     Task.search({ query: $scope.query + 'contest' }, function (response) {
       Task.search({ query: $scope.query + 'challenge' }, function (response2) {
         Task.search({ query: $scope.query + 'giveaway' }, function (response3) {
-          console.log(response);
-          console.log(response2);
-          console.log(response3);
-          console.log(self.all, 'self.all')
-          //  var databaseResults = self.all.filter(function (task) {
-          //     return (((task.description).indexOf($scope.query)) > -1);
-          // }); databaseResults.concat(
+          
           self.results = response.concat(response2).concat(response3);
         });
       });
@@ -61,9 +52,12 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       if (self.task.created_at) {
        self.format_created_at = moment(self.task.created_at).startOf('hour').fromNow(); 
      }
-     if (self.task.completion.time_completed) {
+     if (self.task.completion) {
+       if (self.task.completion.time_completed) {
       self.format_time_completed = moment(self.task.completion.time_completed).startOf('hour').fromNow();
     }
+   }
+    
 
   });
   }
@@ -130,7 +124,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
   }
   self.takePicture = function() {
     PhotoUpload.takepicture();
-  }
+  };
 
   self.decideTask = function (bool) {
     if (bool) {
@@ -144,7 +138,7 @@ function TasksController(Flash, User, Task, $state, $stateParams, TokenService, 
       });
       $state.go('myTasks');
     }   
-  }
+  };
   self.onSearch = function (query) {
    Task.search({ query: query + 'contest' }, function (response) {
       Task.search({ query: query + 'challenge' }, function (response2) {
@@ -273,7 +267,7 @@ self.createTask = function (recipient) {
   self.task._creator = self.currentUser.id;
   self.task._tagged_member = recipient.id;
     // self.task.team_id = $stateParams.team_id;
-
+      console.log(self.task, self.lat, self.lon);
     Task.save({ task: self.task, lat: self.lat, lon: self.lon  }, function (response) {
 
       $state.go('showTask', { id: response._id})
