@@ -43,7 +43,7 @@ function createTask (req, res) {
 
        task.save(function (err, tas) {
         User.findById(task._creator, function (err, user) {
-         user.created_tasks.push(tas);
+         user.created_tasks.push(task);
          user.save(function (er) {
           if (err) res.status(403).send({ message: "Could not save task"});
           res.send(task);
