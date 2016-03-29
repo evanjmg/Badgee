@@ -7,7 +7,6 @@ var request = require('request');
 
 
 function createTask (req, res) {
-  // Team.findById(req.body.team_id, function (err, team) {
 
     if (!req.body.lon) {
       req.body.lat = "51.5286416"
