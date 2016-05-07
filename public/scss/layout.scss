@@ -7,7 +7,26 @@ body, html {
 body { padding-top: 80px; 
   background-color: #F5F8FA;
 }
-
+.main-loader {
+  position:fixed;
+  z-index:1029!important;
+  width:100vw;
+  height:100vh;
+  top:53px;
+  margin:0 auto;
+  display:block;
+  background-color: #F5F8FA;
+}
+   .inner-loader {
+    margin:0 auto;
+    display:block;
+    img {
+      max-height:100px;
+      margin-bottom: 20px;
+    }
+    padding-top: 100px;
+    text-align: center;
+  }
 .white-container {
   border:1px solid rgba(0,0,0,0.1);
   background-color: white;
@@ -80,15 +99,19 @@ body { padding-top: 80px;
 }
 .nav-container {
   background-color: $primary-color;
+  z-index: 1000;
 }
+
 .container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
   font-family: 'Nevis Bold';
   text-transform: uppercase;
   background-color: $primary-color;
   color: white;
+
   .navbar-form .form-control {
    font-size: 14px;
    padding:3px;
+
  }
  .navbar-nav>li>a {
 
@@ -232,6 +255,7 @@ footer {
   color:white;
   display:block;
   position:fixed;
+  z-index: 1000;
   width:100%;
   margin-right: auto;
   margin-left: auto;
@@ -244,7 +268,6 @@ footer {
     font-size: 17px;
     color:white;
   }
-  z-index: 1000;
 }
 @media screen and (max-width: 768px) {
   #search-results {

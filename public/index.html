@@ -19,8 +19,16 @@
 </head>
 <body>
 
-  
   <div ng-include="'templates/shared/header.html'" ></div>
+
+  <div loader class="main-loader" >
+  <div class="inner-loader">
+      <img class="animated infinite pulse" src="/images/badgee-the-badger.png" alt="">
+      <br/>
+     <span> Loading .. </span>
+  </div>
+     
+  </div>
   <div class="content-container" ui-view></div>
  
 
@@ -76,6 +84,7 @@
   <script type="text/javascript" src="/js/directives/googleAutocomplete.js"></script>
   <script type="text/javascript" src="/js/directives/slider.js"></script>
   <script type="text/javascript" src="/js/directives/googleMap.js"></script>
+  <script type="text/javascript" src="/js/directives/loader.js"></script>
   <script type="text/javascript" src="/js/directives/filters/split.js"></script>
   </body>
   </html>
